@@ -16,11 +16,9 @@ public class FirebaseConfig {
     public void init(){
         try{
             ClassPathResource res = new ClassPathResource("/key/serviceAccountKey.json");
-            FileInputStream serviceAccount =
-                    new FileInputStream(res.getFile());
 
             FirebaseOptions options = new FirebaseOptions.Builder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setCredentials(GoogleCredentials.fromStream(res.getInputStream()))
                     .setDatabaseUrl("https://finedustlab-default-rtdb.firebaseio.com/")
                     .build();
 
