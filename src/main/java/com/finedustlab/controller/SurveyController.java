@@ -1,15 +1,11 @@
 package com.finedustlab.controller;
 
-import com.finedustlab.model.Survey;
 import com.finedustlab.service.SurveyService;
 import org.apache.catalina.connector.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 @Controller
 public class SurveyController {
