@@ -2,9 +2,7 @@ package com.finedustlab.domain.repository;
 
 import com.finedustlab.domain.DataRepository;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 public class UserRepository implements DataRepository {
     @Override
@@ -13,7 +11,7 @@ public class UserRepository implements DataRepository {
     }
 
     @Override
-    public Object findByID(String id) {
+    public Object findByID(Long id) {
         return null;
     }
 

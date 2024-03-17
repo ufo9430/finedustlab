@@ -3,24 +3,25 @@ package com.finedustlab.controller;
 import com.finedustlab.service.SurveyService;
 import org.apache.catalina.connector.Response;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 
 @Controller
 public class SurveyController {
     private final SurveyService surveyService = new SurveyService();
 
-    @GetMapping("/survey/get")
-    public Response getSurveyData(@RequestParam("type") String type){
-        Response response = surveyService.get(type);
-
-        return response;
+    @GetMapping("/survey/data")
+    @ResponseBody
+    public Object getSurveyData(@RequestParam("type") String type){
+        return surveyService.get(type);
     }
 
-    @GetMapping("/survey/set")
-    public void setSurveyAnswer(){
-        surveyService.set();
+    @PostMapping("/survey/set")
+    public void setSurveyAnswer(@RequestBody Map<String, String> params){
+
+        surveyService.set(params);
     }
 
 }

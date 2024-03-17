@@ -1,4 +1,6 @@
-{"survey_teach":[
+{
+    "content_type":"teacher",
+    "data":[
     {
         "id": "1",
         "subject": [

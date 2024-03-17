@@ -10,6 +10,6 @@ import java.util.concurrent.ExecutionException;
 public interface DataRepository {
 
     public void save(Optional<Object> entity);
-    public Object findByID(String id) throws ExecutionException, InterruptedException;
+    public Object findByID(Long id);
 
 }

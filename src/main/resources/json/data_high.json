@@ -1,4 +1,6 @@
-{"survey_high": [
+{
+    "content_type":"high",
+    "data": [
     {
         "id": "1",
         "subjects": [

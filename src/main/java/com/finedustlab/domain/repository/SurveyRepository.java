@@ -1,15 +1,15 @@
 package com.finedustlab.domain.repository;
 
 import com.finedustlab.model.Survey;
-import com.google.api.client.json.Json;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
+import com.google.cloud.firestore.Query;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.*;
-import org.apache.catalina.connector.Response;
 
 import java.util.HashMap;
-import java.util.concurrent.ExecutionException;
+import java.util.List;
+import java.util.Map;
 
 public class SurveyRepository {
     public static final String SURVEY_ANSWER = "survey_answer";
@@ -17,24 +17,23 @@ public class SurveyRepository {
 
     FirebaseDatabase db = FirebaseDatabase.getInstance();
 
-    public void save(HashMap<String, Survey> answer) {
+    public void save(Map<String, String> answer) {
         Firestore firestore = FirestoreClient.getFirestore();
         CollectionReference surveys = firestore.collection(SURVEY_ANSWER);
         surveys.document("2").set(answer);
     }
 
-    public Response findByID(String id) {
-        Response result;
+    public Object findDataByID(String id){
+        Survey result;
         Firestore firestore = FirestoreClient.getFirestore();
         CollectionReference survey = firestore.collection(SURVEY_DATA);
-        ApiFuture<DocumentSnapshot> future = survey.document(id).get();
         try{
-            DocumentSnapshot documentSnapshot = future.get();
-            result = documentSnapshot.toObject(Response.class);
-            return result;
-        }catch(Exception e){
+            QuerySnapshot content = survey.whereEqualTo("content_type", id).get().get();
+            QueryDocumentSnapshot document = content.getDocuments().get(0);
+            return document.getData();
+        }catch (Exception e){
             e.printStackTrace();
-            return null;
+            return "error";
         }
     }
 }

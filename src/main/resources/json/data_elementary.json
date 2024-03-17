@@ -1,4 +1,6 @@
-{"survey_elementary":[
+{
+    "content_type":"elementary",
+    "data":[
     {
         "id": "1",
         "subjects": [
