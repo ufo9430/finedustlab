@@ -1,11 +1,6 @@
 package com.finedustlab.domain;
 
-import com.finedustlab.model.Survey;
-
-import java.util.HashMap;
-import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 public interface DataRepository {
 

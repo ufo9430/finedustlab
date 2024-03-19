@@ -5,13 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
-public class User {
-    private String email;
-    private String password;
-    private String user_type;
-    private String school_code;
+public class SurveyAnswerDto {
+    private String type;
+    private int answer_id;
+    private String answer;
+    private String sub_answer;
+
 }

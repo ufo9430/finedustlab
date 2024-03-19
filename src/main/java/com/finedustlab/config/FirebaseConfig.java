@@ -24,7 +24,7 @@ public class FirebaseConfig {
         try{
             ClassPathResource res = new ClassPathResource(SERVICE_ACCOUNT_KEY);
 
-            FirebaseOptions options = new FirebaseOptions.Builder()
+            FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(res.getInputStream()))
                     .setDatabaseUrl("https://finedustlab-default-rtdb.firebaseio.com/")
                     .build();
@@ -36,7 +36,7 @@ public class FirebaseConfig {
         }
     }
 
-    //FCM Config
+/*    //FCM Config
     @Bean
     FirebaseMessaging firebaseMessaging() throws IOException {
         ClassPathResource resource = new ClassPathResource(SERVICE_ACCOUNT_KEY);
@@ -59,5 +59,5 @@ public class FirebaseConfig {
         }
 
         return FirebaseMessaging.getInstance();
-    }
+    }*/
 }
