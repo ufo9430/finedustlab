@@ -1,7 +1,6 @@
 package com.finedustlab.controller;
 
-import com.finedustlab.model.UserProfileDto;
-import com.finedustlab.model.SurveyAnswerDto;
+import com.finedustlab.model.survey.SurveyInputWrapper;
 import com.finedustlab.service.SurveyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,10 +23,8 @@ public class SurveyController {
     @Tag(name = "setSurveyAnswer")
     @PostMapping("/survey/set")
     @ResponseBody
-    public void setSurveyAnswer(@RequestBody UserProfileDto profile, @RequestBody SurveyAnswerDto answer){
-        System.out.println("profile = " + profile);
-        System.out.println("answer = " + answer);
-//        return surveyService.set(profile, answer);
+    public String setSurveyAnswer(@RequestBody SurveyInputWrapper input_data){
+        return surveyService.set(input_data);
     }
 
 }

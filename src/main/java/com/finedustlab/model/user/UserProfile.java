@@ -1,4 +1,4 @@
-package com.finedustlab.model;
+package com.finedustlab.model.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,10 +9,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class UserProfileDto {
+public class UserProfile {
     private int school_code;
     private int grade;
     private int class_num;
     private String name;
-    //doc_id = timestamp+"-"+school_code+"-"+grade+"-"+class_num+"-"+student_id
 }

@@ -1,10 +1,12 @@
 package com.finedustlab.domain.repository;
 
-import com.finedustlab.model.SurveyAnswerDto;
+import com.finedustlab.model.survey.SurveyAnswer;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.HashMap;
 
 @Repository
 public class SurveyRepository {
@@ -13,15 +15,25 @@ public class SurveyRepository {
 
     FirebaseDatabase db = FirebaseDatabase.getInstance();
 
-    public String save(String document_id, SurveyAnswerDto answer) {
+    public String save(String document_id, SurveyAnswer answer) {
         Firestore firestore = FirestoreClient.getFirestore();
+        HashMap<String, Object> fields = new HashMap<>();
+        fields.put(String.valueOf(answer.getAnswer_id()),setAnswerData(answer));
         firestore.collection(SURVEY_ANSWER).document(document_id)
-                .set(answer,SetOptions.merge());
+                .set(fields,SetOptions.merge());
         return document_id;
     }
 
+    private HashMap<String, String> setAnswerData(SurveyAnswer answer){
+        HashMap<String, String> result = new HashMap<>();
+        result.put("answer",answer.getAnswer());
+        result.put("sub_answer",answer.getSub_answer());
+        result.put("type",answer.getType());
+        return result;
+    }
+
     public Object findDataByID(String id){
-        SurveyAnswerDto result;
+        SurveyAnswer result;
         Firestore firestore = FirestoreClient.getFirestore();
         CollectionReference surveyData = firestore.collection(SURVEY_DATA);
         try{
