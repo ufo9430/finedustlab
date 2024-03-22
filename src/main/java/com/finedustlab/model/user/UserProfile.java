@@ -9,7 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class UserProfile {
+public class UserProfile{
     private int school_code;
     private int grade;
     private int class_num;
