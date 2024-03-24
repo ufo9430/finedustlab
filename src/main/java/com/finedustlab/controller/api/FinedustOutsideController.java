@@ -45,7 +45,8 @@ public class FinedustOutsideController {
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         } else {
-            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            result.put("result","error");
+            return result;
         }
         String strobject = rd.readLine();
         rd.close();
@@ -64,6 +65,7 @@ public class FinedustOutsideController {
                 break;
             }
         }
+        result.put("result","complete");
         if(Integer.parseInt(finedust) < 31){
             result.put("status", "good");
         }else{
