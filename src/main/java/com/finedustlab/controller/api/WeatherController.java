@@ -1,73 +1,102 @@
-package com.finedustlab.controller;
-
+package com.finedustlab.controller.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.finedustlab.model.api.APIRequestDTO;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import com.finedustlab.model.api.WeatherRequestDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class APIController {
+public class WeatherController {
 
-    private final String APIKEY_WHETHER =
+    private final String APIKEY =
             "ISOm1PZB6EqoIW%2FoJwuaLOG%2FCLNiXiqW%2FkTFkJ6CFFXq%2F%2FoDwKuYxZFNUPz3bzdu%2BVkYZsBbh10Y51t3ndF9nw%3D%3D";
 
-    @GetMapping("/whether/get")
-    @ResponseBody
-    public Map<String,Object> getWeather(@RequestBody APIRequestDTO requestDTO) throws Exception {
+    public Map<String, Object> getWeather(WeatherRequestDTO requestDTO) throws Exception {
         double x = Double.parseDouble(requestDTO.getLat());
         double y = Double.parseDouble(requestDTO.getLng());
-        String date = requestDTO.getDate();
-        SimpleDateFormat yyyymmdd = new SimpleDateFormat("yyyymmdd");
+        String inputDate = requestDTO.getDate();
+        String dateModulated = getModulatedDate(inputDate);
 
-        String time = requestDTO.getTime();
-        SimpleTime
+        String strDate = dateModulated.split("-")[0];
+        String strTime = dateModulated.split("-")[1];
 
         LatXLngY grid = convertGRID_GPS(x,y);
 
-        System.out.println("date = " + date);
-        System.out.println("time = " + time);
-        System.out.println("grid.toString() = " + grid.toString());
+        Map<String, Object> output = new HashMap<>();
+
 
         String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"
-                + "?serviceKey=" + APIKEY_WHETHER
+                + "?serviceKey=" + APIKEY
                 + "&dataType=JSON"             // JSON, XML
                 + "&numOfRows=60"              // 페이지 ROWS
                 + "&pageNo=1"                  // 페이지 번호
-                + "&base_date=" + date         // 발표일자
-                + "&base_time=" + time         // 발표시각
+                + "&base_date=" + strDate         // 발표일자
+                + "&base_time=" + strTime         // 발표시각
                 + "&nx=" + (int) grid.getX()                   // 예보지점 X 좌표
                 + "&ny=" + (int) grid.getY() ;                 // 예보지점 Y 좌표
 
-        System.out.println("url = " + url);
+        JSONObject data = getData(url);
+        JSONObject header = (JSONObject) data.get("header");
+
+        if(header.get("resultCode").equals("00")){
+            output.put("result","complete");
+
+            JSONObject body = (JSONObject) data.get("body");
+            JSONObject items = (JSONObject) body.get("items");
+            JSONArray item = (JSONArray) items.get("item");
 
 
-        return getData(url);
+            output.put("humidity",getJsonArrayValue(item,"REH"));
+            output.put("temperature",getJsonArrayValue(item,"T1H"));
+        }else{
+            output.put("result","error");
+        }
+        return output;
+    }
+    private static String getJsonArrayValue(JSONArray item, String category){
+        String result = "";
+        for (Object o : item) {
+            JSONObject object = (JSONObject) JSONValue.parse(o.toString());
+            if(object.get("category").equals(category)){
+                result = (String) object.get("fcstValue");
+                break;
+            }
+        }
+        return result;
     }
 
+    private static String getModulatedDate(String inputDate) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmm");
+        Date date = dateFormat.parse(inputDate);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MINUTE, -30);
+        date = cal.getTime();
 
-    @SuppressWarnings("unchecked")
+        return dateFormat.format(date);
+    }
 
-    private Map<String, Object> getData(String input){
+    private JSONObject getData(String input){
         String stringData;
-        Map<String, Object> result = new HashMap<>();
+        JSONObject result = null;
         try{
             URL url = new URL(input);
 
@@ -86,12 +115,17 @@ public class APIController {
             JSONObject jsonObject = (JSONObject)jsonParser.parse(stringData);
             JSONObject response = (JSONObject) jsonObject.get("response");
 
-            result = new ObjectMapper().readValue(jsonObject.toJSONString(), Map.class);
-
+            result = response;
         }catch (Exception e){
             e.printStackTrace();
         }
-        
+
+        return result;
+    }
+
+    @SuppressWarnings("unchecked")
+    private static Map<String, Object> getStringObjectMap(Map<String, Object> result, JSONObject jsonObject) throws JsonProcessingException {
+        result = new ObjectMapper().readValue(jsonObject.toJSONString(), Map.class);
         return result;
     }
 
@@ -142,8 +176,6 @@ public class APIController {
 
         return rs;
     }
-
-
 
     @Getter
     @Setter
