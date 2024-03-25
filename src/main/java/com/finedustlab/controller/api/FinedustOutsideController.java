@@ -33,6 +33,7 @@ public class FinedustOutsideController {
         urlBuilder.append("&" + URLEncoder.encode("dataTerm","UTF-8") + "=" + URLEncoder.encode("DAILY", "UTF-8")); /*요청 데이터기간(1일: DAILY, 1개월: MONTH, 3개월: 3MONTH)*/
         urlBuilder.append("&" + URLEncoder.encode("ver","UTF-8") + "=" + URLEncoder.encode("1.0", "UTF-8")); /*버전별 상세 결과 참고*/
         URL url = new URL(urlBuilder.toString());
+        System.out.println("url = " + url);
 
         String finedust = "";
         Map<String, Object> result = new JSONObject();
@@ -65,13 +66,19 @@ public class FinedustOutsideController {
                 break;
             }
         }
-        result.put("result","complete");
-        if(Integer.parseInt(finedust) < 31){
-            result.put("status", "good");
+        if(finedust.isEmpty()){
+            result.put("result", "error");
+            result.put("status","지역 정보가 존재하지 않습니다.");
+            return result;
         }else{
-            result.put("status","bad");
+            result.put("result","complete");
+            if(Integer.parseInt(finedust) < 45){
+                result.put("status", "good");
+            }else{
+                result.put("status","bad");
+            }
+            return result;
         }
-        return result;
     }
 
 
