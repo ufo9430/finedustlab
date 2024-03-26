@@ -28,10 +28,9 @@ public class APIControllerWrapper {
 
 
     @GetMapping("/finestatus/get")
-    @Operation(description = "지역 정보를 입력받아 해당 지역의 미세먼지 상태를 불러옵니다. 미세먼지 지수 31 이하일 경우 good, 이상일 경우 bad가 반환됩니다. "+
-                            "현재 위도/경도 정보에 따른 지역 정보 매핑 작업중이며 완료 시 GPS 위도/경도 입력으로 변경 후 공지하겠습니다")
+    @Operation(description = "학교 코드를 입력받아 해당 지역 시군구 측정소의 미세먼지 지수와 상태를 불러옵니다. 미세먼지 지수 45 이하일 경우 good, 이상일 경우 bad가 반환됩니다. ")
     @ResponseBody
-    public Map<String,Object> getFineStatus(@RequestParam @Schema(defaultValue = "중랑구") String location) throws Exception {
+    public Map<String,Object> getFineStatus(@RequestParam @Schema(defaultValue = "7201099") String location) throws Exception {
         return finedustOutsideController.getFinedustStatus(location);
     }
 

@@ -1,41 +1,77 @@
 {
     "content_type":"teacher",
     "data":[
-    {
-        "id": "1",
-        "subject": [
-            {
-                "id" : "101",
-                "type":"multi_choice",
-                "question" : "현재 실외 미세먼지 농도가 현재 어느 정도 수준인지 확인합니다.",
-                "answer" : [
+        {
+            "category_id": 1,
+            "category_name": "지금 공기 상태",
+            "id": "101",
+            "question": "현재 실외 미세먼지 농도가 현재 어느 정도 수준인지 확인합니다.",
+            "answer": {
+                "type": "multi_choice",
+                "options": [
                     {
-                        "id":"1",
-                        "text":"미세먼지",
-                        "options" : [
-                            {"id":"1", "text":"좋음", "input":false},
-                            {"id":"2", "text":"보통", "input":false},
-                            {"id":"3", "text":"나쁨", "input":false},
-                            {"id":"4", "text":"매우나쁨", "input":false}
+                        "id": "1",
+                        "text": "미세먼지",
+                        "options": [
+                            {
+                                "id": "1",
+                                "text": "좋음",
+                                "input": false
+                            },
+                            {
+                                "id": "2",
+                                "text": "보통",
+                                "input": false
+                            },
+                            {
+                                "id": "3",
+                                "text": "나쁨",
+                                "input": false
+                            },
+                            {
+                                "id": "4",
+                                "text": "매우나쁨",
+                                "input": false
+                            }
                         ]
                     },
                     {
-                        "id":"2",
-                        "text":"초미세먼지",
-                        "options" : [
-                            {"id":"1", "text":"좋음", "input":false},
-                            {"id":"2", "text":"보통", "input":false},
-                            {"id":"3", "text":"나쁨", "input":false},
-                            {"id":"4", "text":"매우나쁨", "input":false}
+                        "id": "2",
+                        "text": "초미세먼지",
+                        "options": [
+                            {
+                                "id": "1",
+                                "text": "좋음",
+                                "input": false
+                            },
+                            {
+                                "id": "2",
+                                "text": "보통",
+                                "input": false
+                            },
+                            {
+                                "id": "3",
+                                "text": "나쁨",
+                                "input": false
+                            },
+                            {
+                                "id": "4",
+                                "text": "매우나쁨",
+                                "input": false
+                            }
                         ]
                     }
                 ]
-            },
-            {
-                "id" : "102",
+            }
+        },
+        {
+            "category_id" : 1,
+            "category_name": "지금 공기 상태",
+            "id" : "102",
+            "question" : "현재 교실 내 미세먼지 농도가 현재 어느 정도 수준인지 확인합니다.",
+            "answer" : {
                 "type":"multi_choice",
-                "question" : "현재 교실 내 미세먼지 농도가 현재 어느 정도 수준인지 확인합니다.",
-                "answer" : [
+                "options": [
                     {
                         "id":"1",
                         "text":"미세먼지",
@@ -53,12 +89,16 @@
                         ]
                     }
                 ]
-            },
-            {
-                "id" : "103",
+            }
+        },
+        {
+            "category_id" : 1,
+            "category_name": "지금 공기 상태",
+            "id" : "103",
+            "question" : "지금 교실의 미세먼지 농도가 어떻게 느껴지십니까?",
+            "answer" : {
                 "type":"choice",
-                "question" : "지금 교실의 미세먼지 농도가 어떻게 느껴지십니까?",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"1", "input":false},
                     {"id":"2", "text":"2", "input":false},
                     {"id":"3", "text":"3", "input":false},
@@ -66,42 +106,57 @@
                     {"id":"5", "text":"5", "input":false}
                 ]
             }
-        ]
-    },
-    {
-        "id": "2",
-        "subject": [
-            {
-                "id" : "201",
+        },
+        {
+            "category_id" : 2,
+            "category_name": "교실 상태",
+            "id" : "201",
+            "question" : "현재 교실의 온도와 습도를 확인할 수 있습니까?",
+            "answer" : {
                 "type":"ox",
-                "question" : "현재 교실의 온도와 습도를 확인할 수 있습니까?",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"있음"},
                     {"id":"2", "text":"없음"}
                 ]
-            },
-            {
-                "id" : "202",
+            }
+        },
+        {
+            "category_id" : 2,
+            "category_name": "교실 상태",
+            "id" : "202",
+            "question" : "현재 교실 내의 학생 수에 대해 확인합니다.",
+            "answer": {
                 "type":"number_picker",
-                "question" : "현재 교실 내의 학생 수에 대해 확인합니다.",
-                "unit": "명",
-                "range": {"min": 0, "max": 100},
-                "input": true
-            },
-            {
-                "id" : "203",
+                "options": [
+                    {
+                        "unit": "명",
+                        "range": {"min": 0, "max": 100},
+                        "input": true
+                    }
+                ]
+            }
+        },
+        {
+            "category_id" : 2,
+            "category_name": "교실 상태",
+            "id" : "203",
+            "question" : "점검 당일, 체육 수업 또는 외부 활동이 있는지 확인합니다.",
+            "answer" : {
                 "type":"ox",
-                "question" : "점검 당일, 체육 수업 또는 외부 활동이 있는지 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"있음"},
                     {"id":"2", "text":"없음"}
                 ]
-            },
-            {
-                "id" : "204",
+            }
+        },
+        {
+            "category_id" : 2,
+            "category_name": "교실 상태",
+            "id" : "204",
+            "question" : "현재 학교 내부는 어떻게 느껴지십니까?",
+            "answer" : {
                 "type":"multi_choice",
-                "question" : "현재 학교 내부는 어떻게 느껴지십니까?",
-                "answer" : [
+                "options": [
                     {
                         "sub_id":"1",
                         "text" : "온도",
@@ -137,147 +192,70 @@
                     }
                 ]
             }
-        ]
-    },
-    {
-        "id": "3",
-        "subject":[
-            {
-                "id" : "301",
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "301",
+            "question" : "지금 교실 내 청소가 잘 되어있는 지점을 확인합니다.",
+            "answer" : {
                 "type":"checkbox",
-                "question" : "지금 교실 내 청소가 잘 되어있는 지점을 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"바닥", "selected":false},
                     {"id":"2", "text":"칠판", "selected":false},
                     {"id":"3", "text":"창문", "selected":false},
                     {"id":"4", "text":"출입문", "selected":false}
                 ]
-            },
-            {
-                "id" : "302",
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "302",
+            "question" : "지금 교실 내 청소 방법을 확인합니다.",
+            "answer" : {
                 "type":"checkbox",
-                "question" : "지금 교실 내 청소 방법을 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"빗자루 사용", "selected":false},
                     {"id":"2", "text":"진공 청소기 사용", "selected":false},
                     {"id":"3", "text":"물 청소", "selected":false}
                 ]
-            },
-            {
-                "id" : "303",
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "303",
+            "question" : "현재 교실 내 청소 주기를 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 교실 내 청소 주기를 확인합니다.",
-                "answer" : [
+                "options":[
                     {"id":"1", "text":"미실시", "input":false},
                     {"id":"2", "text":"실시", "input":true}
                 ]
-            },
-            {
-                "id" : "304",
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "304",
+            "question" : "현재 교실 내 창문을 열어 환기하는 주기에 대해 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 교실 내 창문을 열어 환기하는 주기에 대해 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"미실시", "input":false},
                     {"id":"2", "text":"실시", "input":true}
                 ]
-            },
-            {
-                "id" : "305",
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "305",
+            "question" : "냉난방기의 필터 관리 여부와 청결 상태 및 교체주기를 확인합니다.",
+            "answer" : {
                 "type":"multi_choice",
-                "question" : "냉난방기의 필터 관리 여부와 청결 상태 및 교체주기를 확인합니다.",
-                "answer" : [
-                    {
-                        "id":"1",
-                        "text":"관리 여부",
-                        "options" : [
-                            {"id":"1", "text":"하고 있음", "input":false},
-                            {"id":"2", "text":"안함", "input":false}
-                        ]
-                    },
-                    {
-                        "id":"2",
-                        "text":"관리 상태",
-                        "options" : [
-                            {"id":"1", "text":"양호", "input":false},
-                            {"id":"2", "text":"불량", "input":false}
-                        ]
-                    }
-                ]
-            },
-            {
-                "id" : "306",
-                "type":"multi_choice",
-                "question" : "현재 교실 내 공기청정기의 유무에 대해 확인합니다.",
-                "answer" : [
-                    {
-                        "id":"1",
-                        "text":"유무",
-                        "options" : [
-                            {"id":"1", "text":"있음", "input":false},
-                            {"id":"2", "text":"없음", "input":false}
-                        ]
-                    },
-                    {
-                        "id":"2",
-                        "text":"가동 여부",
-                        "options" : [
-                            {"id":"1", "text":"가동", "input":true},
-                            {"id":"2", "text":"미가동", "input":true}
-                        ]
-                    }
-                ]
-            },
-            {
-                "id" : "307",
-                "type":"multi_choice",
-                "question" : "공기청정기 필터 관리여부와 청결 상태 및 교체주기(3~6개월)를 확인합니다.",
-                "answer" : [
-                    {
-                        "id":"1",
-                        "text":"유무",
-                        "options" : [
-                            {"id":"1", "text":"있음", "input":false},
-                            {"id":"2", "text":"없음", "input":false}
-                        ]
-                    },
-                    {
-                        "id":"2",
-                        "text":"가동 여부",
-                        "options" : [
-                            {"id":"1", "text":"양호", "input":false},
-                            {"id":"2", "text":"불량", "input":false}
-                        ]
-                    }
-                ]
-            },
-            {
-                "id" : "308",
-                "type":"multi_choice",
-                "question" : "현재 교실 내 기계 환기설비의 유무 및 가동 여부에 대해 확인합니다.",
-                "answer" : [
-                    {
-                        "id":"1",
-                        "text":"유무",
-                        "options" : [
-                            {"id":"1", "text":"있음", "input":false},
-                            {"id":"2", "text":"없음", "input":false}
-                        ]
-                    },
-                    {
-                        "id":"2",
-                        "text":"가동 여부",
-                        "options" : [
-                            {"id":"1", "text":"가동", "input":true},
-                            {"id":"2", "text":"미가동", "input":true}
-                        ]
-                    }
-                ]
-            },
-            {
-                "id" : "309",
-                "type":"multi_choice",
-                "question" : "현재 교실 내 환기설비의 관리 상태를 확인합니다.",
-                "answer" : [
+                "options": [
                     {
                         "id":"1",
                         "text":"관리 여부",
@@ -296,105 +274,241 @@
                     }
                 ]
             }
-        ]
-    },
-    {
-        "id": "4",
-        "subject":[
-
-            {
-                "id" : "401",
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "306",
+            "question" : "현재 교실 내 공기청정기의 유무에 대해 확인합니다.",
+            "answer" : {
+                "type":"multi_choice",
+                "options": [
+                    {
+                        "id":"1",
+                        "text":"유무",
+                        "options" : [
+                            {"id":"1", "text":"있음", "input":false},
+                            {"id":"2", "text":"없음", "input":false}
+                        ]
+                    },
+                    {
+                        "id":"2",
+                        "text":"가동 여부",
+                        "options" : [
+                            {"id":"1", "text":"가동", "input":true},
+                            {"id":"2", "text":"미가동", "input":true}
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "307",
+            "question" : "공기청정기 필터 관리여부와 청결 상태 및 교체주기(3~6개월)를 확인합니다.",
+            "answer" : {
+                "type":"multi_choice",
+                "options": [
+                    {
+                        "id":"1",
+                        "text":"유무",
+                        "options" : [
+                            {"id":"1", "text":"있음", "input":false},
+                            {"id":"2", "text":"없음", "input":false}
+                        ]
+                    },
+                    {
+                        "id":"2",
+                        "text":"가동 여부",
+                        "options" : [
+                            {"id":"1", "text":"양호", "input":false},
+                            {"id":"2", "text":"불량", "input":false}
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "308",
+            "question" : "현재 교실 내 기계 환기설비의 유무 및 가동 여부에 대해 확인합니다.",
+            "answer" : {
+                "type":"multi_choice",
+                "options": [
+                    {
+                        "id":"1",
+                        "text":"유무",
+                        "options" : [
+                            {"id":"1", "text":"있음", "input":false},
+                            {"id":"2", "text":"없음", "input":false}
+                        ]
+                    },
+                    {
+                        "id":"2",
+                        "text":"가동 여부",
+                        "options" : [
+                            {"id":"1", "text":"가동", "input":true},
+                            {"id":"2", "text":"미가동", "input":true}
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "category_id" : 3,
+            "category_name": "건강 상태",
+            "id" : "309",
+            "question" : "현재 교실 내 환기설비의 관리 상태를 확인합니다.",
+            "answer" : {
+                "type":"multi_choice",
+                "options": [
+                    {
+                        "id":"1",
+                        "text":"관리 여부",
+                        "options" : [
+                            {"id":"1", "text":"하고 있음", "input":false},
+                            {"id":"2", "text":"안함", "input":false}
+                        ]
+                    },
+                    {
+                        "id":"2",
+                        "text":"관리 상태",
+                        "options" : [
+                            {"id":"1", "text":"양호", "input":false},
+                            {"id":"2", "text":"불량", "input":false}
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "category_id" : 4,
+            "category_name": "위생 상태",
+            "id" : "401",
+            "question" : "현재 자신의 건강상태에 대해 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 자신의 건강상태에 대해 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"이상 없음", "input":false},
                     {"id":"2", "text":"증상 있음", "input":true}
                 ]
-            },
-            {
-                "id" : "402",
+            }
+        },
+        {
+            "category_id" : 4,
+            "category_name": "위생 상태",
+            "id" : "402",
+            "question" : "현재 학생의 건강상태에 대해 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 학생의 건강상태에 대해 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"이상 없음", "input":false},
                     {"id":"2", "text":"증상 있음", "input":true}
                 ]
-            },
-            {
-                "id" : "403",
+            }
+        },
+        {
+            "category_id" : 4,
+            "category_name": "위생 상태",
+            "id" : "403",
+            "question" : "현재 아픈 것 외에, 이전부터 가지고 있던 기저질환을 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 아픈 것 외에, 이전부터 가지고 있던 기저질환을 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"없음", "input":false},
                     {"id":"2", "text":"있음", "input":true}
                 ]
             }
-        ]
-    },
-    {
-        "id": "5",
-        "subject": [
-
-            {
-                "id" : "501",
+        },
+        {
+            "category_id" : 5,
+            "category_name": "학교 현황",
+            "id" : "501",
+            "question" : "학교의 설립연도를 확인합니다.",
+            "answer": {
                 "type":"text",
-                "question" : "학교의 설립연도를 확인합니다.",
-                "unit": "년",
-                "range": {"min": 1990, "max": 2024},
-                "input": true
-            },
-            {
-                "id" : "502",
+                "options": [
+                    {
+                        "unit": "년",
+                        "range": {"min": 1990, "max": 2024},
+                        "input": true
+                    }
+                ]
+            }
+        },
+        {
+            "category_id" : 5,
+            "category_name": "학교 현황",
+            "id" : "502",
+            "question" : "교실의 칠판 재질을 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "교실의 칠판 재질을 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"분필 칠판(가루형)", "input" : false},
                     {"id":"2", "text":"화이트보드", "input" : false},
                     {"id":"3", "text":"기타", "input" : true}
                 ]
-            },
-            {
-                "id" : "503",
+            }
+        },
+        {
+            "category_id" : 5,
+            "category_name": "학교 현황",
+            "id" : "503",
+            "question" : "교실과 복도의 바닥 재질을 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "교실과 복도의 바닥 재질을 확인합니다.",
-                "answer" : [
+                "options":[
                     {"id":"1", "text":"나무", "input" : false},
                     {"id":"2", "text":"콘크리트", "input" : false},
                     {"id":"3", "text":"기타", "input" : true}
                 ]
-            },
-            {
-                "id" : "504",
+            }
+        },
+        {
+            "category_id" : 5,
+            "category_name": "학교 현황",
+            "id" : "504",
+            "question" : "현재 교실 내 창호의 상태를 확인합니다.\n-열고 닫는 작동이 잘 되는지\n-실리콘이 훼손되어 있지 않은지\n-우천시 물이 새지 않는지\n-창틀에 먼지나 이물질이 있지 않은지",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 교실 내 창호의 상태를 확인합니다.\n-열고 닫는 작동이 잘 되는지\n-실리콘이 훼손되어 있지 않은지\n-우천시 물이 새지 않는지\n-창틀에 먼지나 이물질이 있지 않은지",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"분필 칠판(가루형)", "input" : false},
                     {"id":"2", "text":"화이트보드", "input" : false},
                     {"id":"3", "text":"기타", "input" : true}
                 ]
-            },
-            {
-                "id" : "505",
+            }
+        },
+        {
+            "category_id" : 5,
+            "category_name": "학교 현황",
+            "id" : "505",
+            "question" : "현재 학교 부지 주변 조건을 확인합니다.",
+            "answer" : {
                 "type":"choice",
-                "question" : "현재 학교 부지 주변 조건을 확인합니다.",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"양호", "input" : false},
                     {"id":"2", "text":"도로 밀집", "input" : false},
                     {"id":"3", "text":"산업시설 밀집", "input" : false},
                     {"id":"4", "text":"공사중", "input" : false},
                     {"id":"5", "text":"모름", "input" : false}
                 ]
-            },
-            {
-                "id" : "506",
+            }
+        },
+        {
+            "category_id" : 5,
+            "category_name": "학교 현황",
+            "id" : "506",
+            "question" : "최근에 교실을 리모델링하거나 새 가구가 들어온 적이 있나요?",
+            "answer" : {
                 "type":"choice",
-                "question" : "최근에 교실을 리모델링하거나 새 가구가 들어온 적이 있나요?",
-                "answer" : [
+                "options": [
                     {"id":"1", "text":"있음", "input" : true},
                     {"id":"2", "text":"없음", "input" : false},
                     {"id":"3", "text":"모름", "input" : false}
                 ]
             }
-        ]
-    }
-]}
+        }
+    ]
+        }
