@@ -26,7 +26,7 @@ public class LocationService {
 
             result = sido + "-" + gungu;
         }catch (Exception e){
-            result = "location parsing error";
+            result = "error";
         }
         return result;
     }
@@ -41,6 +41,7 @@ public class LocationService {
         System.out.println("url_school = " + url);
 
         JSONObject data = getData(url);
+        if(data.isEmpty()) return "정보를 찾지 못했습니다";
         JSONArray schoolInfo = (JSONArray) data.get("schoolInfo");
         JSONObject rows = (JSONObject) schoolInfo.get(1);
         JSONArray row = (JSONArray) rows.get("row");
@@ -54,10 +55,10 @@ public class LocationService {
     }
 
     @SuppressWarnings("unchecked")
-    private JSONObject getData(String input){
+    private JSONObject getData(String inputUrl){
         JSONObject result = new JSONObject();
         try{
-            URL url = new URL(input);
+            URL url = new URL(inputUrl);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -79,10 +80,13 @@ public class LocationService {
             br.close();
             conn.disconnect();
 
+            System.out.println("FinedustOutsideController.getData");
+            System.out.println("sb = " + sb);
+
             JSONParser jsonParser = new JSONParser();
             result = (JSONObject)jsonParser.parse(String.valueOf(sb));
         }catch (Exception e){
-            e.printStackTrace();
+            result = null;
         }
 
         return result;

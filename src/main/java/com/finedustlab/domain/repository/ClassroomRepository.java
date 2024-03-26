@@ -19,19 +19,16 @@ public class ClassroomRepository {
 
     private final String CLASSROOM = "classroom";
 
-    public void save(Map<String, String> schoolInfo, Classroom classroomInfo){
-        String school_code = schoolInfo.get("school_code");
-        String grade = schoolInfo.get("grade");
-        String class_num = schoolInfo.get("class_num");
+    public void save(int schoolCode, int grade, int classNum, Classroom classroomInfo){
 
-        Map<String, Map<String, Object>> classrooms = new HashMap<>();
+        Map<String, Map<String, Object>> classroomMap = new HashMap<>();
         Map<String, Object> classroom = new HashMap<>();
 
-        classroom.put(class_num, classroomInfo);
-        classrooms.put(grade, classroom);
+        classroom.put(String.valueOf(classNum), classroomInfo);
+        classroomMap.put(String.valueOf(grade), classroom);
 
-        DocumentReference document = FirestoreClient.getFirestore().collection(CLASSROOM).document(school_code);
-        document.set(classrooms);
+        DocumentReference document = FirestoreClient.getFirestore().collection(CLASSROOM).document(String.valueOf(schoolCode));
+        document.set(classroomMap);
     }
 
     public Classroom findBySchoolInfo(Map<String, String> schoolInfo) throws ExecutionException, InterruptedException {

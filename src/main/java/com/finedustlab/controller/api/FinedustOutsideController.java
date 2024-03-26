@@ -42,19 +42,18 @@ public class FinedustOutsideController {
         // ----------------------
 
 
-        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + APIKEY); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml 또는 json*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
-        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        urlBuilder.append("&" + URLEncoder.encode("sidoName","UTF-8") + "=" + URLEncoder.encode(sido, "UTF-8")); /*시도 이름*/
-        urlBuilder.append("&" + URLEncoder.encode("searchCondition","UTF-8") + "=" + URLEncoder.encode("HOUR", "UTF-8")); /*요청 데이터기간*/
+        String url = "http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst"
+                + "?serviceKey=" + APIKEY
+                + "&returnType=json"
+                + "&numOfRows=100"
+                + "&pageNo=1"
+                + "&sidoName=" + URLEncoder.encode(sido, "UTF-8")
+                + "&searchCondition=" + "HOUR";
 
-        URL url = new URL(urlBuilder.toString());
         System.out.println("url_finedust = " + url);
 
 
-        JSONObject data = getData(url.toString());
+        JSONObject data = getData(url);
         if(data == null){
             Thread.sleep(3000);
             return getFinedustStatus(schoolCode);
@@ -102,11 +101,10 @@ public class FinedustOutsideController {
 
 
     @SuppressWarnings("unchecked")
-    private JSONObject getData(String input){
-        String stringData;
+    private JSONObject getData(String inputUrl){
         JSONObject result = new JSONObject();
         try{
-            URL url = new URL(input);
+            URL url = new URL(inputUrl);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -128,6 +126,7 @@ public class FinedustOutsideController {
             br.close();
             conn.disconnect();
 
+            System.out.println("FinedustOutsideController.getData");
             System.out.println("sb = " + sb);
 
             JSONParser jsonParser = new JSONParser();

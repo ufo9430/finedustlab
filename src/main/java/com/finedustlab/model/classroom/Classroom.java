@@ -1,13 +1,16 @@
 package com.finedustlab.model.classroom;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
+@Schema(description = "교실 상태 DTO")
 public class Classroom {
+    @Schema(description = "미세먼지 지수")
     private int finedust_factor;
+    @Schema(description = "초미세먼지 지수")
     private int ultrafine_factor;
 }
