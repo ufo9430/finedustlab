@@ -6,6 +6,9 @@ import com.finedustlab.model.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
 @Service
 public class ClassroomService {
     @Autowired
@@ -21,6 +24,13 @@ public class ClassroomService {
                     classroom);
         }
         return "complete";
+    }
+
+    public Object get(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException {
+        Object classroom = classroomRepository.findBySchoolInfo(schoolCode, grade, classNum);
+
+        System.out.println("classroom = " + classroom);
+        return classroom;
     }
 
 }

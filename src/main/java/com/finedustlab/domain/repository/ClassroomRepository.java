@@ -1,11 +1,9 @@
 package com.finedustlab.domain.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.model.classroom.Classroom;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.Query;
-import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.FirebaseDatabase;
 import org.springframework.stereotype.Repository;
@@ -28,12 +26,25 @@ public class ClassroomRepository {
         classroomMap.put(String.valueOf(grade), classroom);
 
         DocumentReference document = FirestoreClient.getFirestore().collection(CLASSROOM).document(String.valueOf(schoolCode));
-        document.set(classroomMap);
+        document.set(classroomMap, SetOptions.merge());
     }
 
-    public Classroom findBySchoolInfo(Map<String, String> schoolInfo) throws ExecutionException, InterruptedException {
-        CollectionReference collection = FirestoreClient.getFirestore().collection(CLASSROOM);
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = collection.orderBy("1").get();
-        return new Classroom();
+    @SuppressWarnings("unchecked")
+    public Object findBySchoolInfo(String schoolCode, String grade, String classNum) {
+        Map result;
+       try{
+           CollectionReference collection = FirestoreClient.getFirestore().collection(CLASSROOM);
+           ApiFuture<DocumentSnapshot> future = collection.document(schoolCode).get();
+
+           ObjectMapper objectMapper = new ObjectMapper();
+           Object classroomObj = future.get().get(grade);
+           result = objectMapper.convertValue(classroomObj, Map.class);
+           return result.get(classNum);
+       }catch (Exception e){
+           result = new HashMap<>();
+           result.put("finedust_factor",-1);
+           result.put("ultrafine_factor",-1);
+           return result;
+       }
     }
 }

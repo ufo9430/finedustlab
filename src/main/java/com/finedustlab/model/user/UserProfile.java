@@ -7,7 +7,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @ToString
-
 public class UserProfile{
     @Schema(description = "이용자 학교 코드")
     private int school_code;
