@@ -20,7 +20,7 @@ public class ClassroomController {
 
     @PostMapping("/classroom/set")
     @Tag(name = "setClassroomStatus")
-    @Operation(description = "교내 미세먼지 상태를 업데이트합니다. 작업중")
+    @Operation(description = "현재 이용자가 속한 학급의 교내 미세먼지 상태를 업데이트합니다.")
     @ResponseBody
     public String setClassroom(@RequestBody ClassroomWrapper wrapper){
         Classroom classroom = wrapper.getClassroom();
