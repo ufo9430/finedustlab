@@ -19,7 +19,7 @@ public class LocationService {
         String result;
         try{
             String rawLoc = getSidoBySchoolCode(schoolCode);
-            LocationMaker locationMaker = new LocationMaker();
+            LocationMapper locationMaker = new LocationMapper();
             String[] splitLoc = rawLoc.split(" ");
             String sido = locationMaker.getModifiedLocation(splitLoc[0]);
             String gungu = splitLoc[1];

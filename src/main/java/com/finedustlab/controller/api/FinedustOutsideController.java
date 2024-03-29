@@ -1,20 +1,28 @@
 package com.finedustlab.controller.api;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.finedustlab.service.location.LocationMapper;
 import com.finedustlab.service.location.LocationService;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.cloud.FirestoreClient;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -92,6 +100,35 @@ public class FinedustOutsideController {
         return result;
     }
 
+    @Scheduled(fixedDelay = 300000)
+    private void saveData() throws UnsupportedEncodingException {
+        System.out.println("FinedustOutsideController.saveData");
+        LocationMapper locationMapper = new LocationMapper();
+        HashMap<String, String> locationPair = locationMapper.getLocationPair();
+        for (String s : locationPair.keySet()) {
+            saveFinedustData(locationPair.get(s));
+        }
+    }
+    @SuppressWarnings("unchecked")
+    private void saveFinedustData(String sido) throws UnsupportedEncodingException {
+        String apiCollection = "finedust_localdata";
+        String url = "http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst"
+                + "?serviceKey=" + APIKEY
+                + "&returnType=json"
+                + "&numOfRows=100"
+                + "&pageNo=1"
+                + "&sidoName=" + URLEncoder.encode(sido, "UTF-8")
+                + "&searchCondition=" + "HOUR";
+
+        System.out.println("url_finedust = " + url);
+
+        JSONObject data = getData(url);
+
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference document = firestore.collection(apiCollection).document(sido);
+        document.set(data);
+    }
+
     private static Map<String, Object> getErrorResult(Map<String, Object> result, String str) {
         result.put("result", "error");
         result.put("finedust_level","-");
@@ -125,9 +162,6 @@ public class FinedustOutsideController {
             br.reset();
             br.close();
             conn.disconnect();
-
-            System.out.println("FinedustOutsideController.getData");
-            System.out.println("sb = " + sb);
 
             JSONParser jsonParser = new JSONParser();
             result = (JSONObject)jsonParser.parse(String.valueOf(sb));

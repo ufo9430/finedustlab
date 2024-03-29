@@ -1,10 +1,13 @@
 package com.finedustlab.service.location;
 
+import lombok.Getter;
+
 import java.util.HashMap;
 
-public class LocationMaker {
+@Getter
+public class LocationMapper {
     private HashMap<String, String> locationPair = new HashMap<>();
-    public LocationMaker() {
+    public LocationMapper() {
         locationPair.put("강원특별자치도","강원");
         locationPair.put("경기도","경기");
         locationPair.put("광주광역시","광주");
@@ -18,7 +21,7 @@ public class LocationMaker {
         locationPair.put("전라남도","전남");
         locationPair.put("전라북도","전북");
         locationPair.put("전북특별자치도","전북");
-        locationPair.put("충청남도","충청");
+        locationPair.put("충청남도","충남");
         locationPair.put("충청북도","충북");
     }
 
