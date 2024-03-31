@@ -5,7 +5,9 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Repository;
 
@@ -19,26 +21,42 @@ import java.util.concurrent.ExecutionException;
 @Repository
 public class APIRepository {
     Firestore firestore = FirestoreClient.getFirestore();
-    private final String API_DATA = "api_data";
+    private final String API_DATA = "finedust_localdata";
 
     public void save(){
 
     }
-    public Object getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
+    public String getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentSnapshot> future = firestore.collection(API_DATA).document(sido).get();
+        ObjectMapper objectMapper = new ObjectMapper();
+        String finedust = "";
+
         DocumentSnapshot documentSnapshot = future.get();
         Object response = documentSnapshot.get("response");
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map cityMap = objectMapper.convertValue(response, Map.class);
+        JSONObject responseMap = objectMapper.convertValue(response, JSONObject.class);
+        Object body = responseMap.get("body");
+        JSONObject bodyJson = objectMapper.convertValue(body, JSONObject.class);
+        Object items = bodyJson.get("items");
+        JSONArray itemsArray = objectMapper.convertValue(items, JSONArray.class);
+        System.out.println("itemsArray = " + itemsArray);
 
-        for (Object o : cityMap.keySet()) {
-
+        for (Object item : itemsArray) {
+            JSONObject itemJson = objectMapper.convertValue(item, JSONObject.class);
+            String itemCityName = (String) itemJson.get("cityName");
+            if(itemCityName.equals(city)){
+                finedust = (String) itemJson.get("khaiValue");
+                break;
+            }
         }
 
-        return null;
+        if(finedust.isEmpty()){
+            finedust = "45";
+        }
+
+
+        return finedust;
     }
 
-    @SuppressWarnings("unchecked")
     private JSONObject getData(String inputUrl){
         JSONObject result = new JSONObject();
         try{

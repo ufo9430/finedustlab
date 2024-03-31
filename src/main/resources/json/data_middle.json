@@ -1,7 +1,7 @@
 {
-    "content_type":"high",
+    "content_type":"middle",
     "data": [
-        {
+            {
             "category_id" : 1,
             "category_name": "지금 공기 상태",
             "category_color": "#009B4C",

@@ -3,9 +3,10 @@
     "data":[
         {
             "category_id": 1,
-            "category_name": "지금 공기 상태",
+            "category_name": "현재 대기질 상태",
+            "category_color": "#009B4C",
             "id": 101,
-            "question": "현재 실외 미세먼지 농도가 현재 어느 정도 수준인지 확인합니다.",
+            "question": "현재 실외 미세먼지 농도가\n현재 어느 정도 수준인지 확인합니다.",
             "answer": {
                 "type": "multi_choice",
                 "options": [
@@ -66,9 +67,10 @@
         },
         {
             "category_id" : 1,
-            "category_name": "지금 공기 상태",
+            "category_name": "현재 대기질 상태",
+            "category_color": "#009B4C",
             "id" : 102,
-            "question" : "현재 교실 내 미세먼지 농도가 현재 어느 정도 수준인지 확인합니다.",
+            "question" : "현재 교실 내 미세먼지 농도가\n현재 어느 정도 수준인지 확인합니다.",
             "answer" : {
                 "type":"multi_choice",
                 "options": [
@@ -93,9 +95,10 @@
         },
         {
             "category_id" : 1,
-            "category_name": "지금 공기 상태",
+            "category_name": "현재 대기질 상태",
+            "category_color": "#009B4C",
             "id" : 103,
-            "question" : "지금 교실의 미세먼지 농도가 어떻게 느껴지십니까?",
+            "question" : "지금 교실의 미세먼지 농도가\n어떻게 느껴지십니까?",
             "answer" : {
                 "type":"choice",
                 "options": [
@@ -109,9 +112,10 @@
         },
         {
             "category_id" : 2,
-            "category_name": "교실 상태",
+            "category_name": "현재 교실 상태",
+            "category_color": "#2A7CFF",
             "id" : 201,
-            "question" : "현재 교실의 온도와 습도를 확인할 수 있습니까?",
+            "question" : "현재 교실의 온도와 습도를\n확인할 수 있습니까?",
             "answer" : {
                 "type":"ox",
                 "options": [
@@ -122,9 +126,10 @@
         },
         {
             "category_id" : 2,
-            "category_name": "교실 상태",
+            "category_name": "현재 교실 상태",
+            "category_color": "#2A7CFF",
             "id" : 202,
-            "question" : "현재 교실 내의 학생 수에 대해 확인합니다.",
+            "question" : "현재 교실 내의\n학생 수에 대해 확인합니다.",
             "answer": {
                 "type":"number_picker",
                 "options": [
@@ -138,9 +143,10 @@
         },
         {
             "category_id" : 2,
-            "category_name": "교실 상태",
+            "category_name": "현재 교실 상태",
+            "category_color": "#2A7CFF",
             "id" : 203,
-            "question" : "점검 당일, 체육 수업 또는 외부 활동이 있는지 확인합니다.",
+            "question" : "점검 당일, 체육 수업 또는\n외부 활동이 있는지 확인합니다.",
             "answer" : {
                 "type":"ox",
                 "options": [
@@ -151,7 +157,8 @@
         },
         {
             "category_id" : 2,
-            "category_name": "교실 상태",
+            "category_name": "현재 교실 상태",
+            "category_color": "#2A7CFF",
             "id" : 204,
             "question" : "현재 학교 내부는 어떻게 느껴지십니까?",
             "answer" : {
@@ -196,8 +203,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 301,
-            "question" : "지금 교실 내 청소가 잘 되어있는 지점을 확인합니다.",
+            "question" : "지금 교실 내\n청소가 잘 되어있는 지점을 확인합니다.",
             "answer" : {
                 "type":"checkbox",
                 "options": [
@@ -211,8 +219,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 302,
-            "question" : "지금 교실 내 청소 방법을 확인합니다.",
+            "question" : "지금 교실 내\n청소 방법을 확인합니다.",
             "answer" : {
                 "type":"checkbox",
                 "options": [
@@ -225,8 +234,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 303,
-            "question" : "현재 교실 내 청소 주기를 확인합니다.",
+            "question" : "현재 교실 내\n청소 주기를 확인합니다.",
             "answer" : {
                 "type":"choice",
                 "options":[
@@ -238,8 +248,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 304,
-            "question" : "현재 교실 내 창문을 열어 환기하는 주기에 대해 확인합니다.",
+            "question" : "현재 교실 내 창문을 열어\n환기하는 주기에 대해 확인합니다.",
             "answer" : {
                 "type":"choice",
                 "options": [
@@ -251,8 +262,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 305,
-            "question" : "냉난방기의 필터 관리 여부와 청결 상태 및 교체주기를 확인합니다.",
+            "question" : "냉난방기의 필터 관리 여부와\n청결 상태 및 교체주기를 확인합니다.",
             "answer" : {
                 "type":"multi_choice",
                 "options": [
@@ -278,8 +290,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 306,
-            "question" : "현재 교실 내 공기청정기의 유무에 대해 확인합니다.",
+            "question" : "현재 교실 내\n공기청정기의 유무에 대해 확인합니다.",
             "answer" : {
                 "type":"multi_choice",
                 "options": [
@@ -305,8 +318,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 307,
-            "question" : "공기청정기 필터 관리여부와 청결 상태 및 교체주기(3~6개월)를 확인합니다.",
+            "question" : "공기청정기 필터 관리여부와\n청결 상태 및 교체주기(3~6개월)를 확인합니다.",
             "answer" : {
                 "type":"multi_choice",
                 "options": [
@@ -332,8 +346,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 308,
-            "question" : "현재 교실 내 기계 환기설비의 유무 및 가동 여부에 대해 확인합니다.",
+            "question" : "현재 교실 내 기계 환기설비의 유무 및 \n가동 여부에 대해 확인합니다.",
             "answer" : {
                 "type":"multi_choice",
                 "options": [
@@ -359,8 +374,9 @@
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6F1B",
             "id" : 309,
-            "question" : "현재 교실 내 환기설비의 관리 상태를 확인합니다.",
+            "question" : "현재 교실 내 환기설비의\n관리 상태를 확인합니다.",
             "answer" : {
                 "type":"multi_choice",
                 "options": [
@@ -386,8 +402,9 @@
         {
             "category_id" : 4,
             "category_name": "위생 상태",
+            "category_color": "#CC2432",
             "id" : 401,
-            "question" : "현재 자신의 건강상태에 대해 확인합니다.",
+            "question" : "현재 자신의 건강상태에 대해\n확인합니다.",
             "answer" : {
                 "type":"choice",
                 "options": [
@@ -399,8 +416,9 @@
         {
             "category_id" : 4,
             "category_name": "위생 상태",
+            "category_color": "#CC2432",
             "id" : 402,
-            "question" : "현재 학생의 건강상태에 대해 확인합니다.",
+            "question" : "현재 학생의 건강상태에 대해\n확인합니다.",
             "answer" : {
                 "type":"choice",
                 "options": [
@@ -412,8 +430,9 @@
         {
             "category_id" : 4,
             "category_name": "위생 상태",
+            "category_color": "#CC2432",
             "id" : 403,
-            "question" : "현재 아픈 것 외에, 이전부터 가지고 있던 기저질환을 확인합니다.",
+            "question" : "현재 아픈 것 외에, 이전부터\n가지고 있던 기저질환을 확인합니다.",
             "answer" : {
                 "type":"choice",
                 "options": [
@@ -425,6 +444,7 @@
         {
             "category_id" : 5,
             "category_name": "학교 현황",
+            "category_color": "#FE83FF",
             "id" : 501,
             "question" : "학교의 설립연도를 확인합니다.",
             "answer": {
@@ -441,6 +461,7 @@
         {
             "category_id" : 5,
             "category_name": "학교 현황",
+            "category_color": "#FE83FF",
             "id" : 502,
             "question" : "교실의 칠판 재질을 확인합니다.",
             "answer" : {
@@ -455,6 +476,7 @@
         {
             "category_id" : 5,
             "category_name": "학교 현황",
+            "category_color": "#FE83FF",
             "id" : 503,
             "question" : "교실과 복도의 바닥 재질을 확인합니다.",
             "answer" : {
@@ -469,6 +491,7 @@
         {
             "category_id" : 5,
             "category_name": "학교 현황",
+            "category_color": "#FE83FF",
             "id" : 504,
             "question" : "현재 교실 내 창호의 상태를 확인합니다.\n-열고 닫는 작동이 잘 되는지\n-실리콘이 훼손되어 있지 않은지\n-우천시 물이 새지 않는지\n-창틀에 먼지나 이물질이 있지 않은지",
             "answer" : {
@@ -483,6 +506,7 @@
         {
             "category_id" : 5,
             "category_name": "학교 현황",
+            "category_color": "#FE83FF",
             "id" : 505,
             "question" : "현재 학교 부지 주변 조건을 확인합니다.",
             "answer" : {
@@ -499,8 +523,9 @@
         {
             "category_id" : 5,
             "category_name": "학교 현황",
+            "category_color": "#FE83FF",
             "id" : 506,
-            "question" : "최근에 교실을 리모델링하거나 새 가구가 들어온 적이 있나요?",
+            "question" : "최근에 교실을 리모델링하거나\n새 가구가 들어온 적이 있나요?",
             "answer" : {
                 "type":"choice",
                 "options": [
