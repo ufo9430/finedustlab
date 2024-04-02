@@ -39,6 +39,9 @@ public class ClassroomRepository {
            ObjectMapper objectMapper = new ObjectMapper();
            Object classroomObj = future.get().get(grade);
            result = objectMapper.convertValue(classroomObj, Map.class);
+           if(result.get(classNum) == null){
+               throw new NullPointerException();
+           }
            return result.get(classNum);
        }catch (Exception e){
            result = new HashMap<>();

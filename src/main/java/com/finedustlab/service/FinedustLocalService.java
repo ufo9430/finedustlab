@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
-public class FinedustOutsideService {
+public class FinedustLocalService {
     private final String APIKEY =
             "ISOm1PZB6EqoIW%2FoJwuaLOG%2FCLNiXiqW%2FkTFkJ6CFFXq%2F%2FoDwKuYxZFNUPz3bzdu%2BVkYZsBbh10Y51t3ndF9nw%3D%3D";
 
