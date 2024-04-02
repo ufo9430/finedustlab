@@ -35,10 +35,10 @@ public class FinedustLocalService {
     private APIRepository apiRepository;
 
     @SuppressWarnings("unchecked")
-    public Map<String, Object> getFinedustStatus(String schoolCode) throws IOException, InterruptedException, ExecutionException {
+    public Map<String, String> getFinedustStatus(String schoolCode) throws IOException, InterruptedException, ExecutionException {
 
-        Map<String, Object> result = new JSONObject();
-        String sido, city, finedust;
+        Map<String, String> result = new JSONObject();
+        String sido, city, finedust = null;
 
         // ----지역 정보 가져오기----
         String[] loc = locationService.getLocation(schoolCode).split("-");
@@ -50,15 +50,18 @@ public class FinedustLocalService {
         }
         // ----------------------
 
-        finedust = apiRepository.getFinedustByCityName(sido,city);
-        result.put("finedust_level",finedust);
+        result = apiRepository.getFinedustByCityName(sido,city);
 
-        if(finedust.isEmpty()){
+        if(Integer.parseInt(result.get("finedust_factor")) < 0
+                || Integer.parseInt(result.get("ultrafine_factor")) < 0){
             return getErrorResult("getFinedustStatus 미세먼지 값을 불러오지 못했습니다.");
         }
+        int finedust_factor = Integer.parseInt(result.get("finedust_factor"));
 
-        if(Integer.parseInt(finedust) < 45){
+        if(finedust_factor < 30){
             result.put("status", "good");
+        }else if(finedust_factor < 60){
+            result.put("status","normal");
         }else{
             result.put("status","bad");
         }
@@ -96,10 +99,11 @@ public class FinedustLocalService {
         document.set(data);
     }
 
-    private static Map<String, Object> getErrorResult( String str) {
-        Map<String, Object> result = new HashMap<>();
+    private static Map<String, String> getErrorResult( String str) {
+        Map<String, String> result = new HashMap<>();
         result.put("result", "error");
-        result.put("finedust_level","-");
+        result.put("finedust_factor","-");
+        result.put("ultrafine_factor","-");
         result.put("status",str);
         return result;
     }

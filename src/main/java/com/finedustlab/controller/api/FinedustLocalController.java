@@ -31,7 +31,7 @@ public class FinedustLocalController {
     @GetMapping("/finestatus/get")
     @Operation(description = "학교 코드를 입력받아 해당 지역 시군구 측정소의 미세먼지 지수와 상태를 불러옵니다. 미세먼지 지수 45 이하일 경우 good, 이상일 경우 bad가 반환됩니다. ")
     @ResponseBody
-    public Map<String,Object> getFinedustStatus(@RequestParam @Schema(defaultValue = "7201099") String location) throws Exception {
+    public Map<String,String> getFinedustStatus(@RequestParam @Schema(defaultValue = "7201099") String location) throws Exception {
         return finedustOutsideService.getFinedustStatus(location);
     }
 

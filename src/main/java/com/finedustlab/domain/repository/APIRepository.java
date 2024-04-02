@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -26,10 +27,13 @@ public class APIRepository {
     public void save(){
 
     }
-    public String getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
+
+    @SuppressWarnings("unchecked")
+    public Map<String,String> getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentSnapshot> future = firestore.collection(API_DATA).document(sido).get();
         ObjectMapper objectMapper = new ObjectMapper();
-        String finedust = "";
+        Map<String,String> finedust = new HashMap();
+
 
         DocumentSnapshot documentSnapshot = future.get();
         Object response = documentSnapshot.get("response");
@@ -44,15 +48,16 @@ public class APIRepository {
             JSONObject itemJson = objectMapper.convertValue(item, JSONObject.class);
             String itemCityName = (String) itemJson.get("cityName");
             if(itemCityName.equals(city)){
-                finedust = (String) itemJson.get("khaiValue");
+                finedust.put("finedust_factor",(String) itemJson.get("pm10Value"));
+                finedust.put("ultrafine_factor",(String) itemJson.get("pm25Value"));
                 break;
             }
         }
 
         if(finedust.isEmpty()){
-            finedust = "45";
+            finedust.put("finedust_factor","-1");
+            finedust.put("ultrafine_factor","-1");
         }
-
 
         return finedust;
     }
