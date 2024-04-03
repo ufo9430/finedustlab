@@ -14,6 +14,8 @@ public class UserProfile{
     private int grade;
     @Schema(description = "이용자 소속 반")
     private int class_num;
+    @Schema(description = "이용자 반 번호")
+    private int student_num;
     @Schema(description = "이용자 이름")
     private String name;
 }

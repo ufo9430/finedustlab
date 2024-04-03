@@ -3,6 +3,7 @@ package com.finedustlab.controller.api;
 
 import com.finedustlab.model.api.WeatherRequestDTO;
 import com.finedustlab.service.FinedustLocalService;
+import com.finedustlab.service.WeatherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.*;
 
 @Controller
-public class FinedustLocalController {
-    @Autowired WeatherController weatherController;
+public class APIController {
+    @Autowired
+    WeatherService weatherService;
     @Autowired
     FinedustLocalService finedustOutsideService;
 
@@ -24,7 +26,7 @@ public class FinedustLocalController {
     @Operation(description = "위도/경도와 현재 날짜를 입력하여 상태 신호 result와 temperature, humidity를 받습니다.")
     @ResponseBody
     public Map<String, Object> getWeather(@RequestBody WeatherRequestDTO requestDTO) throws Exception {
-        return weatherController.getWeather(requestDTO);
+        return weatherService.getWeather(requestDTO);
     }
 
 

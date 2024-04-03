@@ -1,4 +1,4 @@
-package com.finedustlab.controller.api;
+package com.finedustlab.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class WeatherController {
+public class WeatherService {
 
     private final String APIKEY =
             "ISOm1PZB6EqoIW%2FoJwuaLOG%2FCLNiXiqW%2FkTFkJ6CFFXq%2F%2FoDwKuYxZFNUPz3bzdu%2BVkYZsBbh10Y51t3ndF9nw%3D%3D";
@@ -37,6 +37,8 @@ public class WeatherController {
 
         String strDate = dateModulated.split("-")[0];
         String strTime = dateModulated.split("-")[1];
+
+        System.out.println("strTime = " + strTime);
 
         LatXLngY grid = convertGRID_GPS(x,y);
 
@@ -53,6 +55,9 @@ public class WeatherController {
                 + "&nx=" + (int) grid.getX()                   // 예보지점 X 좌표
                 + "&ny=" + (int) grid.getY() ;                 // 예보지점 Y 좌표
 
+        System.out.println("url = " + url);
+        System.out.println("dateModulated = " + dateModulated);
+
         JSONObject data = getData(url);
         JSONObject header = (JSONObject) data.get("header");
 
@@ -63,7 +68,6 @@ public class WeatherController {
             JSONObject items = (JSONObject) body.get("items");
             JSONArray item = (JSONArray) items.get("item");
 
-
             output.put("humidity",getJsonArrayValue(item,"REH"));
             output.put("temperature",getJsonArrayValue(item,"T1H"));
         }else{
@@ -71,6 +75,7 @@ public class WeatherController {
         }
         return output;
     }
+
     private static String getJsonArrayValue(JSONArray item, String category){
         String result = "";
         for (Object o : item) {
@@ -85,10 +90,19 @@ public class WeatherController {
 
     private static String getModulatedDate(String inputDate) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmm");
+
+        int time = Integer.parseInt(inputDate.split("-")[1]);
+        int minute = time % 100;
+        int hour = (time - minute) / 100;
+
+        if(minute < 30) minute = 0;
+        else minute = 30;
+
         Date date = dateFormat.parse(inputDate);
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.add(Calendar.MINUTE, -30);
+        cal.set(Calendar.HOUR_OF_DAY,hour);
+        cal.set(Calendar.MINUTE,minute);
         date = cal.getTime();
 
         return dateFormat.format(date);
@@ -146,7 +160,6 @@ public class WeatherController {
 
 
         double DEGRAD = Math.PI / 180.0;
-        double RADDEG = 180.0 / Math.PI;
 
         double re = RE / GRID;
         double slat1 = SLAT1 * DEGRAD;

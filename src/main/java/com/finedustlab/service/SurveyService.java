@@ -23,6 +23,7 @@ public class SurveyService {
                 profile.getGrade()+"-"+
                 profile.getClass_num()+"-"+
                 profile.getName()+"-"+
+                profile.getStudent_num()+"-"+
                 answer.getDate();
         return surveyRepository.save(document_id,answer);
     }

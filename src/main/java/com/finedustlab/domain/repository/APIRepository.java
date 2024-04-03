@@ -1,20 +1,14 @@
 package com.finedustlab.domain.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.finedustlab.model.survey.SurveyAnswer;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Repository;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -22,15 +16,38 @@ import java.util.concurrent.ExecutionException;
 @Repository
 public class APIRepository {
     Firestore firestore = FirestoreClient.getFirestore();
-    private final String API_DATA = "finedust_localdata";
+    private final String FINEDUST_DATA = "api_finedust";
+    private final String WEATHER_DATA = "api_weather";
 
-    public void save(){
+    public void saveWeather(Map weather){
+        String time = (String) weather.get("time");
+        ApiFuture<DocumentSnapshot> future = firestore.collection(WEATHER_DATA).document().get();
 
     }
 
+    public Object findWeatherByXYandDate(double x, double y,String date){
+        SurveyAnswer result;
+        Firestore firestore = FirestoreClient.getFirestore();
+        CollectionReference surveyData = firestore.collection(WEATHER_DATA);
+        try{
+            QuerySnapshot survey = surveyData.whereEqualTo("content_type", date).get().get();
+            QueryDocumentSnapshot document = survey.getDocuments().get(0);
+            return document.getData();
+        }catch (Exception e){
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setFinedustData(String sido, JSONObject data) {
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference document = firestore.collection(FINEDUST_DATA).document(sido);
+        document.set(data);
+    }
     @SuppressWarnings("unchecked")
     public Map<String,String> getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
-        ApiFuture<DocumentSnapshot> future = firestore.collection(API_DATA).document(sido).get();
+        ApiFuture<DocumentSnapshot> future = firestore.collection(FINEDUST_DATA).document(sido).get();
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String,String> finedust = new HashMap();
 
@@ -60,39 +77,5 @@ public class APIRepository {
         }
 
         return finedust;
-    }
-
-    private JSONObject getData(String inputUrl){
-        JSONObject result = new JSONObject();
-        try{
-            URL url = new URL(inputUrl);
-
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            BufferedReader br;
-            if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-                br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            } else {
-                br = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-            }
-
-            int BUFF_SIZE = 262144;
-            br.mark(BUFF_SIZE);
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            br.reset();
-            br.close();
-            conn.disconnect();
-
-            JSONParser jsonParser = new JSONParser();
-            result = (JSONObject)jsonParser.parse(String.valueOf(sb));
-        }catch (Exception e){
-            result = null;
-        }
-
-        return result;
     }
 }

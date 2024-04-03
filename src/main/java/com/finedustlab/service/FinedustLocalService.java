@@ -38,7 +38,7 @@ public class FinedustLocalService {
     public Map<String, String> getFinedustStatus(String schoolCode) throws IOException, InterruptedException, ExecutionException {
 
         Map<String, String> result = new JSONObject();
-        String sido, city, finedust = null;
+        String sido, city;
 
         // ----지역 정보 가져오기----
         String[] loc = locationService.getLocation(schoolCode).split("-");
@@ -58,10 +58,8 @@ public class FinedustLocalService {
         }
         int finedust_factor = Integer.parseInt(result.get("finedust_factor"));
 
-        if(finedust_factor < 30){
+        if(finedust_factor < 45){
             result.put("status", "good");
-        }else if(finedust_factor < 60){
-            result.put("status","normal");
         }else{
             result.put("status","bad");
         }
@@ -81,7 +79,6 @@ public class FinedustLocalService {
 
     @SuppressWarnings("unchecked")
     private void saveFinedustData(String sido) throws UnsupportedEncodingException {
-        String apiCollection = "finedust_localdata";
         String url = "http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst"
                 + "?serviceKey=" + APIKEY
                 + "&returnType=json"
@@ -90,14 +87,12 @@ public class FinedustLocalService {
                 + "&sidoName=" + URLEncoder.encode(sido, "UTF-8")
                 + "&searchCondition=" + "HOUR";
 
-        System.out.println("url_finedust = " + url);
 
         JSONObject data = getData(url);
 
-        Firestore firestore = FirestoreClient.getFirestore();
-        DocumentReference document = firestore.collection(apiCollection).document(sido);
-        document.set(data);
+        apiRepository.setFinedustData(sido, data);
     }
+
 
     private static Map<String, String> getErrorResult( String str) {
         Map<String, String> result = new HashMap<>();
