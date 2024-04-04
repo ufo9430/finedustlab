@@ -2,7 +2,9 @@ package com.finedustlab.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.finedustlab.domain.repository.APIRepository;
 import com.finedustlab.model.api.WeatherRequestDTO;
+import com.google.cloud.firestore.CollectionReference;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,6 +12,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 import java.io.BufferedReader;
@@ -25,6 +29,9 @@ import java.util.Map;
 
 @Controller
 public class WeatherService {
+
+    @Autowired
+    private APIRepository apiRepository;
 
     private final String APIKEY =
             "ISOm1PZB6EqoIW%2FoJwuaLOG%2FCLNiXiqW%2FkTFkJ6CFFXq%2F%2FoDwKuYxZFNUPz3bzdu%2BVkYZsBbh10Y51t3ndF9nw%3D%3D";
@@ -58,6 +65,12 @@ public class WeatherService {
         System.out.println("url = " + url);
         System.out.println("dateModulated = " + dateModulated);
 
+        Map<String , Object> temp = apiRepository.findWeatherByXYandTime((int) grid.getX(),
+                (int) grid.getY(), strTime);
+        if(!temp.isEmpty()){
+            return temp;
+        }
+
         JSONObject data = getData(url);
         JSONObject header = (JSONObject) data.get("header");
 
@@ -68,8 +81,13 @@ public class WeatherService {
             JSONObject items = (JSONObject) body.get("items");
             JSONArray item = (JSONArray) items.get("item");
 
+            String id = (int) grid.getX() +"-"
+                    + (int) grid.getY() +"-"+
+                    strTime;
+            output.put("id",id);
             output.put("humidity",getJsonArrayValue(item,"REH"));
             output.put("temperature",getJsonArrayValue(item,"T1H"));
+            apiRepository.setWeather(output);
         }else{
             output.put("result","error");
         }
@@ -103,6 +121,7 @@ public class WeatherService {
         cal.setTime(date);
         cal.set(Calendar.HOUR_OF_DAY,hour);
         cal.set(Calendar.MINUTE,minute);
+        cal.add(Calendar.MINUTE,-30);
         date = cal.getTime();
 
         return dateFormat.format(date);
@@ -137,10 +156,11 @@ public class WeatherService {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
-    private static Map<String, Object> getStringObjectMap(Map<String, Object> result, JSONObject jsonObject) throws JsonProcessingException {
-        result = new ObjectMapper().readValue(jsonObject.toJSONString(), Map.class);
-        return result;
+    @Scheduled(cron = "* * 0 * * *")
+    private void clearData(){
+        System.out.println("Clear temp api data");
+        apiRepository.deleteCollection("api_weather");
+        apiRepository.deleteCollection("api_finedust");
     }
 
     private LatXLngY convertGRID_GPS( double lat_X, double lng_Y )

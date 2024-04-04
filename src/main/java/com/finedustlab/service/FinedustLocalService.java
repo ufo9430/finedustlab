@@ -77,7 +77,6 @@ public class FinedustLocalService {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void saveFinedustData(String sido) throws UnsupportedEncodingException {
         String url = "http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureSidoLIst"
                 + "?serviceKey=" + APIKEY

@@ -12,11 +12,9 @@ import java.util.HashMap;
 public class SurveyRepository {
     public static final String SURVEY_ANSWER = "survey_answer";
     private static final String SURVEY_DATA = "survey_data";
-
-    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    Firestore firestore = FirestoreClient.getFirestore();
 
     public String save(String document_id, SurveyAnswer answer) {
-        Firestore firestore = FirestoreClient.getFirestore();
         HashMap<String, Object> fields = new HashMap<>();
         fields.put(String.valueOf(answer.getAnswer_id()),setAnswerData(answer));
         firestore.collection(SURVEY_ANSWER).document(document_id)
@@ -33,8 +31,6 @@ public class SurveyRepository {
     }
 
     public Object findDataByID(String id){
-        SurveyAnswer result;
-        Firestore firestore = FirestoreClient.getFirestore();
         CollectionReference surveyData = firestore.collection(SURVEY_DATA);
         try{
             QuerySnapshot survey = surveyData.whereEqualTo("content_type", id).get().get();
