@@ -1,11 +1,8 @@
-package com.finedustlab.service;
+package com.finedustlab.service.api;
 
 import com.finedustlab.domain.repository.APIRepository;
-import com.finedustlab.service.location.LocationMapper;
-import com.finedustlab.service.location.LocationService;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.Firestore;
-import com.google.firebase.cloud.FirestoreClient;
+import com.finedustlab.service.api.location.LocationMapper;
+import com.finedustlab.service.api.location.LocationService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;

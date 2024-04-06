@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class SurveyController {
     private final SurveyService surveyService = new SurveyService();
 
+
     @Tag(name = "getSurveyData")
     @Operation(description = "Request parameter를 통해 이용자 별 데이터를 받습니다. elementary : 초등 high : 중/고등 teacher : 교직원")
     @GetMapping("/survey/data")

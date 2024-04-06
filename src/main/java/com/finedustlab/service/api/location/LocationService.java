@@ -1,4 +1,4 @@
-package com.finedustlab.service.location;
+package com.finedustlab.service.api.location;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

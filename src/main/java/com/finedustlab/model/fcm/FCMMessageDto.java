@@ -1,37 +1,40 @@
 package com.finedustlab.model.fcm;
 
-
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
 
 @Builder
-@Getter
 @AllArgsConstructor
+@Getter
 public class FCMMessageDto {
-    private boolean validateOnly;
-    private Message message;
+    private boolean    validateOnly;
+    private Message    message;
 
     @Builder
-    @Getter
     @AllArgsConstructor
-    public static class Message{
+    @Getter
+    public static class Message {
         private Notification notification;
-        private String token;
-        private Data data;
-    }
-    @Builder
-    @Getter
-    @AllArgsConstructor
-    public static class Notification{
-        private String title;
-        private String body;
+        private String      token;
+        private Data        data;
     }
 
     @Builder
-    @Getter
     @AllArgsConstructor
-    public static class Data{
-        private String name;
-        private String description;
+    @Getter
+    public static class Notification {
+        private String  title;
+        private String  body;
     }
+
+    @Builder
+    @AllArgsConstructor
+    @Getter
+    public static class Data{
+        private String    name;
+        private String    description;
+    }
+
 }

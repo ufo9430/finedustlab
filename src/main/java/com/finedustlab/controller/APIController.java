@@ -1,9 +1,9 @@
-package com.finedustlab.controller.api;
+package com.finedustlab.controller;
 
 
 import com.finedustlab.model.api.WeatherRequestDTO;
-import com.finedustlab.service.FinedustLocalService;
-import com.finedustlab.service.WeatherService;
+import com.finedustlab.service.api.FinedustLocalService;
+import com.finedustlab.service.api.WeatherService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;

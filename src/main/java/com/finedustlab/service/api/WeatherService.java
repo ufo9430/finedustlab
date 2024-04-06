@@ -1,4 +1,4 @@
-package com.finedustlab.service;
+package com.finedustlab.service.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

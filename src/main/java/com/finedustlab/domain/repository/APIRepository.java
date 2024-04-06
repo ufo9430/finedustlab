@@ -24,15 +24,16 @@ public class APIRepository {
         firestore.collection(WEATHER_DATA).add(weather);
     }
 
+    @SuppressWarnings("unchecked")
     public Map<String, Object> findWeatherByXYandTime(int x, int y, String time){
         String id = x +"-" + y +"-"+ time;
         ObjectMapper objectMapper = new ObjectMapper();
         CollectionReference tempData = firestore.collection(WEATHER_DATA);
-        Map result = new HashMap<>();
+        Map<String,Object> result = new HashMap<>();
         try{
             QuerySnapshot survey = tempData.whereEqualTo("id", id).get().get();
             QueryDocumentSnapshot document = survey.getDocuments().get(0);
-            result = objectMapper.convertValue(document.getData(), Map.class);
+            result = objectMapper.convertValue(document.getData(), HashMap.class);
         }catch (Exception ignored){}
         return result;
     }
@@ -43,11 +44,10 @@ public class APIRepository {
         DocumentReference document = firestore.collection(FINEDUST_DATA).document(sido);
         document.set(data);
     }
-    @SuppressWarnings("unchecked")
     public Map<String,String> getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentSnapshot> future = firestore.collection(FINEDUST_DATA).document(sido).get();
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String,String> finedust = new HashMap();
+        Map<String,String> finedust = new HashMap<>();
 
 
         DocumentSnapshot documentSnapshot = future.get();
