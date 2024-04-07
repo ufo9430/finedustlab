@@ -20,9 +20,9 @@ public class FCMController {
     @Autowired
     private FCMService fcmService;
 
-    @GetMapping
+    @GetMapping("/token")
     @Operation(description = "FCM 토큰을 생성해 반환합니다. 토큰은 앱이 Instance ID 를 삭제할때, 앱이 재설치될 때, 유저가 앱 데이터를 초기화할 때 갱신됩니다.")
-    public String getFCMAccessToken() throws IOException {
+    public String getFCMAccessToken() {
         return fcmService.getAccessToken();
     }
 

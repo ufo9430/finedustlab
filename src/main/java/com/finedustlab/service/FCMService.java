@@ -24,16 +24,22 @@ public class FCMService {
     @Autowired
     private FinedustLocalService service;
 
-    public String getAccessToken() throws IOException {
+    public String getAccessToken() {
+        try {
+            GoogleCredentials googleCredentials = GoogleCredentials
+                    .fromStream(new ClassPathResource("serviceAccountKey.json").getInputStream())
+                    .createScoped(Arrays.asList("https://www.googleapis.com/auth/cloud-platform"));
 
-        GoogleCredentials googleCredentials = GoogleCredentials
-                .fromStream(new ClassPathResource("serviceAccountKey.json").getInputStream())
-                .createScoped(Arrays.asList("https://www.googleapis.com/auth/cloud-platform"));
+            googleCredentials.refreshIfExpired();
 
-        googleCredentials.refreshIfExpired();
+            String tokenValue = googleCredentials.getAccessToken().getTokenValue();
 
-        return googleCredentials.getAccessToken().getTokenValue();
-
+            System.out.println("tokenValue = " + tokenValue);
+            return tokenValue;
+        }catch (IOException e){
+            e.printStackTrace();
+            return "error";
+        }
     }
     public String send(MessageInputDto messageInputDto){
         String recipientToken = messageInputDto.getRecipientToken();
