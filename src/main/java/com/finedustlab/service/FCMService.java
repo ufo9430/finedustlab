@@ -3,13 +3,17 @@ package com.finedustlab.service;
 import com.finedustlab.model.fcm.FCMMessage;
 import com.finedustlab.model.fcm.MessageInputDto;
 import com.finedustlab.service.api.FinedustLocalService;
+import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Notification;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -20,6 +24,17 @@ public class FCMService {
     @Autowired
     private FinedustLocalService service;
 
+    public String getAccessToken() throws IOException {
+
+        GoogleCredentials googleCredentials = GoogleCredentials
+                .fromStream(new ClassPathResource("serviceAccountKey.json").getInputStream())
+                .createScoped(Arrays.asList("https://www.googleapis.com/auth/cloud-platform"));
+
+        googleCredentials.refreshIfExpired();
+
+        return googleCredentials.getAccessToken().getTokenValue();
+
+    }
     public String send(MessageInputDto messageInputDto){
         String recipientToken = messageInputDto.getRecipientToken();
         String schoolCode = messageInputDto.getSchoolCode();
