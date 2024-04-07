@@ -5,20 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.model.fcm.FCMMessageDto;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.common.net.HttpHeaders;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingException;
-import com.google.firebase.messaging.Message;
-import com.google.firebase.messaging.Notification;
-import io.swagger.v3.oas.models.parameters.RequestBody;
-import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
+import com.google.firebase.messaging.FcmOptions;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
+import okhttp3.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -35,6 +27,7 @@ public class FCMService {
         this.objectMapper = objectMapper;
     }
 
+    @Scheduled(fixedDelay = 300000)
     private String      getAccessToken() throws IOException {
         // firebase로 부터 access token을 가져온다.
 
@@ -44,6 +37,9 @@ public class FCMService {
 
         googleCredentials.refreshIfExpired();
 
+
+
+        System.out.println("googleCredentials.getAccessToken().getTokenValue() = " + googleCredentials.getAccessToken().getTokenValue());
         return googleCredentials.getAccessToken().getTokenValue();
 
     }
@@ -92,22 +88,21 @@ public class FCMService {
             String targetToken, String title, String body, String id, String isEnd
     ) throws IOException{
 
-        /*String      message = makeMessage(targetToken, title, body, id, isEnd);
+        String message = makeMessage(targetToken, title, body, id, isEnd);
 
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient    client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(message, MediaType.get("application/json; charset=utf-8"));
 
-        Request         request = new Request.Builder()
-                .url(FIREBASE_ALARM_SEND_API_URI)
+        Request request = new Request.Builder()
+                .url("https://fcm.googleapis.com/fcm/send")
                 .post(requestBody)
                 .addHeader(HttpHeaders.AUTHORIZATION, "Bearer "+getAccessToken())
                 .addHeader(HttpHeaders.CONTENT_TYPE, "application/json; UTF-8")
                 .build();
 
-        Response        response = client.newCall(request).execute();
+        Response response = client.newCall(request).execute();
 
-        log.info(response.body().string());*/
-
+        log.info(response.body().string());
     }
 
 }
