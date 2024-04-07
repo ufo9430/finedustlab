@@ -1,108 +1,64 @@
 package com.finedustlab.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.finedustlab.model.fcm.FCMMessageDto;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.common.net.HttpHeaders;
-import com.google.firebase.messaging.FcmOptions;
-import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
+import com.finedustlab.model.fcm.FCMMessage;
+import com.finedustlab.model.fcm.MessageInputDto;
+import com.finedustlab.service.api.FinedustLocalService;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingException;
+import com.google.firebase.messaging.Notification;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.Arrays;
+import java.util.Map;
+import java.util.logging.Logger;
 
 @Service
-@Slf4j
 public class FCMService {
-
-    private final ObjectMapper objectMapper;
+    private final FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
 
     @Autowired
-    public FCMService(ObjectMapper objectMapper){
-        this.objectMapper = objectMapper;
+    private FinedustLocalService service;
+
+    public String send(MessageInputDto messageInputDto){
+        String recipientToken = messageInputDto.getRecipientToken();
+        String schoolCode = messageInputDto.getSchoolCode();
+
+        FCMMessage message = new FCMMessage();
+        message.setRecipientToken(recipientToken);
+        message.setTitle("미세먼지 알림");
+
+        try{
+            Map<String, String> finedustStatus = service.getFinedustStatus(schoolCode);
+            String status = finedustStatus.get("status");
+            if(status.equals("good")){
+                message.setBody("현재 해당 지역 미세먼지 농도는 좋음 입니다.");
+            }else{
+                message.setBody("현재 해당 지역 미세먼지 농도는 나쁨 입니다.");
+            }
+            return sendMessageByToken(message);
+        } catch (Exception e){
+            e.printStackTrace();
+            return "메세지 전송 중 오류가 발생했습니다 getFinedustStatus";
+        }
     }
-
-    @Scheduled(fixedDelay = 300000)
-    private String      getAccessToken() throws IOException {
-        // firebase로 부터 access token을 가져온다.
-
-        GoogleCredentials   googleCredentials = GoogleCredentials
-                .fromStream(new ClassPathResource("serviceAccountKey.json").getInputStream())
-                .createScoped(Arrays.asList("https://www.googleapis.com/auth/cloud-platform"));
-
-        googleCredentials.refreshIfExpired();
-
-
-
-        System.out.println("googleCredentials.getAccessToken().getTokenValue() = " + googleCredentials.getAccessToken().getTokenValue());
-        return googleCredentials.getAccessToken().getTokenValue();
-
-    }
-
-    /**
-     * makeMessage : 알림 파라미터들을 FCM이 요구하는 body 형태로 가공한다.
-     * @param targetToken : firebase token
-     * @param title : 알림 제목
-     * @param body : 알림 내용
-     * @return
-     * */
-    public String   makeMessage(
-            String targetToken, String title, String body, String name, String description
-    ) throws JsonProcessingException {
-
-        FCMMessageDto fcmMessage = FCMMessageDto.builder()
-                .message(
-                        FCMMessageDto.Message.builder()
-                                .token(targetToken)
-                                .notification(
-                                        FCMMessageDto.Notification.builder()
-                                                .title(title)
-                                                .body(body)
-                                                .build()
-                                )
-                                .data(
-                                        FCMMessageDto.Data.builder()
-                                                .name(name)
-                                                .description(description)
-                                                .build()
-                                )
-                                .build()
-                )
-                .validateOnly(false)
+    public String sendMessageByToken(FCMMessage messageDto) {
+        Notification notification = Notification.builder()
+                .setTitle(messageDto.getTitle())
+                .setBody(messageDto.getBody())
+                .build();
+        com.google.firebase.messaging.Message message = com.google.firebase.messaging.Message
+                .builder()
+                .setToken(messageDto.getRecipientToken())
+                .setNotification(notification)
                 .build();
 
-        return objectMapper.writeValueAsString(fcmMessage);
-
+        try{
+            firebaseMessaging.send(message);
+            return "messageDto.getRecipientToken() = " + messageDto.getRecipientToken();
+        }catch (FirebaseMessagingException e){
+            e.printStackTrace();
+            return "메세지 전송 중 오류가 발생했습니다 sendMessageByToken";
+        }
     }
-
-    /**
-     * 알림 푸쉬를 보내는 역할을 하는 메서드
-     * @param targetToken : 푸쉬 알림을 받을 클라이언트 앱의 식별 토큰
-     * */
-    public void     sendMessageTo(
-            String targetToken, String title, String body, String id, String isEnd
-    ) throws IOException{
-
-        String message = makeMessage(targetToken, title, body, id, isEnd);
-
-        OkHttpClient    client = new OkHttpClient();
-        RequestBody requestBody = RequestBody.create(message, MediaType.get("application/json; charset=utf-8"));
-
-        Request request = new Request.Builder()
-                .url("https://fcm.googleapis.com/fcm/send")
-                .post(requestBody)
-                .addHeader(HttpHeaders.AUTHORIZATION, "Bearer "+getAccessToken())
-                .addHeader(HttpHeaders.CONTENT_TYPE, "application/json; UTF-8")
-                .build();
-
-        Response response = client.newCall(request).execute();
-
-        log.info(response.body().string());
-    }
-
 }
