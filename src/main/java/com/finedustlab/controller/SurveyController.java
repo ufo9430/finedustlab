@@ -24,6 +24,7 @@ public class SurveyController {
     }
 
     @Tag(name = "setSurveyAnswer")
+    @Operation(description = "개별 설문조사 문항에 따라 데이터를 저장합니다. profile에 따라 각 문항을 DB에 저장합니다.")
     @PostMapping("/survey/set")
     @ResponseBody
     public String setSurveyAnswer(@RequestBody SurveyInputWrapper input_data){
@@ -32,6 +33,7 @@ public class SurveyController {
 
 
     @Tag(name = "getSurveyAnswerByXls")
+    @Operation(description = "이용자 타입에 따라 설문조사 데이터를 xls 파일로 추출합니다.")
     @PostMapping("/survey/get")
     @ResponseBody
     public void getSurveyAnswerByXls(HttpServletResponse response, @RequestParam String userType){
