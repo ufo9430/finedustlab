@@ -1,12 +1,16 @@
 package com.finedustlab.domain.repository;
 
 import com.finedustlab.model.survey.SurveyAnswer;
+import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import com.google.firebase.database.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class SurveyRepository {
@@ -28,6 +32,23 @@ public class SurveyRepository {
         result.put("sub_answer",answer.getSub_answer());
         result.put("type",answer.getType());
         return result;
+    }
+
+    public Map<String, Map<String, Object>> findAllAnswerData(){
+        CollectionReference surveyAnswer = firestore.collection(SURVEY_ANSWER);
+        Map<String, Map<String, Object>> answers = new HashMap<>();
+        try{
+            ApiFuture<QuerySnapshot> future = surveyAnswer.get();
+            List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+            for (QueryDocumentSnapshot document : documents) {
+                Map<String, Object> data = document.getData();
+                answers.put(document.getId(), data);
+            }
+            return answers;
+        }catch (Exception e){
+            e.printStackTrace();
+            return answers;
+        }
     }
 
     public Object findDataByID(String id){

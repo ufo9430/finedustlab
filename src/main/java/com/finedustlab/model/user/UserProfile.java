@@ -18,4 +18,6 @@ public class UserProfile{
     private int student_num;
     @Schema(description = "이용자 이름")
     private String name;
+    @Schema(description = "이용자 타입")
+    private String user_type;
 }
