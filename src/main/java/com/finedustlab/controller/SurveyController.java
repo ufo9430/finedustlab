@@ -4,6 +4,8 @@ import com.finedustlab.model.survey.SurveyInputWrapper;
 import com.finedustlab.service.SurveyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
+import okhttp3.Response;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,4 +30,11 @@ public class SurveyController {
         return surveyService.set(input_data);
     }
 
+
+    @Tag(name = "getSurveyAnswerByXls")
+    @PostMapping("/survey/get")
+    @ResponseBody
+    public void getSurveyAnswerByXls(HttpServletResponse response, @RequestParam String userType){
+        surveyService.exportDataToXls(response,userType);
+    }
 }
