@@ -30,7 +30,7 @@ public class SurveyService {
 
     public String set(SurveyInputWrapper data) {
         UserProfile profile = data.getUser();
-        SurveyAnswer answer = data.getAnswer();
+        SurveyAnswer answer = data.getSurvey_data();
         return surveyRepository.save(profile, answer);
     }
 
@@ -72,10 +72,16 @@ public class SurveyService {
                 Row rowChecker = worksheet.getRow(0);
                 for(int i=0;i<list.size();i++){
                     String questionId = rowChecker.getCell(i).getStringCellValue();
-                    Map answer = objectMapper.convertValue(userAnswerMap.get(questionId), Map.class);
-                    if(answer!=null){
-                        String answerStr = (String) answer.get("answer");
-                        String subAnswerStr = (String) answer.get("sub_answer");
+                    Map answerMap = objectMapper.convertValue(userAnswerMap.get(questionId), Map.class);
+                    if(answerMap!=null){
+                        List<String> answerList = (List<String>) answerMap.get("answer");
+                        String answerStr = "";
+                        for (String answer : answerList) {
+                            answerStr = answerStr + "-" + answer;
+                        }
+                        answerStr = answerStr.substring(1);
+
+                        String subAnswerStr = (String) answerMap.get("sub_answer");
                         row.createCell(i).setCellValue(answerStr+"-"+subAnswerStr);
                     }
                 }

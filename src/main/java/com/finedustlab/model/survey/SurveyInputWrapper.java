@@ -9,5 +9,5 @@ import lombok.*;
 @ToString
 public class SurveyInputWrapper {
     private UserProfile user;
-    private SurveyAnswer answer;
+    private SurveyAnswer survey_data;
 }

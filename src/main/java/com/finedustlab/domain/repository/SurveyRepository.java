@@ -37,8 +37,8 @@ public class SurveyRepository {
         return document_id;
     }
 
-    private HashMap<String, String> setAnswerData(SurveyAnswer answer){
-        HashMap<String, String> result = new HashMap<>();
+    private HashMap<String, Object> setAnswerData(SurveyAnswer answer){
+        HashMap<String, Object> result = new HashMap<>();
         result.put("answer",answer.getAnswer());
         result.put("sub_answer",answer.getSub_answer());
         result.put("type",answer.getType());

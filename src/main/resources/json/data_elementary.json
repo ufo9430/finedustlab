@@ -7,13 +7,14 @@
             "category_color": "#23B169",
             "id" : 101,
             "question" : "미세먼지가 무엇인지 알고 있나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"ox",
                 "options": [
                     {"id":1, "text":"알고 있음"},
                     {"id":2, "text":"모름"}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 1,
@@ -21,13 +22,14 @@
             "category_color": "#23B169",
             "id" : 102,
             "question" : "교실 안 공기의 미세먼지 농도가 궁금해서\n확인 해본 적이 있나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"ox",
                 "options": [
                     {"id":1, "text":"있음"},
                     {"id":2, "text":"없음"}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 1,
@@ -35,7 +37,8 @@
             "category_color": "#23B169",
             "id" : 103,
             "question" : "지금 교실의 미세먼지 농도가\n어떻게 느껴지나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"choice",
                 "options": [
                     {"id":1, "text":"1", "input":false},
@@ -44,7 +47,7 @@
                     {"id":4, "text":"4", "input":false},
                     {"id":5, "text":"5", "input":false}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 2,
@@ -52,13 +55,14 @@
             "category_color": "#2A7CFF",
             "id" : 201,
             "question" : "현재 교실의 온도와 습도를\n확인할 수 있나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type": "ox",
                 "options": [
                     {"id":1, "text":"있음"},
                     {"id":2, "text":"없음"}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 2,
@@ -66,7 +70,8 @@
             "category_color": "#2A7CFF",
             "id" : 202,
             "question" : "지금 우리 반의 학생은\n몇 명이 있나요?",
-            "answer":{
+            "sub_questions":[{
+                "sub_question_id": 1,
                 "type":"number_picker",
                 "options": [
                     {
@@ -75,7 +80,7 @@
                         "input": true
                     }
                 ]
-            }
+            }]
         },
         {
             "category_id" : 2,
@@ -83,57 +88,59 @@
             "category_color": "#2A7CFF",
             "id" : 203,
             "question" : "현재 교실은 어떻게 느껴지는지\n모두 골라 주세요.",
-            "answer" : {
-                "type":"multi_choice",
-                "options":[
-                    {
-                        "id":1,
-                        "text" : "온도",
-                        "options" : [
-                            {"id":1, "text":"1", "input":false},
-                            {"id":2, "text":"2", "input":false},
-                            {"id":3, "text":"3", "input":false},
-                            {"id":4, "text":"4", "input":false},
-                            {"id":5, "text":"5", "input":false}
-                        ]
-                    },
-                    {
-                        "id":2,
-                        "text" : "습도",
-                        "options" : [
-                            {"id":1, "text":"1", "input":false},
-                            {"id":2, "text":"2", "input":false},
-                            {"id":3, "text":"3", "input":false},
-                            {"id":4, "text":"4", "input":false},
-                            {"id":5, "text":"5", "input":false}
-                        ]
-                    },
-                    {
-                        "id":3,
-                        "text" : "재실인원",
-                        "options" : [
-                            {"id":1, "text":"1", "input":false},
-                            {"id":2, "text":"2", "input":false},
-                            {"id":3, "text":"3", "input":false},
-                            {"id":4, "text":"4", "input":false},
-                            {"id":5, "text":"5", "input":false}
-                        ]
-                    }
-                ]
-            }
+            "sub_questions" : [
+                {
+                    "sub_question_id":1,
+                    "text" : "온도",
+                    "type" : "choice",
+                    "options" : [
+                        {"id":1, "text":"1", "input":false},
+                        {"id":2, "text":"2", "input":false},
+                        {"id":3, "text":"3", "input":false},
+                        {"id":4, "text":"4", "input":false},
+                        {"id":5, "text":"5", "input":false}
+                    ]
+                },
+                {
+                    "sub_question_id":2,
+                    "text" : "습도",
+                    "type" : "choice",
+                    "options" : [
+                        {"id":1, "text":"1", "input":false},
+                        {"id":2, "text":"2", "input":false},
+                        {"id":3, "text":"3", "input":false},
+                        {"id":4, "text":"4", "input":false},
+                        {"id":5, "text":"5", "input":false}
+                    ]
+                },
+                {
+                    "sub_question_id":3,
+                    "text" : "재실인원",
+                    "type" : "choice",
+                    "options" : [
+                        {"id":1, "text":"1", "input":false},
+                        {"id":2, "text":"2", "input":false},
+                        {"id":3, "text":"3", "input":false},
+                        {"id":4, "text":"4", "input":false},
+                        {"id":5, "text":"5", "input":false}
+                    ]
+                }
+            ]
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
+            "category_color": "#FF6D1B",
             "id" : 301,
             "question": "지금 아픈 곳이 있나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type": "choice",
                 "options": [
                     {"id":1, "text":"건강함","input":false},
                     {"id":2, "text":"아픈 곳이 있음", "input":true}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 3,
@@ -141,13 +148,14 @@
             "category_color": "#FF6D1B",
             "id" : 302,
             "question" : "지금 아픈 것 이외에, 전부터\n가지고 있던 질병이 있나요?",
-            "answer" : {
+            "sub_questions":[ {
+                "sub_question_id": 1,
                 "type":"choice",
                 "options": [
                     {"id":1, "text":"없음","input":false},
                     {"id":2, "text":"있음", "input":true}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 4,
@@ -155,7 +163,8 @@
             "category_color": "#F04452",
             "id" : 401,
             "question" : "지금 교실 내 청소가\n잘 되어있는 곳을 모두 확인합니다.",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"checkbox",
                 "options": [
                     {"id":1, "text":"바닥", "selected":false},
@@ -163,7 +172,7 @@
                     {"id":3, "text":"창문", "selected":false},
                     {"id":4, "text":"출입문", "selected":false}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 4,
@@ -171,14 +180,15 @@
             "category_color": "#F04452",
             "id" : 402,
             "question" : "지금 교실 내 청소를\n어떤 방법으로 하고 있나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"checkbox",
                 "options": [
                     {"id":1, "text":"빗자루 사용", "selected":false},
                     {"id":2, "text":"진공 청소기 사용", "selected":false},
                     {"id":3, "text":"물 청소", "selected":false}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 4,
@@ -186,13 +196,14 @@
             "category_color": "#F04452",
             "id" : 403,
             "question" : "오늘 교실의 창문을\n열었는지 확인해볼까요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"choice",
                 "options": [
                     {"id":1, "text":"있음","input":true},
                     {"id":2, "text":"없음", "input":false}
                 ]
-            }
+            }]
         },
         {
             "category_id" : 4,
@@ -200,13 +211,14 @@
             "category_color": "#F04452",
             "id" : 404,
             "question" : "외부 미세먼지 농도가 높을 때에도\n창문을 열어 환기해야 하는 사실을 알고 있나요?",
-            "answer" : {
+            "sub_questions": [{
+                "sub_question_id": 1,
                 "type":"ox",
                 "options":[
                     {"id":1, "text":"알고 있음"},
                     {"id":2, "text":"모름"}
                 ]
-            }
+            }]
         }
     ]
 }
