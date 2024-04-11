@@ -30,7 +30,7 @@ public class SurveyRepository {
 
         fields.put("profile",profile);
         fields.put("date",answer.getDate());
-        fields.put(String.valueOf(answer.getAnswer_id()),setAnswerData(answer));
+        fields.put(String.valueOf(answer.getQuestion_id()),setAnswerData(answer));
         firestore.collection(SURVEY_ANSWER).document(document_id)
                 .set(fields,SetOptions.merge());
 
@@ -39,7 +39,7 @@ public class SurveyRepository {
 
     private HashMap<String, Object> setAnswerData(SurveyAnswer answer){
         HashMap<String, Object> result = new HashMap<>();
-        result.put("answer",answer.getAnswer());
+        result.put("answer",answer.getAnswers());
         result.put("sub_answer",answer.getSub_answer());
         result.put("type",answer.getType());
         return result;

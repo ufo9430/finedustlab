@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -19,9 +18,9 @@ public class SurveyAnswer {
             {"multi_choice","ox","choice","number_picker","checkbox","text"})
     private String type;
     @Schema(description = "개별 설문조사 아이디", defaultValue = "103")
-    private int answer_id;
-    @Schema(type = "list", description = "설문조사 답변")
-    private List<String> answer;
+    private int question_id;
+    @Schema(type ="list", description = "설문조사 답변")
+    private List<SurveySubQuestion> answers;
     @Schema(description = "설문조사 보조 답변", defaultValue = "보조 답변")
     private String sub_answer;
     @Schema(description = "설문 일자", defaultValue = "20240322")
