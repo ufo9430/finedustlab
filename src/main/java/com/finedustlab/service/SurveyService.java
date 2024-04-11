@@ -3,6 +3,7 @@ package com.finedustlab.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.domain.repository.SurveyRepository;
 import com.finedustlab.model.survey.SurveyInputWrapper;
+import com.finedustlab.model.survey.SurveySubQuestion;
 import com.finedustlab.model.user.UserProfile;
 import com.finedustlab.model.survey.SurveyAnswer;
 import jakarta.servlet.http.HttpServletResponse;
@@ -74,15 +75,15 @@ public class SurveyService {
                     String questionId = rowChecker.getCell(i).getStringCellValue();
                     Map answerMap = objectMapper.convertValue(userAnswerMap.get(questionId), Map.class);
                     if(answerMap!=null){
-                        List<String> answerList = (List<String>) answerMap.get("answer");
+                        List<SurveySubQuestion> answerList = (List<SurveySubQuestion>) answerMap.get("answer");
                         String answerStr = "";
-                        for (String answer : answerList) {
-                            answerStr = answerStr + "-" + answer;
+                        for (SurveySubQuestion answer : answerList) {
+                            answerStr = answerStr + "," + answer.getSub_question_answer();
                         }
                         answerStr = answerStr.substring(1);
 
                         String subAnswerStr = (String) answerMap.get("sub_answer");
-                        row.createCell(i).setCellValue(answerStr+"-"+subAnswerStr);
+                        row.createCell(i).setCellValue(answerStr+","+subAnswerStr);
                     }
                 }
             }
