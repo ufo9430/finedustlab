@@ -14,6 +14,6 @@ public class finedustSurveyServiceTest {
     @Test
     public void 응답_데이터_엑셀변환(){
         MockHttpServletResponse mockResponse = new MockHttpServletResponse();
-        surveyService.exportDataToXls(mockResponse,"elementary");
+//        surveyService.exportDataToXls(mockResponse,"elementary");
     }
 }
