@@ -40,8 +40,6 @@ public class SurveyRepository {
     private HashMap<String, Object> setAnswerData(SurveyAnswer answer){
         HashMap<String, Object> result = new HashMap<>();
         result.put("answer",answer.getAnswers());
-        result.put("sub_answer",answer.getSub_answer());
-        result.put("type",answer.getType());
         return result;
     }
 

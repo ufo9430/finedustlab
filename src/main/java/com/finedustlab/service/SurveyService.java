@@ -77,13 +77,13 @@ public class SurveyService {
                     if(answerMap!=null){
                         List<SurveySubQuestion> answerList = (List<SurveySubQuestion>) answerMap.get("answer");
                         String answerStr = "";
-                        for (SurveySubQuestion answer : answerList) {
+                        for (Object o : answerList) {
+                            SurveySubQuestion answer = objectMapper.convertValue(o, SurveySubQuestion.class);
                             answerStr = answerStr + "," + answer.getSub_question_answer();
                         }
                         answerStr = answerStr.substring(1);
 
-                        String subAnswerStr = (String) answerMap.get("sub_answer");
-                        row.createCell(i).setCellValue(answerStr+","+subAnswerStr);
+                        row.createCell(i).setCellValue(answerStr);
                     }
                 }
             }
