@@ -92,6 +92,7 @@ public class WeatherService {
             output.put("id",id);
             output.put("humidity",getJsonArrayValue(item,"REH"));
             output.put("temperature",getJsonArrayValue(item,"T1H"));
+            output.put("date",inputDate);
             apiRepository.setWeather(output);
         }else{
             output.put("result","error");
