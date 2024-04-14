@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.format.DateTimeFormatter;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,8 +17,5 @@ public class WeatherRequestDTO {
 
     @Schema(description = "경도", defaultValue = "127.582425")
     private String lng;
-
-    @Schema(description = "날짜 및 시간", defaultValue = "20240324-2329")
-    private String date;
 
 }

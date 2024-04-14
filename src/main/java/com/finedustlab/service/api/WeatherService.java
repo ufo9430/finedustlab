@@ -23,10 +23,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class WeatherService {
@@ -40,7 +40,11 @@ public class WeatherService {
     public Map<String, Object> getWeather(WeatherRequestDTO requestDTO) throws Exception {
         double x = Double.parseDouble(requestDTO.getLat());
         double y = Double.parseDouble(requestDTO.getLng());
-        String inputDate = requestDTO.getDate();
+
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmm");
+
+        String inputDate = formatter.format(time);
         String dateModulated = getModulatedDate(inputDate);
 
         String strDate = dateModulated.split("-")[0];
