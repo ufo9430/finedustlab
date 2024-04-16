@@ -19,9 +19,36 @@ public class APIRepository {
     Firestore firestore = FirestoreClient.getFirestore();
     private final String FINEDUST_DATA = "api_finedust";
     private final String WEATHER_DATA = "api_weather";
+    private final String HOLIDAY_DATA = "api_holiday";
 
     public void setWeather(Map<String, Object> weather) throws ExecutionException, InterruptedException {
         firestore.collection(WEATHER_DATA).add(weather);
+    }
+    @SuppressWarnings("unchecked")
+    public void setFinedustData(String sido, JSONObject data) {
+        Firestore firestore = FirestoreClient.getFirestore();
+        DocumentReference document = firestore.collection(FINEDUST_DATA).document(sido);
+        document.set(data);
+    }
+    public void setHoliday(Map<String, Object> holidayData){
+        firestore.collection(HOLIDAY_DATA).document("data").set(holidayData);
+    }
+
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> getHolidayData() throws ExecutionException, InterruptedException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ApiFuture<DocumentSnapshot> future = firestore.collection(HOLIDAY_DATA).document("data").get();
+        DocumentSnapshot documentSnapshot = future.get();
+        Map<String, Object> data = documentSnapshot.getData();
+        /*
+        for (String s : data.keySet()) {
+            Object o = data.get(s);
+            HashMap<String, Object> holiday = objectMapper.convertValue(o, HashMap.class);
+            if(String.valueOf(holiday.get("locdate")).equals(date)){
+                return holiday;
+            }
+        }*/
+        return data;
     }
 
     @SuppressWarnings("unchecked")
@@ -38,12 +65,6 @@ public class APIRepository {
         return result;
     }
 
-    @SuppressWarnings("unchecked")
-    public void setFinedustData(String sido, JSONObject data) {
-        Firestore firestore = FirestoreClient.getFirestore();
-        DocumentReference document = firestore.collection(FINEDUST_DATA).document(sido);
-        document.set(data);
-    }
     public Map<String,String> getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentSnapshot> future = firestore.collection(FINEDUST_DATA).document(sido).get();
         ObjectMapper objectMapper = new ObjectMapper();

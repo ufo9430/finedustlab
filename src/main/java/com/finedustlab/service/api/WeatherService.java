@@ -56,6 +56,11 @@ public class WeatherService {
 
         Map<String, Object> output = new HashMap<>();
 
+        Map<String , Object> temp = apiRepository.findWeatherByXYandTime((int) grid.getX(),
+                (int) grid.getY(), strTime);
+        if(!temp.isEmpty()){
+            return temp;
+        }
 
         String url = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"
                 + "?serviceKey=" + APIKEY
@@ -70,11 +75,6 @@ public class WeatherService {
         System.out.println("url = " + url);
         System.out.println("dateModulated = " + dateModulated);
 
-        Map<String , Object> temp = apiRepository.findWeatherByXYandTime((int) grid.getX(),
-                (int) grid.getY(), strTime);
-        if(!temp.isEmpty()){
-            return temp;
-        }
 
         JSONObject data = getData(url);
         JSONObject header = (JSONObject) data.get("header");
@@ -133,11 +133,11 @@ public class WeatherService {
         return dateFormat.format(date);
     }
 
-    private JSONObject getData(String input){
+    private JSONObject getData(String urlInput){
         String stringData;
         JSONObject result = null;
         try{
-            URL url = new URL(input);
+            URL url = new URL(urlInput);
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
