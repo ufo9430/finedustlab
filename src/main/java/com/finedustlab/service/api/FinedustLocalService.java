@@ -65,8 +65,8 @@ public class FinedustLocalService {
         return result;
     }
 
-    @Scheduled(cron = "* 30 * * * *", zone = "Asia/Seoul")
-    private void saveData() throws UnsupportedEncodingException {
+    public void saveData() throws UnsupportedEncodingException {
+
         LocationMapper locationMapper = new LocationMapper();
         HashMap<String, String> locationPair = locationMapper.getLocationPair();
         for (String s : locationPair.keySet()) {

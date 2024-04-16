@@ -1,6 +1,7 @@
 package com.finedustlab.controller;
 
 
+import com.finedustlab.domain.repository.APIRepository;
 import com.finedustlab.model.api.WeatherRequestDTO;
 import com.finedustlab.service.api.FinedustLocalService;
 import com.finedustlab.service.api.HolidayService;
@@ -9,11 +10,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 @Controller
@@ -24,6 +27,9 @@ public class APIController {
     FinedustLocalService finedustOutsideService;
     @Autowired
     HolidayService holidayService;
+
+    @Autowired
+    APIRepository apiRepository;
 
     @GetMapping("/weather/get")
     @Operation(description = "위도/경도와 현재 날짜를 입력하여 상태 신호 result와 temperature, humidity를 받습니다.")
@@ -47,6 +53,12 @@ public class APIController {
         return holidayService.getHolidayInfo();
     }
 
-
+    @Scheduled(cron = "* * 23 * * *")
+    private void clearData() throws UnsupportedEncodingException {
+        System.out.println("Clear temp api data");
+        apiRepository.deleteCollection("api_weather");
+        apiRepository.deleteCollection("api_finedust");
+        finedustOutsideService.saveData();
+    }
 
 }

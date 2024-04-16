@@ -50,8 +50,6 @@ public class WeatherService {
         String strDate = dateModulated.split("-")[0];
         String strTime = dateModulated.split("-")[1];
 
-        System.out.println("strTime = " + strTime);
-
         LatXLngY grid = convertGRID_GPS(x,y);
 
         Map<String, Object> output = new HashMap<>();
@@ -71,9 +69,6 @@ public class WeatherService {
                 + "&base_time=" + strTime         // 발표시각
                 + "&nx=" + (int) grid.getX()                   // 예보지점 X 좌표
                 + "&ny=" + (int) grid.getY() ;                 // 예보지점 Y 좌표
-
-        System.out.println("url = " + url);
-        System.out.println("dateModulated = " + dateModulated);
 
 
         JSONObject data = getData(url);
@@ -162,12 +157,7 @@ public class WeatherService {
         return result;
     }
 
-    @Scheduled(cron = "* * 0 * * *")
-    private void clearData(){
-        System.out.println("Clear temp api data");
-        apiRepository.deleteCollection("api_weather");
-        apiRepository.deleteCollection("api_finedust");
-    }
+
 
     private LatXLngY convertGRID_GPS( double lat_X, double lng_Y )
     {

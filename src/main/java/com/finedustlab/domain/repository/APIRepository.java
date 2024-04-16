@@ -77,7 +77,6 @@ public class APIRepository {
         JSONObject bodyJson = objectMapper.convertValue(body, JSONObject.class);
         Object items = bodyJson.get("items");
         JSONArray itemsArray = objectMapper.convertValue(items, JSONArray.class);
-        System.out.println("itemsArray = " + itemsArray);
 
         for (Object item : itemsArray) {
             JSONObject itemJson = objectMapper.convertValue(item, JSONObject.class);

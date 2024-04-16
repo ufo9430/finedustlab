@@ -38,7 +38,6 @@ public class LocationService {
                 "&pSize=5" +
                 "&SD_SCHUL_CODE=" + schoolCode;
 
-        System.out.println("url_school = " + url);
 
         JSONObject data = getData(url);
         if(data.isEmpty()) return "정보를 찾지 못했습니다";
@@ -79,9 +78,6 @@ public class LocationService {
             br.reset();
             br.close();
             conn.disconnect();
-
-            System.out.println("FinedustOutsideController.getData");
-            System.out.println("sb = " + sb);
 
             JSONParser jsonParser = new JSONParser();
             result = (JSONObject)jsonParser.parse(String.valueOf(sb));
