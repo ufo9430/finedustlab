@@ -35,20 +35,19 @@ public class APIRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public Map<String, Object> getHolidayData() throws ExecutionException, InterruptedException {
+    public Map<String, Object> getHolidayData(String date) throws ExecutionException, InterruptedException {
         ObjectMapper objectMapper = new ObjectMapper();
         ApiFuture<DocumentSnapshot> future = firestore.collection(HOLIDAY_DATA).document("data").get();
         DocumentSnapshot documentSnapshot = future.get();
         Map<String, Object> data = documentSnapshot.getData();
-        /*
         for (String s : data.keySet()) {
             Object o = data.get(s);
             HashMap<String, Object> holiday = objectMapper.convertValue(o, HashMap.class);
             if(String.valueOf(holiday.get("locdate")).equals(date)){
                 return holiday;
             }
-        }*/
-        return data;
+        }
+        return new HashMap<>();
     }
 
     @SuppressWarnings("unchecked")

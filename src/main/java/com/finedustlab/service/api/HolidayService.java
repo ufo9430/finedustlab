@@ -14,8 +14,10 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,25 +61,32 @@ public class HolidayService {
     }
 
     public Map<String, Object> getHolidayInfo(){
-        /*
-        try{
-            Map<String, Object> holidayData = apiRepository.getHolidayData();
-            if(holidayData.isEmpty()){
-                return getErrorResult(date);
-            }else{
-                return holidayData;
+        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        DayOfWeek dayOfWeek = time.getDayOfWeek();
+        int dayOfWeekNum = dayOfWeek.getValue();
+        LocalDateTime firstDayOfWeek = time.plusDays(-dayOfWeekNum);
+
+        Map<String, Object> result = new HashMap<>();
+
+        ArrayList<Object> dataArray = new ArrayList<>();
+
+        for(int i=0;i<14;i++){
+            LocalDateTime date = firstDayOfWeek.plusDays(i);
+            String strDate = formatter.format(date);
+            try{
+                Map<String, Object> holidayData = apiRepository.getHolidayData(strDate);
+                if(!holidayData.isEmpty()) {
+                    dataArray.add(holidayData);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        }catch (Exception e){
-            e.printStackTrace();
-            return getErrorResult(date);
-        }*/
-        try{
-            Map<String, Object> holidayData = apiRepository.getHolidayData();
-            return holidayData;
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
+
         }
+        result.put("result",dataArray);
+
+        return result;
     }
 
     private static Map<String, Object> getErrorResult(String date) {
