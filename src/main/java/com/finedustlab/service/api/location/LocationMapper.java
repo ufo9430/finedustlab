@@ -25,6 +25,8 @@ public class LocationMapper {
         locationPair.put("전북특별자치도","전북");
         locationPair.put("충청남도","충남");
         locationPair.put("충청북도","충북");
+        locationPair.put("제주특별자치도","제주");
+
     }
 
     public String getModifiedLocation(String location){
