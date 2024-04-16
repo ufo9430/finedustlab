@@ -95,7 +95,7 @@ public class FinedustLocalService {
         result.put("result", "error");
         result.put("finedust_factor","-");
         result.put("ultrafine_factor","-");
-        result.put("status",str);
+        System.out.println("error사유 = " + str);
         return result;
     }
 

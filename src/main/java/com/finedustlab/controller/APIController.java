@@ -41,7 +41,7 @@ public class APIController {
 
 
     @GetMapping("/holiday/get")
-    @Operation(description = "올해의 공휴일 데이터를 불러옵니다.")
+    @Operation(description = "요청 당시 월요일부터 다음주 일요일 사이의 공휴일 데이터를 불러옵니다.")
     @ResponseBody
     public Map<String, Object> getHolidayInfo(){
         return holidayService.getHolidayInfo();
