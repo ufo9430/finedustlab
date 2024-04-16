@@ -53,7 +53,7 @@ public class APIController {
         return holidayService.getHolidayInfo();
     }
 
-    @Scheduled(cron = "* * 23 * * *")
+    @Scheduled(cron="* * 0 * * *")
     private void clearData() throws UnsupportedEncodingException {
         System.out.println("Clear temp api data");
         apiRepository.deleteCollection("api_weather");

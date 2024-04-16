@@ -47,6 +47,10 @@ public class FinedustLocalService {
         }
         // ----------------------
 
+        System.out.println("sido = " + sido);
+        System.out.println("city = " + city);
+
+
         result = apiRepository.getFinedustByCityName(sido,city);
 
         if(Integer.parseInt(result.get("finedust_factor")) < 0

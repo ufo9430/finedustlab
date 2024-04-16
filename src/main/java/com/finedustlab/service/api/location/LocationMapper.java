@@ -20,6 +20,8 @@ public class LocationMapper {
         locationPair.put("인천광역시","인천");
         locationPair.put("전라남도","전남");
         locationPair.put("전라북도","전북");
+        locationPair.put("경상남도","경남");
+        locationPair.put("경상북도","경북");
         locationPair.put("전북특별자치도","전북");
         locationPair.put("충청남도","충남");
         locationPair.put("충청북도","충북");
