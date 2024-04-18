@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class FinedustLocalService {
     private final String APIKEY =
-            "ISOm1PZB6EqoIW%2FoJwuaLOG%2FCLNiXiqW%2FkTFkJ6CFFXq%2F%2FoDwKuYxZFNUPz3bzdu%2BVkYZsBbh10Y51t3ndF9nw%3D%3D";
+            "YN2rq1qN3r2acjV5XdAAy5oSlwnhEbWdmvdMKuTDYtzl9ON60X0G7s8Ub3lGO%2FaOM2AD54fNh3XDK6%2B6MSyBlg%3D%3D";
 
     @Autowired
     private LocationService locationService;
@@ -87,7 +87,6 @@ public class FinedustLocalService {
                 + "&sidoName=" + URLEncoder.encode(sido, "UTF-8")
                 + "&searchCondition=" + "HOUR";
 
-
         JSONObject data = getData(url);
 
         apiRepository.setFinedustData(sido, data);
@@ -130,6 +129,7 @@ public class FinedustLocalService {
             conn.disconnect();
 
             JSONParser jsonParser = new JSONParser();
+
             result = (JSONObject)jsonParser.parse(String.valueOf(sb));
         }catch (Exception e){
             result = null;

@@ -56,7 +56,6 @@ public class APIController {
 
     @Scheduled(cron = "0 0 6 * * *")
     private void clearData() throws UnsupportedEncodingException {
-        System.out.println("Clear temp api data");
         apiRepository.deleteCollection("api_weather");
         apiRepository.deleteCollection("api_finedust");
         apiRepository.deleteCollection("api_holiday");

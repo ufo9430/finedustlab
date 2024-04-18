@@ -35,7 +35,7 @@ public class WeatherService {
     private APIRepository apiRepository;
 
     private final String APIKEY =
-            "ISOm1PZB6EqoIW%2FoJwuaLOG%2FCLNiXiqW%2FkTFkJ6CFFXq%2F%2FoDwKuYxZFNUPz3bzdu%2BVkYZsBbh10Y51t3ndF9nw%3D%3D";
+            "YN2rq1qN3r2acjV5XdAAy5oSlwnhEbWdmvdMKuTDYtzl9ON60X0G7s8Ub3lGO%2FaOM2AD54fNh3XDK6%2B6MSyBlg%3D%3D";
 
     public Map<String, Object> getWeather(WeatherRequestDTO requestDTO) throws Exception {
         double x = Double.parseDouble(requestDTO.getLat());
