@@ -98,11 +98,6 @@ public class HolidayService {
         return result;
     }
 
-    @Scheduled(cron = "* 0 * * * *")
-    private void saveData(){
-        apiRepository.deleteCollection("api_holiday");
-        setHolidayInfo();
-    }
 
 
     private JSONObject getData(String urlInput){

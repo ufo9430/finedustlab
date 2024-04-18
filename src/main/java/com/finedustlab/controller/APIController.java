@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Controller
@@ -53,12 +54,14 @@ public class APIController {
         return holidayService.getHolidayInfo();
     }
 
-    @Scheduled(cron="* * 0 * * *")
+    @Scheduled(cron = "0 0 6 * * *")
     private void clearData() throws UnsupportedEncodingException {
         System.out.println("Clear temp api data");
         apiRepository.deleteCollection("api_weather");
         apiRepository.deleteCollection("api_finedust");
+        apiRepository.deleteCollection("api_holiday");
         finedustOutsideService.saveData();
+        holidayService.setHolidayInfo();
     }
 
 }
