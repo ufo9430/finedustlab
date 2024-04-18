@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -24,7 +25,8 @@ public class FCMService {
     @Autowired
     private FinedustLocalService service;
 
-    public String getAccessToken() {
+    public Map<String, String> getAccessToken() {
+        Map<String, String> result = new HashMap<>();
         try {
             GoogleCredentials googleCredentials = GoogleCredentials
                     .fromStream(new ClassPathResource("serviceAccountKey.json").getInputStream())
@@ -34,13 +36,18 @@ public class FCMService {
 
             String tokenValue = googleCredentials.getAccessToken().getTokenValue();
 
-            System.out.println("tokenValue = " + tokenValue);
-            return tokenValue;
+            result.put("status","complete");
+            result.put("tokenValue",tokenValue);
+            return result;
         }catch (IOException e){
             e.printStackTrace();
-            return "error";
+            result.put("status","error");
+            result.put("tokenValue","-");
+            return result;
         }
     }
+
+
     public String send(MessageInputDto messageInputDto){
         String recipientToken = messageInputDto.getRecipientToken();
         String schoolCode = messageInputDto.getSchoolCode();
