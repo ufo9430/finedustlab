@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -30,7 +27,7 @@ public class UserController {
 
     @Tag(name = "setUserProfile")
     @Operation(description = "이용자 정보를 통해 이용자 프로필을 불러옵니다.")
-    @PostMapping("/user/get")
+    @GetMapping("/user/get")
     @ResponseBody
     public Map<String, Object> getUser(@RequestParam String uid) throws ExecutionException, FirebaseAuthException, InterruptedException {
         return userService.get(uid);
