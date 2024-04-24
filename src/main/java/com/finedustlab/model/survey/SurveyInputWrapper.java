@@ -1,5 +1,6 @@
 package com.finedustlab.model.survey;
 
+import com.finedustlab.model.user.StudentProfile;
 import com.finedustlab.model.user.UserProfile;
 import lombok.*;
 
@@ -8,6 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class SurveyInputWrapper {
-    private UserProfile user;
+    private StudentProfile user;
     private SurveyAnswer survey_data;
 }

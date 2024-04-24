@@ -2,7 +2,7 @@ package com.finedustlab.controller;
 
 import com.finedustlab.model.classroom.Classroom;
 import com.finedustlab.model.classroom.ClassroomWrapper;
-import com.finedustlab.model.user.UserProfile;
+import com.finedustlab.model.user.StudentProfile;
 import com.finedustlab.service.ClassroomService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Controller
@@ -24,7 +23,7 @@ public class ClassroomController {
     @ResponseBody
     public String setClassroom(@RequestBody ClassroomWrapper wrapper){
         Classroom classroom = wrapper.getClassroom();
-        UserProfile userProfile = wrapper.getUserProfile();
+        StudentProfile userProfile = wrapper.getUserProfile();
         System.out.println("classroom.toString() = " + classroom.toString());
         System.out.println("userProfile.toString() = " + userProfile.toString());
         return classroomService.save(classroom, userProfile);

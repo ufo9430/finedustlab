@@ -1,7 +1,7 @@
 package com.finedustlab.domain.repository;
 
 import com.finedustlab.model.survey.SurveyAnswer;
-import com.finedustlab.model.user.UserProfile;
+import com.finedustlab.model.user.StudentProfile;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -17,9 +17,8 @@ public class SurveyRepository {
     private static final String SURVEY_DATA = "survey_data";
     Firestore firestore = FirestoreClient.getFirestore();
 
-    public String save(UserProfile profile, SurveyAnswer answer) {
+    public String save(StudentProfile profile, SurveyAnswer answer) {
         HashMap<String, Object> fields = new HashMap<>();
-
         String document_id =
                 profile.getSchool_code()+"-"+
                         profile.getGrade()+"-"+

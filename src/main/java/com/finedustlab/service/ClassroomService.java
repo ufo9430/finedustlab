@@ -2,11 +2,10 @@ package com.finedustlab.service;
 
 import com.finedustlab.domain.repository.ClassroomRepository;
 import com.finedustlab.model.classroom.Classroom;
-import com.finedustlab.model.user.UserProfile;
+import com.finedustlab.model.user.StudentProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -14,7 +13,7 @@ public class ClassroomService {
     @Autowired
     ClassroomRepository classroomRepository;
 
-    public String save(Classroom classroom, UserProfile userProfile){
+    public String save(Classroom classroom, StudentProfile userProfile){
         if(userProfile == null){
             return "error";
         }else{

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.domain.repository.SurveyRepository;
 import com.finedustlab.model.survey.SurveyInputWrapper;
 import com.finedustlab.model.survey.SurveySubQuestion;
-import com.finedustlab.model.user.UserProfile;
+import com.finedustlab.model.user.StudentProfile;
 import com.finedustlab.model.survey.SurveyAnswer;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Cell;
@@ -30,7 +30,7 @@ public class SurveyService {
     }
 
     public String set(SurveyInputWrapper data) {
-        UserProfile profile = data.getUser();
+        StudentProfile profile = data.getUser();
         SurveyAnswer answer = data.getSurvey_data();
         return surveyRepository.save(profile, answer);
     }

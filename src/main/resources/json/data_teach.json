@@ -101,11 +101,11 @@
                 "type":"choice",
                 "sub_question_id": 1,
                 "options": [
-                    {"id":1, "text":"1", "input":false},
-                    {"id":2, "text":"2", "input":false},
-                    {"id":3, "text":"3", "input":false},
-                    {"id":4, "text":"4", "input":false},
-                    {"id":5, "text":"5", "input":false}
+                    {"id":1, "text":"매우 좋음", "input":false},
+                    {"id":2, "text":"좋음", "input":false},
+                    {"id":3, "text":"보통", "input":false},
+                    {"id":4, "text":"나쁨", "input":false},
+                    {"id":5, "text":"매우 나쁨", "input":false}
                 ]
             }]
         },
@@ -169,11 +169,11 @@
                     "text" : "온도",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"1", "input":false},
-                        {"id":2, "text":"2", "input":false},
-                        {"id":3, "text":"3", "input":false},
-                        {"id":4, "text":"4", "input":false},
-                        {"id":5, "text":"5", "input":false}
+                        {"id":1, "text":"매우 추움", "input":false},
+                        {"id":2, "text":"추움", "input":false},
+                        {"id":3, "text":"보통", "input":false},
+                        {"id":4, "text":"더움", "input":false},
+                        {"id":5, "text":"매우 더움", "input":false}
                     ]
                 },
                 {
@@ -181,11 +181,11 @@
                     "text" : "습도",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"1", "input":false},
-                        {"id":2, "text":"2", "input":false},
-                        {"id":3, "text":"3", "input":false},
-                        {"id":4, "text":"4", "input":false},
-                        {"id":5, "text":"5", "input":false}
+                        {"id":1, "text":"매우 건조함", "input":false},
+                        {"id":2, "text":"건조함", "input":false},
+                        {"id":3, "text":"보통", "input":false},
+                        {"id":4, "text":"습함", "input":false},
+                        {"id":5, "text":"매우 습함", "input":false}
                     ]
                 },
                 {
@@ -193,11 +193,11 @@
                     "text" : "재실인원",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"1", "input":false},
-                        {"id":2, "text":"2", "input":false},
-                        {"id":3, "text":"3", "input":false},
-                        {"id":4, "text":"4", "input":false},
-                        {"id":5, "text":"5", "input":false}
+                        {"id":1, "text":"매우 적음", "input":false},
+                        {"id":2, "text":"적음", "input":false},
+                        {"id":3, "text":"보통", "input":false},
+                        {"id":4, "text":"많음", "input":false},
+                        {"id":5, "text":"매우 많음", "input":false}
                     ]
                 }
             ]
