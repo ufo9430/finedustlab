@@ -19,16 +19,17 @@ public class SurveyRepository {
 
     public String save(StudentProfile profile, SurveyAnswer answer) {
         HashMap<String, Object> fields = new HashMap<>();
+        String date_day = answer.getDate().split("T")[0];
         String document_id =
                 profile.getSchool_code()+"-"+
                         profile.getGrade()+"-"+
                         profile.getClass_num()+"-"+
                         profile.getName()+"-"+
                         profile.getStudent_num()+"-"+
-                        answer.getDate();
+                        date_day;
 
         fields.put("profile",profile);
-        fields.put("date",answer.getDate());
+        fields.put("date",date_day);
         fields.put(String.valueOf(answer.getQuestion_id()),setAnswerData(answer));
         firestore.collection(SURVEY_ANSWER).document(document_id)
                 .set(fields,SetOptions.merge());
