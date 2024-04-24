@@ -1,9 +1,6 @@
 package com.finedustlab.controller;
 
-import com.finedustlab.model.user.UserAccount;
 import com.finedustlab.model.user.UserInputWrapper;
-import com.finedustlab.model.user.StudentProfile;
-import com.finedustlab.model.user.UserProfile;
 import com.finedustlab.service.UserService;
 import com.google.firebase.auth.FirebaseAuthException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,14 +25,14 @@ public class UserController {
     @PostMapping("/user/set")
     @ResponseBody
     public void setUser(@RequestBody UserInputWrapper user) throws FirebaseAuthException {
-        userService.set(user.getEmail(), user.getUserProfile());
+        userService.set(user.getUid(), user.getUserProfile());
     }
 
     @Tag(name = "setUserProfile")
     @Operation(description = "이용자 정보를 통해 이용자 프로필을 불러옵니다.")
     @PostMapping("/user/get")
     @ResponseBody
-    public Map<String, Object> getUser(@RequestParam String email) throws ExecutionException, FirebaseAuthException, InterruptedException {
-        return userService.get(email);
+    public Map<String, Object> getUser(@RequestParam String uid) throws ExecutionException, FirebaseAuthException, InterruptedException {
+        return userService.get(uid);
     }
 }

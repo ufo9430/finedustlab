@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class UserInputWrapper {
-    private StudentProfile userProfile;
-    private String email;
+    private TeacherProfile userProfile;
+    private String uid;
 }
