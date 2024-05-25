@@ -62,22 +62,18 @@ public class FinedustLocalService {
 
         if(finedust_factor <= 30 && finedust_factor>=0){
             result.put("fine_status", "good");
-        }else if(finedust_factor <=80){
-            result.put("fine_status","fine");
         }else if(finedust_factor <= 150){
-            result.put("fine_status","bad");
+            result.put("fine_status","fine");
         }else{
-            result.put("fine_status","very bad");
+            result.put("fine_status","bad");
         }
 
         if(ultrafine_factor <= 15 && ultrafine_factor>=0){
             result.put("ultra_status", "good");
-        }else if(ultrafine_factor <=35){
-            result.put("ultra_status","fine");
         }else if(ultrafine_factor <= 75){
-            result.put("ultra_status","bad");
+            result.put("ultra_status","fine");
         }else{
-            result.put("ultra_status","very bad");
+            result.put("ultra_status","bad");
         }
 
 
