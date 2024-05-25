@@ -5,7 +5,7 @@
             "category_id" : 1,
             "category_name": "지금 공기 상태",
             "category_color": "#23B169",
-            "id" : 101,
+            "id" : 1,
             "question" : "미세먼지가 무엇인지 알고 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -14,13 +14,17 @@
                     {"id":1, "text":"알고 있음"},
                     {"id":2, "text":"모름"}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["미세먼지란 눈에 보이지 않을 정도로 매우 작은 크기의 먼지를 말합니다. 이러한 작은 먼지들은 사람이 숨을 쉴 때마다 몸 안으로 들어와 건강에 영향을 줄 수 있습니다."],
+                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/elem1.png?alt=media&token=ee18a6b2-6d56-4ed7-9449-1a702e69385f"
+            }
         },
         {
             "category_id" : 1,
             "category_name": "지금 공기 상태",
             "category_color": "#23B169",
-            "id" : 102,
+            "id" : 2,
             "question" : "교실 안 공기의 미세먼지 농도가 궁금해서\n확인 해본 적이 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -29,13 +33,17 @@
                     {"id":1, "text":"있음"},
                     {"id":2, "text":"없음"}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["교실 안의 미세먼지는 이렇게 표현합니다."],
+                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/elem2.png?alt=media&token=d191a66a-19bf-4ebf-8214-34dfc37c1992"
+            }
         },
         {
             "category_id" : 1,
             "category_name": "지금 공기 상태",
             "category_color": "#23B169",
-            "id" : 103,
+            "id" : 3,
             "question" : "지금 교실의 미세먼지 농도가\n어떻게 느껴지나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -47,13 +55,17 @@
                     {"id":4, "text":"나쁨", "input":false},
                     {"id":5, "text":"매우 나쁨", "input":false}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["미세먼지가 좋지 않다고 느낀 경우, 그 이유를 찾아봅시다. 바깥의 미세먼지 농도가 높은지, 창문이 닫혀있고 환기가 되지 않는지, 공기청정기가 안 켜져 있는지 등등 체크리스트를 꼼꼼하게 확인해서 문제를 찾고 해결해봅니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 2,
             "category_name": "교실 상태",
             "category_color": "#2A7CFF",
-            "id" : 201,
+            "id" : 4,
             "question" : "현재 교실의 온도와 습도를\n확인할 수 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -62,13 +74,17 @@
                     {"id":1, "text":"있음"},
                     {"id":2, "text":"없음"}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["여름엔 에어컨과 선풍기, 겨울엔 히터 등의 냉난방기를 이용하여 온도를 조절할 수 있습니다. 쉽게 건조해지는 겨울철에는 가습기를 사용하거나 실내에 젖은 수건을 널어놓는 것도 도움이 됩니다."],
+                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/elem3.png?alt=media&token=23c9fdd6-cafd-45b2-a23f-b4eeeeebcb0b"
+            }
         },
         {
             "category_id" : 2,
             "category_name": "교실 상태",
             "category_color": "#2A7CFF",
-            "id" : 202,
+            "id" : 5,
             "question" : "지금 우리 반의 학생은\n몇 명이 있나요?",
             "sub_questions":[{
                 "sub_question_id": 1,
@@ -80,18 +96,22 @@
                         "input": true
                     }
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["우리나라 초등학교 한 학급의 평균 학생 수는 21명입니다. 교실 안에 사람이 많을수록 미세먼지 농도에 영향을 줄 수 있습니다. 사람이 움직이면서 바닥에 가라앉아있던 미세먼지가 떠오르거나, 밖에서 안으로 들어오는 공기 때문에 미세먼지 농도가 높아질 수 있습니다. 따라서, 우리 반에 사람이 많다면 더욱 관리에 신경을 써야합니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 2,
             "category_name": "교실 상태",
             "category_color": "#2A7CFF",
-            "id" : 203,
+            "id" : 6,
             "question" : "현재 교실은 어떻게 느껴지는지\n모두 골라 주세요.",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text" : "온도",
+                    "text" : "현재 교실의 온도는?",
                     "type": "choice",
                     "options" : [
                         {"id":1, "text":"매우 추움", "input":false},
@@ -103,7 +123,7 @@
                 },
                 {
                     "sub_question_id":2,
-                    "text" : "습도",
+                    "text" : "현재 교실의 습도는?",
                     "type": "choice",
                     "options" : [
                         {"id":1, "text":"매우 건조함", "input":false},
@@ -115,7 +135,7 @@
                 },
                 {
                     "sub_question_id":3,
-                    "text" : "재실인원",
+                    "text" : "현재 같이 있는 학생 수는?",
                     "type": "choice",
                     "options" : [
                         {"id":1, "text":"매우 적음", "input":false},
@@ -125,13 +145,17 @@
                         {"id":5, "text":"매우 많음", "input":false}
                     ]
                 }
-            ]
+            ],
+            "help" : {
+                "text" : ["적절한 온도, 습도로 유지되고 인원이 적게 있는 실내에서도 사람마다 쾌적함을 느끼는 정도가 다를 수 있습니다. 교실 상태로 인해 심한 불편함이 있다면 꼭 담임 선생님께 알리고 도움을 받도록 합니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6D1B",
-            "id" : 301,
+            "id" : 7,
             "question": "지금 아픈 곳이 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -140,14 +164,26 @@
                     {"id":1, "text":"건강함","input":false},
                     {"id":2, "text":"아픈 곳이 있음", "input":true}
                 ]
-            }]
+            },
+            {
+                "sub_question_id": 2,
+                "text": "어디가 아픈지 적어주세요.",
+                "type": "string",
+                "options": [
+                    {"id":1, "placeholder":"예시) 두통, 기침, 어지러움","input":false}
+                ]
+            }],
+            "help" : {
+                "text" : ["본인의 건강 상태를 수시로 체크해 야합니다. 미세먼지 농도가 ‘나쁨' ’매우 나쁨’인 , 몸이 좋지 않을 경우 바로 담임 선생님이나 보건 선생님께 알려야 합니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6D1B",
-            "id" : 302,
-            "question" : "지금 아픈 것 이외에, 전부터\n가지고 있던 질병이 있나요?",
+            "id" : 8,
+            "question" : "지금 아픈 것 이외에, 전부터\n원래 아팠던 곳이 있나요?",
             "sub_questions":[ {
                 "sub_question_id": 1,
                 "type":"choice",
@@ -155,13 +191,25 @@
                     {"id":1, "text":"없음","input":false},
                     {"id":2, "text":"있음", "input":true}
                 ]
-            }]
+            },
+            {
+                "sub_question_id": 2,
+                "text": "어디가 아픈지 적어주세요.",
+                "type": "string",
+                "options": [
+                    {"id":1, "placeholder":"예시) 천식, 질환 등","input":false}
+                ]
+            }],
+            "help" : {
+                "text" : ["학교는 미세먼지 관련 질병을 가지고 있는 학생을 파악하고 관리하려 노력하고 있습니다. 이를 위해선 미세먼지 관련 질병을 가지고 있는 학생은 미리 의사소견서, 진단서 등을 제출해야 합니다. 등교 시 미세먼지 농도가’나쁨' 이상인 경우, 수업 시작 전까지 담당자 선생님께서 연락해야 합니다."],
+                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/elem4.png?alt=media&token=c554bdb9-528c-4e56-8db8-c2eb1396b69d"
+            }
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#F04452",
-            "id" : 401,
+            "id" : 9,
             "question" : "지금 교실 내 청소가\n잘 되어있는 곳을 모두 확인합니다.",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -172,13 +220,17 @@
                     {"id":3, "text":"창문", "selected":false},
                     {"id":4, "text":"출입문", "selected":false}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["바닥, 칠판, 창문, 출입문 모두 먼지 관리과 필요한 곳입니다. 체크하지 않은 곳의 청소를 일주일에 1번 이상 진행하는 것이 좋습니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#F04452",
-            "id" : 402,
+            "id" : 10,
             "question" : "지금 교실 내 청소를\n어떤 방법으로 하고 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -188,13 +240,17 @@
                     {"id":2, "text":"진공 청소기 사용", "selected":false},
                     {"id":3, "text":"물 청소", "selected":false}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["빗자루를 사용하여 청소한 후에는 물걸레로 마무리 해야 먼지가 공기 중에 떠다니는 것을 줄일 수 있습니다. 진공청소기가 있는 경우 빗자루 대신 사용하면 좋습니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#F04452",
-            "id" : 403,
+            "id" : 11,
             "question" : "오늘 교실의 창문을\n열었는지 확인해볼까요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -203,13 +259,17 @@
                     {"id":1, "text":"있음","input":true},
                     {"id":2, "text":"없음", "input":false}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["바깥의 미세먼지 농도가 좋을 경우, 창문을 수시로 개방하여 환기합니다. 하루에 최소 3번, 30분 이상 충분히 하는 것이 좋습니다."],
+                "image_url" : ""
+            }
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#F04452",
-            "id" : 404,
+            "id" : 12,
             "question" : "외부 미세먼지 농도가 높을 때에도\n창문을 열어 환기해야 하는 사실을 알고 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
@@ -218,7 +278,11 @@
                     {"id":1, "text":"알고 있음"},
                     {"id":2, "text":"모름"}
                 ]
-            }]
+            }],
+            "help" : {
+                "text" : ["바깥의 미세먼지 농도가 낮을 때는 물론이고, 높을 때에도 환기는 필요합니다. 다만, 창문을 열 때는 충분한 주의가 필요합니다. 가능하다면 교실 양쪽의 창문을 모두 열어 맞바람이 칠 수 있도록 해서 짧은 시간에 빠른 환기가 될 수 있도록 합니다."],
+                "image_url" : ""
+            }
         }
     ]
 }

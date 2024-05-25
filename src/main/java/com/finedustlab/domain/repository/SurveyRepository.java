@@ -24,8 +24,8 @@ public class SurveyRepository {
                 profile.getSchool_code()+"-"+
                         profile.getGrade()+"-"+
                         profile.getClass_num()+"-"+
-                        profile.getName()+"-"+
                         profile.getStudent_num()+"-"+
+                        profile.getName()+"-"+
                         date_day;
 
         fields.put("profile",profile);

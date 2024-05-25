@@ -58,12 +58,29 @@ public class FinedustLocalService {
             return getErrorResult("getFinedustStatus 미세먼지 값을 불러오지 못했습니다.");
         }
         int finedust_factor = Integer.parseInt(result.get("finedust_factor"));
+        int ultrafine_factor = Integer.parseInt(result.get("ultrafine_factor"));
 
-        if(finedust_factor < 45){
-            result.put("status", "good");
+        if(finedust_factor <= 30 && finedust_factor>=0){
+            result.put("fine_status", "good");
+        }else if(finedust_factor <=80){
+            result.put("fine_status","fine");
+        }else if(finedust_factor <= 150){
+            result.put("fine_status","bad");
         }else{
-            result.put("status","bad");
+            result.put("fine_status","very bad");
         }
+
+        if(ultrafine_factor <= 15 && ultrafine_factor>=0){
+            result.put("ultra_status", "good");
+        }else if(ultrafine_factor <=35){
+            result.put("ultra_status","fine");
+        }else if(ultrafine_factor <= 75){
+            result.put("ultra_status","bad");
+        }else{
+            result.put("ultra_status","very bad");
+        }
+
+
         result.put("result","complete");
 
         return result;

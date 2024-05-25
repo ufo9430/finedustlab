@@ -81,8 +81,9 @@ public class SurveyService {
                             SurveySubQuestion answer = objectMapper.convertValue(o, SurveySubQuestion.class);
                             answerStr = answerStr + "," + answer.getSub_question_answer();
                         }
-                        answerStr = answerStr.substring(1);
-
+                        if(!answerStr.isEmpty()){
+                            answerStr = answerStr.substring(1);
+                        }
                         row.createCell(i).setCellValue(answerStr);
                     }
                 }
@@ -90,7 +91,6 @@ public class SurveyService {
 
             response.setContentType("application/vnd.ms-excel");
             response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(fileName, "UTF-8")+".xlsx");
-            //파일명은 URLEncoder로 감싸주는게 좋다!
 
             workbook.write(response.getOutputStream());
             workbook.close();

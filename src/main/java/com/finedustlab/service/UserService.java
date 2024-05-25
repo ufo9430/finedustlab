@@ -15,6 +15,8 @@ public class UserService {
     UserRepository userRepository;
 
     public void set(String email, TeacherProfile userProfile) throws FirebaseAuthException {
+        //선생 코드 생성
+
         userRepository.setUser(email,userProfile);
     }
 
