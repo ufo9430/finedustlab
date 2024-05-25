@@ -1,5 +1,6 @@
 package com.finedustlab.service;
 
+import com.finedustlab.model.api.LocalFinedustResponseDTO;
 import com.finedustlab.model.fcm.FCMMessage;
 import com.finedustlab.model.fcm.MessageInputDto;
 import com.finedustlab.service.api.FinedustLocalService;
@@ -7,7 +8,6 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Notification;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @Service
 public class FCMService {
@@ -57,12 +56,15 @@ public class FCMService {
         message.setTitle("미세먼지 알림");
 
         try{
-            Map<String, String> finedustStatus = service.getFinedustStatus(schoolCode);
-            String status = finedustStatus.get("status");
-            if(status.equals("good")){
-                message.setBody("현재 해당 지역 미세먼지 농도는 좋음 입니다.");
-            }else{
-                message.setBody("현재 해당 지역 미세먼지 농도는 나쁨 입니다.");
+            LocalFinedustResponseDTO finedustStatus = service.getFinedustStatus(schoolCode);
+            String status = finedustStatus.getFine_status();
+            switch(status) {
+                case "good":
+                    message.setBody("현재 해당 지역 미세먼지 농도는 좋음 입니다.");
+                case "fine":
+                    message.setBody("현재 해당 지역 미세먼지 농도는 보통 입니다.");
+                case "bad":
+                    message.setBody("현재 해당 지역 미세먼지 농도는 나쁨 입니다.");
             }
             return sendMessageByToken(message);
         } catch (Exception e){

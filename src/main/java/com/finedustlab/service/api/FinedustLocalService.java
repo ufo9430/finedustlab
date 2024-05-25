@@ -1,12 +1,12 @@
 package com.finedustlab.service.api;
 
 import com.finedustlab.domain.repository.APIRepository;
+import com.finedustlab.model.api.LocalFinedustResponseDTO;
 import com.finedustlab.service.api.location.LocationMapper;
 import com.finedustlab.service.api.location.LocationService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -32,9 +32,10 @@ public class FinedustLocalService {
     private APIRepository apiRepository;
 
     @SuppressWarnings("unchecked")
-    public Map<String, String> getFinedustStatus(String schoolCode) throws IOException, InterruptedException, ExecutionException {
+    public LocalFinedustResponseDTO getFinedustStatus(String schoolCode) throws IOException, InterruptedException, ExecutionException {
 
-        Map<String, String> result = new JSONObject();
+        LocalFinedustResponseDTO result = new LocalFinedustResponseDTO();
+        Map<String, String> fine_data = new HashMap<>();
         String sido, city;
 
         // ----지역 정보 가져오기----
@@ -51,33 +52,39 @@ public class FinedustLocalService {
         System.out.println("city = " + city);
 
 
-        result = apiRepository.getFinedustByCityName(sido,city);
+        fine_data = apiRepository.getFinedustByCityName(sido,city);
+        result.setFinedust_factor(fine_data.get("finedust_factor"));
+        result.setUltrafine_factor(fine_data.get("ultrafine_factor"));
 
-        if(Integer.parseInt(result.get("finedust_factor")) < 0
-                || Integer.parseInt(result.get("ultrafine_factor")) < 0){
+        int finedust_factor = Integer.parseInt(result.getFinedust_factor());
+        int ultrafine_factor = Integer.parseInt(result.getUltrafine_factor());
+
+        if(finedust_factor < 0
+                || ultrafine_factor < 0){
             return getErrorResult("getFinedustStatus 미세먼지 값을 불러오지 못했습니다.");
         }
-        int finedust_factor = Integer.parseInt(result.get("finedust_factor"));
-        int ultrafine_factor = Integer.parseInt(result.get("ultrafine_factor"));
 
+        String status;
         if(finedust_factor <= 30 && finedust_factor>=0){
-            result.put("fine_status", "good");
+            status = "good";
         }else if(finedust_factor <= 150){
-            result.put("fine_status","fine");
+            status = "fine";
         }else{
-            result.put("fine_status","bad");
+            status = "bad";
         }
+        result.setFine_status(status);
 
         if(ultrafine_factor <= 15 && ultrafine_factor>=0){
-            result.put("ultra_status", "good");
+            status = "good";
         }else if(ultrafine_factor <= 75){
-            result.put("ultra_status","fine");
+            status = "fine";
         }else{
-            result.put("ultra_status","bad");
+            status = "bad";
         }
+        result.setUltra_status(status);
 
 
-        result.put("result","complete");
+        result.setResult("complete");
 
         return result;
     }
@@ -106,11 +113,11 @@ public class FinedustLocalService {
     }
 
 
-    private static Map<String, String> getErrorResult( String str) {
-        Map<String, String> result = new HashMap<>();
-        result.put("result", "error");
-        result.put("finedust_factor","-");
-        result.put("ultrafine_factor","-");
+    private static LocalFinedustResponseDTO getErrorResult(String str) {
+        LocalFinedustResponseDTO result = new LocalFinedustResponseDTO();
+        result.setResult("error");
+        result.setFine_status("-");
+        result.setUltra_status("-");
         System.out.println("error사유 = " + str);
         return result;
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.domain.repository.APIRepository;
 import com.finedustlab.model.api.WeatherRequestDTO;
+import com.finedustlab.model.api.WeatherResponseDTO;
 import com.google.cloud.firestore.CollectionReference;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +38,7 @@ public class WeatherService {
     private final String APIKEY =
             "YN2rq1qN3r2acjV5XdAAy5oSlwnhEbWdmvdMKuTDYtzl9ON60X0G7s8Ub3lGO%2FaOM2AD54fNh3XDK6%2B6MSyBlg%3D%3D";
 
-    public Map<String, Object> getWeather(WeatherRequestDTO requestDTO) throws Exception {
+    public WeatherResponseDTO getWeather(WeatherRequestDTO requestDTO) throws Exception {
         double x = Double.parseDouble(requestDTO.getLat());
         double y = Double.parseDouble(requestDTO.getLng());
 
@@ -52,11 +53,12 @@ public class WeatherService {
 
         LatXLngY grid = convertGRID_GPS(x,y);
 
-        Map<String, Object> output = new HashMap<>();
+        WeatherResponseDTO output = new WeatherResponseDTO();
 
-        Map<String , Object> temp = apiRepository.findWeatherByXYandTime((int) grid.getX(),
+
+        WeatherResponseDTO temp = apiRepository.findWeatherByXYandTime((int) grid.getX(),
                 (int) grid.getY(), strTime);
-        if(!temp.isEmpty()){
+        if(!(temp == null)){
             return temp;
         }
 
@@ -75,7 +77,7 @@ public class WeatherService {
         JSONObject header = (JSONObject) data.get("header");
 
         if(header.get("resultCode").equals("00")){
-            output.put("result","complete");
+            output.setResult("complete");
 
             JSONObject body = (JSONObject) data.get("body");
             JSONObject items = (JSONObject) body.get("items");
@@ -84,13 +86,13 @@ public class WeatherService {
             String id = (int) grid.getX() +"-"
                     + (int) grid.getY() +"-"+
                     strTime;
-            output.put("id",id);
-            output.put("humidity",getJsonArrayValue(item,"REH"));
-            output.put("temperature",getJsonArrayValue(item,"T1H"));
-            output.put("date",inputDate);
+            output.setId(id);
+            output.setHumidity(getJsonArrayValue(item,"REH"));
+            output.setTemperature(getJsonArrayValue(item,"T1H"));
+            output.setDate(inputDate);
             apiRepository.setWeather(output);
         }else{
-            output.put("result","error");
+            output.setResult("error");
         }
         return output;
     }

@@ -1,6 +1,7 @@
 package com.finedustlab.domain.repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.finedustlab.model.api.WeatherResponseDTO;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -21,7 +22,7 @@ public class APIRepository {
     private final String WEATHER_DATA = "api_weather";
     private final String HOLIDAY_DATA = "api_holiday";
 
-    public void setWeather(Map<String, Object> weather) throws ExecutionException, InterruptedException {
+    public void setWeather(WeatherResponseDTO weather) {
         firestore.collection(WEATHER_DATA).add(weather);
     }
     @SuppressWarnings("unchecked")
@@ -47,21 +48,22 @@ public class APIRepository {
                 return holiday;
             }
         }
-        return new HashMap<>();
+        return null;
     }
 
-    @SuppressWarnings("unchecked")
-    public Map<String, Object> findWeatherByXYandTime(int x, int y, String time){
+    public WeatherResponseDTO findWeatherByXYandTime(int x, int y, String time){
         String id = x +"-" + y +"-"+ time;
         ObjectMapper objectMapper = new ObjectMapper();
         CollectionReference tempData = firestore.collection(WEATHER_DATA);
-        Map<String,Object> result = new HashMap<>();
+        WeatherResponseDTO result;
         try{
             QuerySnapshot survey = tempData.whereEqualTo("id", id).get().get();
             QueryDocumentSnapshot document = survey.getDocuments().get(0);
-            result = objectMapper.convertValue(document.getData(), HashMap.class);
-        }catch (Exception ignored){}
-        return result;
+            result = objectMapper.convertValue(document.getData(), WeatherResponseDTO.class);
+            return result;
+        }catch (Exception ignored){
+            return null;
+        }
     }
 
     public Map<String,String> getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
