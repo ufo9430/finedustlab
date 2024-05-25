@@ -66,6 +66,35 @@ public class APIRepository {
         }
     }
 
+    public Map<String, String> getFinedustBySidoName(String sido)throws ExecutionException, InterruptedException{
+        ApiFuture<DocumentSnapshot> future = firestore.collection(FINEDUST_DATA).document(sido).get();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String,String> finedust = new HashMap<>();
+
+        DocumentSnapshot documentSnapshot = future.get();
+        Object response = documentSnapshot.get("response");
+        JSONObject responseMap = objectMapper.convertValue(response, JSONObject.class);
+        Object body = responseMap.get("body");
+        JSONObject bodyJson = objectMapper.convertValue(body, JSONObject.class);
+        Object items = bodyJson.get("items");
+        JSONArray itemsArray = objectMapper.convertValue(items, JSONArray.class);
+
+        int size = itemsArray.size();
+        int finesum = 0, ultrasum = 0;
+
+        for (Object item : itemsArray) {
+            JSONObject itemJson = objectMapper.convertValue(item, JSONObject.class);
+            String fine_factor = (String) itemJson.get("pm25Value");
+            String ultra_factor = (String) itemJson.get("pm10Value");
+            if(!fine_factor.isEmpty()) finesum += Integer.parseInt(fine_factor);
+            if(!ultra_factor.isEmpty()) ultrasum += Integer.parseInt(ultra_factor);
+        }
+        finedust.put("sido",sido);
+        finedust.put("finedust_factor",Integer.toString(finesum / size));
+        finedust.put("ultrafine_factor",Integer.toString(ultrasum/size));
+        return finedust;
+    }
+
     public Map<String,String> getFinedustByCityName(String sido, String city) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentSnapshot> future = firestore.collection(FINEDUST_DATA).document(sido).get();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -84,14 +113,20 @@ public class APIRepository {
             JSONObject itemJson = objectMapper.convertValue(item, JSONObject.class);
             String itemCityName = (String) itemJson.get("cityName");
             if(itemCityName.equals(city)){
-                finedust.put("finedust_factor",(String) itemJson.get("pm10Value"));
-                finedust.put("ultrafine_factor",(String) itemJson.get("pm25Value"));
+                String fine_factor = (String) itemJson.get("pm25Value");
+                String ultra_factor = (String) itemJson.get("pm10Value");
+                // DB에 factor 값이 없을 경우 시도 평균 데이터를 넣는다
+                if(fine_factor.isEmpty()) getFinedustBySidoName(sido).get("finedust_factor");
+                if(ultra_factor.isEmpty()) getFinedustBySidoName(sido).get("ultrafine_factor");
+
+                finedust.put("finedust_factor",fine_factor);
+                finedust.put("ultrafine_factor",ultra_factor);
                 break;
             }
         }
 
-        if(finedust.isEmpty()){
-            finedust.put("finedust_factor","-1");
+        if(finedust.isEmpty()) {
+            finedust.put("finedust_factor", "-1");
             finedust.put("ultrafine_factor","-1");
         }
 

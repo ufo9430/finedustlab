@@ -1,10 +1,15 @@
 package com.finedustlab.controller;
 
+import com.finedustlab.model.api.LocalFinedustResponseDTO;
 import com.finedustlab.model.classroom.Classroom;
 import com.finedustlab.model.classroom.ClassroomWrapper;
 import com.finedustlab.model.user.StudentProfile;
 import com.finedustlab.service.ClassroomService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,16 +29,16 @@ public class ClassroomController {
     public String setClassroom(@RequestBody ClassroomWrapper wrapper){
         Classroom classroom = wrapper.getClassroom();
         StudentProfile userProfile = wrapper.getUserProfile();
-        System.out.println("classroom.toString() = " + classroom.toString());
-        System.out.println("userProfile.toString() = " + userProfile.toString());
         return classroomService.save(classroom, userProfile);
     }
 
     @GetMapping("/classroom/get")
     @Tag(name = "getClassroomStatus")
     @ResponseBody
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "학급 정보 불러오기 성공", content = @Content(schema = @Schema(implementation = Classroom.class)))})
     @Operation(description = "이용자 프로필을 읽어 교사 이용자가 업데이트한 학급의 finedust_factor와 ultrafine_factor를 가져옵니다. 데이터가 없을 경우 두 값은 -1로 반환합니다")
-    public Object getClassroom(@RequestParam String schoolCode,
+    public Classroom getClassroom(@RequestParam String schoolCode,
                                             @RequestParam String grade,
                                             @RequestParam String classNum) throws ExecutionException, InterruptedException {
         return classroomService.get(schoolCode, grade, classNum);

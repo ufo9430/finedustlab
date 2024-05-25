@@ -35,7 +35,7 @@ public class FinedustLocalService {
     public LocalFinedustResponseDTO getFinedustStatus(String schoolCode) throws IOException, InterruptedException, ExecutionException {
 
         LocalFinedustResponseDTO result = new LocalFinedustResponseDTO();
-        Map<String, String> fine_data = new HashMap<>();
+        Map<String, String> fine_data;
         String sido, city;
 
         // ----지역 정보 가져오기----
@@ -124,7 +124,7 @@ public class FinedustLocalService {
 
 
     private JSONObject getData(String inputUrl){
-        JSONObject result = new JSONObject();
+        JSONObject result;
         try{
             URL url = new URL(inputUrl);
 

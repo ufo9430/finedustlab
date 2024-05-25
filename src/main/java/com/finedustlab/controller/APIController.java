@@ -46,7 +46,7 @@ public class APIController {
     @GetMapping("/finestatus/get")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "미세먼지 조회 성공", content = @Content(schema = @Schema(implementation = LocalFinedustResponseDTO.class)))})
-    @Operation(description = "학교 코드를 입력받아 해당 지역 시군구 측정소의 미세먼지 지수와 상태를 불러옵니다. 미세먼지 지수 45 이하일 경우 good, 이상일 경우 bad가 반환됩니다. ")
+    @Operation(description = "학교 코드를 입력받아 해당 지역 시군구 측정소의 미세먼지 지수와 상태를 불러옵니다. 미세먼지 단계별로 good / fine / bad / very bad가 반환됩니다. ")
     @ResponseBody
     public LocalFinedustResponseDTO getFinedustStatus(@RequestParam @Schema(defaultValue = "7201099") String location) throws Exception {
         return finedustOutsideService.getFinedustStatus(location);

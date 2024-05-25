@@ -30,8 +30,8 @@ public class ClassroomRepository {
     }
 
     @SuppressWarnings("unchecked")
-    public Object findBySchoolInfo(String schoolCode, String grade, String classNum) {
-        Map result;
+    public Map<String, Object> findBySchoolInfo(String schoolCode, String grade, String classNum) {
+        Map<String, Object> result;
        try{
            CollectionReference collection = FirestoreClient.getFirestore().collection(CLASSROOM);
            ApiFuture<DocumentSnapshot> future = collection.document(schoolCode).get();
@@ -39,10 +39,11 @@ public class ClassroomRepository {
            ObjectMapper objectMapper = new ObjectMapper();
            Object classroomObj = future.get().get(grade);
            result = objectMapper.convertValue(classroomObj, Map.class);
-           if(result.get(classNum) == null){
+           HashMap<String,Object> classroom = objectMapper.convertValue(result.get(classNum), HashMap.class);
+           if(classroom.isEmpty()){
                throw new NullPointerException();
            }
-           return result.get(classNum);
+           return classroom;
        }catch (Exception e){
            result = new HashMap<>();
            result.put("finedust_factor",-1);

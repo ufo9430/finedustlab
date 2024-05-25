@@ -6,6 +6,7 @@ import com.finedustlab.model.user.StudentProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -25,10 +26,11 @@ public class ClassroomService {
         return "complete";
     }
 
-    public Object get(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException {
-        Object classroom = classroomRepository.findBySchoolInfo(schoolCode, grade, classNum);
-
-        System.out.println("classroom = " + classroom);
+    public Classroom get(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException {
+        Map<String, Object> data = classroomRepository.findBySchoolInfo(schoolCode, grade, classNum);
+        Classroom classroom = new Classroom();
+        classroom.setFinedust_factor(Integer.parseInt(data.get("finedust_factor").toString()));
+        classroom.setUltrafine_factor(Integer.parseInt(data.get("ultrafine_factor").toString()));
         return classroom;
     }
 
