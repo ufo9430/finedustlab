@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -22,5 +23,14 @@ public class UserService {
 
     public Map<String, Object> get(String uid) throws ExecutionException, FirebaseAuthException, InterruptedException {
         return  userRepository.getUserProfileByUID(uid);
+    }
+
+    public Map<String, String> getEmail(String name, String schoolName)throws ExecutionException, InterruptedException{
+        Map<String,String> result = new HashMap<>();
+        String email = userRepository.findUserEmailByNameAndSchoolName(name, schoolName);
+        result.put("email",email);
+        if(email.equals("-")) result.put("result","notfound");
+        else result.put("result","complete");
+        return result;
     }
 }

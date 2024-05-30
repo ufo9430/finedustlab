@@ -4,14 +4,17 @@ package com.finedustlab.domain.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.model.user.TeacherProfile;
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.UserRecord;
+import com.google.firebase.auth.multitenancy.Tenant;
+import com.google.firebase.auth.multitenancy.TenantManager;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -31,5 +34,26 @@ public class UserRepository {
         ApiFuture<DocumentSnapshot> future = firestore.collection(USER_PROFILE).document(uid).get();
         Map<String, Object> data = future.get().getData();
         return data;
+    }
+
+
+    @SuppressWarnings("unchecked")
+    public String findUserEmailByNameAndSchoolName(String name, String schoolName) throws ExecutionException, InterruptedException{
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        ApiFuture<QuerySnapshot> future = firestore.collection(USER_PROFILE).get();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        for (QueryDocumentSnapshot document : documents) {
+            TeacherProfile profile = document.toObject(TeacherProfile.class);
+            String docUsername = profile.getName();
+            String docSchoolName = profile.getSchool_name();
+            if(docUsername.equals(name) && docSchoolName.equals(schoolName)){
+                String uid = document.getId();
+                ApiFuture<UserRecord> userAsync = firebaseAuth.getUserAsync(uid);
+                String email = userAsync.get().getEmail();
+                return email;
+            }
+        }
+        return "-";
     }
 }

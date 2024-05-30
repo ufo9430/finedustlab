@@ -25,11 +25,19 @@ public class UserController {
         userService.set(user.getUid(), user.getUserProfile());
     }
 
-    @Tag(name = "setUserProfile")
+    @Tag(name = "getUserProfile")
     @Operation(description = "이용자 정보를 통해 이용자 프로필을 불러옵니다.")
     @GetMapping("/user/get")
     @ResponseBody
     public Map<String, Object> getUser(@RequestParam String uid) throws ExecutionException, FirebaseAuthException, InterruptedException {
         return userService.get(uid);
+    }
+
+    @Tag(name = "findUserEmail")
+    @Operation(description = "이용자 정보를 통해 이용자 이메일을 불러옵니다.")
+    @GetMapping("/user/findEmail")
+    @ResponseBody
+    public Map<String, String> getEmail(@RequestParam String name, @RequestParam String schoolName) throws ExecutionException, InterruptedException{
+        return userService.getEmail(name,schoolName);
     }
 }
