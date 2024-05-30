@@ -1,6 +1,6 @@
 package com.finedustlab.model.classroom;
 
-import com.finedustlab.model.user.StudentProfile;
+import com.finedustlab.model.user.TeacherProfile;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ClassroomWrapper {
-    private Classroom classroom;
-    private StudentProfile userProfile;
+    private ClassroomRequestDTO classroom;
+    private TeacherProfile userProfile;
 }

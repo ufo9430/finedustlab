@@ -1,8 +1,9 @@
 package com.finedustlab.service;
 
 import com.finedustlab.domain.repository.ClassroomRepository;
-import com.finedustlab.model.classroom.Classroom;
-import com.finedustlab.model.user.StudentProfile;
+import com.finedustlab.model.classroom.ClassroomRequestDTO;
+import com.finedustlab.model.classroom.ClassroomResponseDTO;
+import com.finedustlab.model.user.TeacherProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class ClassroomService {
     @Autowired
     ClassroomRepository classroomRepository;
 
-    public String save(Classroom classroom, StudentProfile userProfile){
+    public String save(ClassroomRequestDTO classroom, TeacherProfile userProfile){
         if(userProfile == null){
             return "error";
         }else{
@@ -26,11 +27,14 @@ public class ClassroomService {
         return "complete";
     }
 
-    public Classroom get(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException {
+    public ClassroomResponseDTO get(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException {
         Map<String, Object> data = classroomRepository.findBySchoolInfo(schoolCode, grade, classNum);
-        Classroom classroom = new Classroom();
-        classroom.setFinedust_factor(Integer.parseInt(data.get("finedust_factor").toString()));
-        classroom.setUltrafine_factor(Integer.parseInt(data.get("ultrafine_factor").toString()));
+        ClassroomResponseDTO classroom = new ClassroomResponseDTO();
+        classroom.setFinedust_factor(data.get("finedust_factor").toString());
+        classroom.setUltrafine_factor(data.get("ultrafine_factor").toString());
+        classroom.setFine_status(data.get("fine_status").toString());
+        classroom.setUltra_status(data.get("ultra_status").toString());
+        classroom.setResult(data.get("result").toString());
         return classroom;
     }
 
