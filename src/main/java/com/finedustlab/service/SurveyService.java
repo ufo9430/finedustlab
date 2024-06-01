@@ -66,11 +66,12 @@ public class SurveyService {
                 cell.setCellValue((String) list.get(i).get("question"));
             }
             // 이용자 설문조사 쿼리 작성
+            int count = 0;
             for (String s : answerData.keySet()) {
                 Map<String, Object> userAnswerMap = answerData.get(s);
                 row = worksheet.createRow(rownum++);
                 row.createCell(0).setCellValue(s);
-                Row rowChecker = worksheet.getRow(0);
+                Row rowChecker = worksheet.getRow(count++);
                 for(int i=0;i<list.size();i++){
                     String questionId = rowChecker.getCell(i).getStringCellValue();
                     Map answerMap = objectMapper.convertValue(userAnswerMap.get(questionId), Map.class);
@@ -88,7 +89,6 @@ public class SurveyService {
                     }
                 }
             }
-
             response.setContentType("application/vnd.ms-excel");
             response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(fileName, "UTF-8")+".xlsx");
 
