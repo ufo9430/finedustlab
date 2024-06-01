@@ -4,6 +4,7 @@ import com.finedustlab.domain.repository.ClassroomRepository;
 import com.finedustlab.model.classroom.ClassroomRequestDTO;
 import com.finedustlab.model.classroom.ClassroomResponseDTO;
 import com.finedustlab.model.user.TeacherProfile;
+import com.finedustlab.model.user.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class ClassroomService {
     @Autowired
     ClassroomRepository classroomRepository;
 
-    public String save(ClassroomRequestDTO classroom, TeacherProfile userProfile){
+    public String save(ClassroomRequestDTO classroom, UserProfile userProfile){
         if(userProfile == null){
             return "error";
         }else{

@@ -4,6 +4,7 @@ import com.finedustlab.model.classroom.ClassroomRequestDTO;
 import com.finedustlab.model.classroom.ClassroomResponseDTO;
 import com.finedustlab.model.classroom.ClassroomWrapper;
 import com.finedustlab.model.user.TeacherProfile;
+import com.finedustlab.model.user.UserProfile;
 import com.finedustlab.service.ClassroomService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -28,7 +29,7 @@ public class ClassroomController {
     @ResponseBody
     public String setClassroom(@RequestBody ClassroomWrapper wrapper){
         ClassroomRequestDTO classroom = wrapper.getClassroom();
-        TeacherProfile userProfile = wrapper.getUserProfile();
+        UserProfile userProfile = wrapper.getUserProfile();
         return classroomService.save(classroom, userProfile);
     }
 
