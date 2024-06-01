@@ -25,9 +25,9 @@ public class UserService {
         return  userRepository.getUserProfileByUID(uid);
     }
 
-    public Map<String, String> getEmail(String name, String schoolName)throws ExecutionException, InterruptedException{
+    public Map<String, String> getEmail(String name, String schoolCode)throws ExecutionException, InterruptedException{
         Map<String,String> result = new HashMap<>();
-        String email = userRepository.findUserEmailByNameAndSchoolName(name, schoolName);
+        String email = userRepository.findUserEmailByNameAndSchoolName(name, schoolCode);
         result.put("email",email);
         if(email.equals("-")) result.put("result","notfound");
         else result.put("result","complete");

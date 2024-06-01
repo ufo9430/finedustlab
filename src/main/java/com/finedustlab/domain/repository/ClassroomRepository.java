@@ -38,6 +38,25 @@ public class ClassroomRepository {
            Object classroomObj = future.get().get(grade);
            result = objectMapper.convertValue(classroomObj, Map.class);
            HashMap<String,Object> classroom = objectMapper.convertValue(result.get(classNum), HashMap.class);
+           int finedust_factor = Integer.parseInt(classroom.get("finedust_factor").toString());
+           int ultrafine_factor = Integer.parseInt(classroom.get("ultrafine_factor").toString());
+           String status;
+           if(finedust_factor <= 30 && finedust_factor>=0){
+               status = "good";
+           }else if(finedust_factor <= 150){
+               status = "fine";
+           }else{
+               status = "bad";
+           }
+           classroom.put("fine_status",status);
+           if(ultrafine_factor <= 15 && ultrafine_factor>=0){
+               status = "good";
+           }else if(ultrafine_factor <= 75){
+               status = "fine";
+           }else{
+               status = "bad";
+           }
+           classroom.put("ultra_status",status);
            classroom.put("result","complete");
            if(classroom.isEmpty()){
                throw new NullPointerException();

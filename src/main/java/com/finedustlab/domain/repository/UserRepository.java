@@ -37,17 +37,15 @@ public class UserRepository {
     }
 
 
-    @SuppressWarnings("unchecked")
-    public String findUserEmailByNameAndSchoolName(String name, String schoolName) throws ExecutionException, InterruptedException{
+    public String findUserEmailByNameAndSchoolName(String name, String schoolCode) throws ExecutionException, InterruptedException{
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         ApiFuture<QuerySnapshot> future = firestore.collection(USER_PROFILE).get();
-        ObjectMapper objectMapper = new ObjectMapper();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
             TeacherProfile profile = document.toObject(TeacherProfile.class);
             String docUsername = profile.getName();
-            String docSchoolName = profile.getSchool_name();
-            if(docUsername.equals(name) && docSchoolName.equals(schoolName)){
+            String docSchoolCode = Integer.toString(profile.getSchool_code());
+            if(docUsername.equals(name) && docSchoolCode.equals(schoolCode)){
                 String uid = document.getId();
                 ApiFuture<UserRecord> userAsync = firebaseAuth.getUserAsync(uid);
                 String email = userAsync.get().getEmail();
