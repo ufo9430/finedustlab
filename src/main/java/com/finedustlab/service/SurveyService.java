@@ -71,7 +71,10 @@ public class SurveyService {
                 Map<String, Object> userAnswerMap = answerData.get(s);
                 row = worksheet.createRow(rownum++);
                 row.createCell(0).setCellValue(s);
-                Row rowChecker = worksheet.getRow(count++);
+                Row rowChecker = worksheet.getRow(0);
+                count++;
+                if(rowChecker == null) continue;
+                System.out.println("count = " + count);
                 for(int i=0;i<list.size();i++){
                     String questionId = rowChecker.getCell(i).getStringCellValue();
                     Map answerMap = objectMapper.convertValue(userAnswerMap.get(questionId), Map.class);

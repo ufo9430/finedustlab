@@ -9,8 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TeacherProfile extends UserProfile{
-    @Schema(description = "선생님 코드")
-    private String teacher_code;
     @Schema(description = "이용자 학교 이름")
     private String school_name;
     @Schema(description = "이용자 학교 주소")
