@@ -36,7 +36,7 @@ public class ClassroomController {
     @Tag(name = "getClassroomStatus")
     @ResponseBody
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "학급 정보 불러오기 성공", content = @Content(schema = @Schema(implementation = ClassroomRequestDTO.class)))})
+            @ApiResponse(responseCode = "200", description = "학급 정보 불러오기 성공", content = @Content(schema = @Schema(implementation = ClassroomResponseDTO.class)))})
     @Operation(description = "이용자 프로필을 읽어 교사 이용자가 업데이트한 학급의 finedust_factor와 ultrafine_factor를 가져옵니다. 데이터가 없을 경우 두 값은 -1로 반환합니다")
     public ClassroomResponseDTO getClassroom(@RequestParam String schoolCode,
                                              @RequestParam String grade,
