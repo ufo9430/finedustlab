@@ -1,5 +1,6 @@
 package com.finedustlab.domain.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.model.survey.SurveyAnswer;
 import com.finedustlab.model.user.StudentProfile;
 import com.google.api.core.ApiFuture;
@@ -7,9 +8,11 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Repository
 public class SurveyRepository {
@@ -17,7 +20,7 @@ public class SurveyRepository {
     private static final String SURVEY_DATA = "survey_data";
     Firestore firestore = FirestoreClient.getFirestore();
 
-    public String save(StudentProfile profile, SurveyAnswer answer) {
+    public String save(StudentProfile profile, SurveyAnswer answer) throws ExecutionException, InterruptedException{
         HashMap<String, Object> fields = new HashMap<>();
         String date_day = answer.getDate().split("T")[0];
         String document_id =
@@ -30,7 +33,7 @@ public class SurveyRepository {
 
         fields.put("profile",profile);
         fields.put("date",date_day);
-        fields.put(String.valueOf(answer.getQuestion_id()),setAnswerData(answer));
+        fields.put(String.valueOf(answer.getQuestion_id()), setAnswerData(answer));
         firestore.collection(SURVEY_ANSWER).document(document_id)
                 .set(fields,SetOptions.merge());
 

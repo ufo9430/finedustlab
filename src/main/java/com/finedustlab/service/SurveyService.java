@@ -18,6 +18,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class SurveyService {
@@ -29,9 +30,10 @@ public class SurveyService {
         return surveyRepository.findDataByID(userType);
     }
 
-    public String set(SurveyInputWrapper data) {
+    public String set(SurveyInputWrapper data) throws ExecutionException, InterruptedException{
         StudentProfile profile = data.getUser();
         SurveyAnswer answer = data.getSurvey_data();
+
         return surveyRepository.save(profile, answer);
     }
 
@@ -54,6 +56,7 @@ public class SurveyService {
             // 설문조사 아이디 작성
             Row row = worksheet.createRow(rownum++);
             row.createCell(0).setCellValue("번호");
+
             for(int i=0;i<list.size();i++){
                 Cell cell = row.createCell(i+1);
                 cell.setCellValue(objectMapper.convertValue(list.get(i).get("id"),String.class));
@@ -72,9 +75,15 @@ public class SurveyService {
                 row = worksheet.createRow(rownum++);
                 row.createCell(0).setCellValue(s);
                 Row rowChecker = worksheet.getRow(0);
+                if(rowChecker == null){
+                    System.out.println("error");
+                    continue;
+                }
                 count++;
-                if(rowChecker == null) continue;
                 System.out.println("count = " + count);
+                for (Map<String, Object> answer : list) {
+
+                }
                 for(int i=0;i<list.size();i++){
                     String questionId = rowChecker.getCell(i).getStringCellValue();
                     Map answerMap = objectMapper.convertValue(userAnswerMap.get(questionId), Map.class);

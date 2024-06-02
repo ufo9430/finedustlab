@@ -6,78 +6,71 @@
             "category_name": "현재 대기질 상태",
             "category_color": "#009B4C",
             "id": 1,
-            "question": "현재 실외 미세먼지 농도가\n현재 어느 정도 수준인지 확인합니다.",
+            "question": "지금 실외 미세먼지 농도 상태를 체크해 주세요.",
             "sub_questions": [
                 {
                     "sub_question_id": 1,
                     "text": "미세먼지",
-                    "type": "choice",
+                    "type": "slider",
                     "options": [
                         {
                             "id": 1,
-                            "text": "좋음",
-                            "input": false
-                        },
+                            "text": "좋아요",
+                            "input": false},
                         {
                             "id": 2,
-                            "text": "보통",
-                            "input": false
-                        },
+                            "text": "보통이에요",
+                            "input": false},
                         {
                             "id": 3,
-                            "text": "나쁨",
-                            "input": false
-                        },
+                            "text": "나빠요",
+                            "input": false},
                         {
                             "id": 4,
-                            "text": "매우나쁨",
-                            "input": false
-                        }
+                            "text": "위험해요",
+                            "input": false}
                     ]
                 },
                 {
                     "sub_question_id": 2,
                     "text": "초미세먼지",
-                    "type": "choice",
+                    "type": "slider",
                     "options": [
                         {
                             "id": 1,
-                            "text": "좋음",
+                            "text": "좋아요",
                             "input": false
                         },
                         {
                             "id": 2,
-                            "text": "보통",
+                            "text": "보통이에요",
                             "input": false
                         },
                         {
                             "id": 3,
-                            "text": "나쁨",
+                            "text": "나빠요",
                             "input": false
                         },
                         {
                             "id": 4,
-                            "text": "매우나쁨",
+                            "text": "위험해요",
                             "input": false
                         }
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["실외 미세먼지 농도 구분은 이렇게 합니다.(단위 : ㎍/㎥ ) 두 항목 중 하나라도 기준을 초과하는 경우, 기준을 모두 초과하는 것으로 간주합니다."],
-                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/teach1.png?alt=media&token=a458d524-6ac8-4480-9ac1-68974e3985b6"
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_01.png?alt=media&token=6d7e7c05-c122-4f02-b17c-ccd7600eef49"
         },
         {
             "category_id" : 1,
             "category_name": "현재 대기질 상태",
             "category_color": "#009B4C",
             "id" : 2,
-            "question" : "현재 교실 내 미세먼지 농도가\n현재 어느 정도 수준인지 확인합니다.",
+            "question" : "지금 교실 내 미세먼지 농도 상태를 체크해 주세요.",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text":"미세먼지",
+                    "text":"미세먼지 (PM-10)",
                     "type": "choice",
                     "options" : [
                         {"id":1, "text":"기준 이하", "input":false},
@@ -86,7 +79,7 @@
                 },
                 {
                     "sub_question_id":2,
-                    "text":"초미세먼지",
+                    "text":"초미세먼지 (PM-2.5)",
                     "type": "choice",
                     "options" : [
                         {"id":1, "text":"기준 이하", "input":false},
@@ -94,17 +87,14 @@
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["실내 미세먼지 농도 기준은 다음과 같습니다.(단위 : ㎍/㎥ ) 두 항목 중 하나라도 기준을 초과하는 경우, 그 기준을 모두 초과하는 것으로 간주합니다."],
-                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/teach2.png?alt=media&token=44e3a85d-c36c-4d24-9244-266ce4322390"
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_02.png?alt=media&token=87a0d091-23f8-42c3-8126-3b259879aed8"
         },
         {
             "category_id" : 1,
             "category_name": "현재 대기질 상태",
             "category_color": "#009B4C",
             "id" : 3,
-            "question" : "지금 교실의 미세먼지 농도가\n어떻게 느껴지십니까?",
+            "question" : "지금 교실의 미세먼지 농도가 어떤거 같나요?",
             "sub_questions": [{
                 "type":"choice",
                 "sub_question_id": 1,
@@ -116,36 +106,30 @@
                     {"id":5, "text":"매우 나쁨", "input":false}
                 ]
             }],
-            "help" : {
-                "text" : ["미세먼지가 좋지 않다고 느낀 경우, 그 이유를 찾아서 해결해야 합니다. 외부 미세먼지 농도가 높은지, 창문이 닫혀있고 환기가 되지 않는지, 공기청정기가 안 켜져 있는지… 체크리스트 끝까지 확인해서 문제를 찾고 해결해봅니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_03.png?alt=media&token=54783d61-a895-47da-b536-00423b916ac2"
         },
         {
             "category_id" : 2,
             "category_name": "현재 교실 상태",
             "category_color": "#2A7CFF",
             "id" : 4,
-            "question" : "현재 교실의 온도와 습도를\n확인할 수 있습니까?",
+            "question" : "현재 교실의 온도와 습도를 확인할 수 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"ox",
                 "options": [
-                    {"id":1, "text":"있음"},
-                    {"id":2, "text":"없음"}
+                    {"id":1, "text":"있어요"},
+                    {"id":2, "text":"없어요"}
                 ]
             }],
-            "help" : {
-                "text" : ["여름엔 에어컨과 선풍기, 겨울엔 히터 등의 냉난방기를 이용하여 온도를 조절할 수 있습니다. 쉽게 건조해지는 겨울철에는 가습기를 사용하거나 실내에 젖은 수건을 널어놓는 것도 도움이 됩니다."],
-                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/teach3.png?alt=media&token=293f50a9-5253-493c-ad94-e481cf1513fd"
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_04.png?alt=media&token=7cc92d5f-ead6-405c-96fd-3721e8616ad3"
         },
         {
             "category_id" : 2,
             "category_name": "현재 교실 상태",
             "category_color": "#2A7CFF",
             "id" : 5,
-            "question" : "현재 교실 내의\n학생 수에 대해 확인합니다.",
+            "question" : "현재 교실 내 학생은 몇 명인가요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"number_picker",
@@ -157,41 +141,35 @@
                     }
                 ]
             }],
-            "help" : {
-                "text" : ["교실 내에 사람이 많을수록 미세먼지 농도에 영향을 줄 수 있습니다. 사람이 활동하며 바닥에 가라앉아있던 미세먼지가 떠오르거나, 밖에서 안으로 들어오는 공기량이 증가하여 미세먼지 농도가 증가할 수 있습니다. 따라서 사람이 많을수록 더울 관리에 신경써야 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_05.png?alt=media&token=047ceb17-ae28-4463-8cfb-3dfe1d623370"
         },
         {
             "category_id" : 2,
             "category_name": "현재 교실 상태",
             "category_color": "#2A7CFF",
             "id" : 6,
-            "question" : "점검 당일, 체육 수업 또는\n외부 활동이 있는지 확인합니다.",
+            "question" : "점검 당일(오늘), 체육수업이나 외부활동이 있나요?",
             "sub_questions": [{
                 "type":"ox",
                 "sub_question_id": 1,
                 "options": [
-                    {"id":1, "text":"있음"},
-                    {"id":2, "text":"없음"}
+                    {"id":1, "text":"있어요"},
+                    {"id":2, "text":"없어요"}
                 ]
             }],
-            "help" : {
-                "text" : ["외부 미세먼지 농도가 ‘나쁨’, ‘매우 나쁨’일 경우 체육수업, 현장학습, 운동회 등을 실내수업으로 대체할 수 있습니다. 학생들이 밖에 나갔다가 들어올 때, 신발과 옷 등을 털고 들어오도록 지도합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_06.png?alt=media&token=6110cfec-930c-4913-8c7b-0efbfafb84e2"
         },
         {
             "category_id" : 2,
             "category_name": "현재 교실 상태",
             "category_color": "#2A7CFF",
             "id" : 7,
-            "question" : "현재 학교 내부는 어떻게 느껴지십니까?",
+            "question" : "현재 교실 내 상태는 어떻게 느껴지나요?",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text" : "온도",
-                    "type": "choice",
+                    "text" : "현재 교실의 온도는?",
+                    "type": "slider",
                     "options" : [
                         {"id":1, "text":"매우 추움", "input":false},
                         {"id":2, "text":"추움", "input":false},
@@ -202,8 +180,8 @@
                 },
                 {
                     "sub_question_id":2,
-                    "text" : "습도",
-                    "type": "choice",
+                    "text" : "현재 교실의 습도는?",
+                    "type": "slider",
                     "options" : [
                         {"id":1, "text":"매우 건조함", "input":false},
                         {"id":2, "text":"건조함", "input":false},
@@ -214,28 +192,25 @@
                 },
                 {
                     "sub_question_id":3,
-                    "text" : "재실인원",
-                    "type": "choice",
+                    "text" : "지금 교실 내 인원은 어떻게 느껴지나요?",
+                    "type": "slider",
                     "options" : [
-                        {"id":1, "text":"매우 적음", "input":false},
-                        {"id":2, "text":"적음", "input":false},
-                        {"id":3, "text":"보통", "input":false},
-                        {"id":4, "text":"많음", "input":false},
-                        {"id":5, "text":"매우 많음", "input":false}
+                        {"id":1, "text":"10명 미만", "input":false},
+                        {"id":2, "text":"11명~15명", "input":false},
+                        {"id":3, "text":"16명~20명", "input":false},
+                        {"id":4, "text":"21명~25명", "input":false},
+                        {"id":5, "text":"25명 초과", "input":false}
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["적절한 온도, 습도로 유지되고 인원이 적게 있는 실내에서도 사람마다 쾌적함을 느끼는 정도가 다를 수 있습니다. 교실 상태로 인해 심한 불편함을 호소하는 학생이 있다면 원인을 찾아 해결해야 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_07.png?alt=media&token=7d17d36d-313c-47df-b34c-5c731cf217e8"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 8,
-            "question" : "지금 교실 내\n청소가 잘 되어있는 지점을 확인합니다.",
+            "question" : "현재 교실 청결상태가 깨끗한 곳을 확인해 주세요.",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"checkbox",
@@ -246,287 +221,320 @@
                     {"id":4, "text":"출입문", "selected":false}
                 ]
             }],
-            "help" : {
-                "text" : ["바닥, 칠판, 창문, 출입문 모두 먼지 관리가 필요한 곳입니다. 체크하지 않는 곳의 청소를 일주일에 1번 이상 진행하도록 합니다. 특히, PM2.5는 교실 내 오염원은 없으나 외부로부터 들어온 먼지가 재부유할 수 있으므로 바닥, 창문틀, 천장, 벽면 등에 대한 주기적인 물청소를 실시합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_08.png?alt=media&token=6ffdea97-1868-4d5e-9921-260f3b852357"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 9,
-            "question" : "지금 교실 내\n청소 방법을 확인합니다.",
+            "question" : "지금 교실에서 어떤 방법으로 청소를 하고 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"checkbox",
                 "options": [
-                    {"id":1, "text":"빗자루 사용", "selected":false},
-                    {"id":2, "text":"진공 청소기 사용", "selected":false},
-                    {"id":3, "text":"물 청소", "selected":false}
+                    {"id":1, "text":"빗자루 사용", "selected":false, "input":false},
+                    {"id":2, "text":"진공 청소기 사용", "selected":false, "input":false},
+                    {"id":3, "text":"물 청소(대걸레 등)", "selected":false, "input":false},
+                    {"id":4, "text":"기타", "placeholder": "현재 청소 방법을 입력하세요.", "selected":false, "input":true}
                 ]
             }],
-            "help" : {
-                "text" : ["빗자루를 사용하여 청소한 후에는 물걸레로 마무리 해야 먼지가 공기 중에 떠다니는 것을 줄일 수 있습니다. 진공청소기가 있는 경우 빗자루 대신 사용하면 좋습니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_09.png?alt=media&token=9bc54f0f-1b4c-4a28-8b84-a06b8ffeb006"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 10,
-            "question" : "현재 교실 내\n청소 주기를 확인합니다.",
-            "sub_questions": [{
+            "question" : "현재 교실청소는 얼마나, 언제 하고 있나요?",
+            "sub_questions": [
+            {
                 "sub_question_id": 1,
                 "type":"choice",
+                "text":"얼마나?",
+                "has_optional":true,
                 "options":[
-                    {"id":1, "text":"미실시", "input":false},
-                    {"id":2, "text":"실시", "input":true}
+                    {"id":1, "text":"미실시", "input":false, "next_sub_question_id":-1},
+                    {"id":2, "text":"주 1 ~ 2회", "input":false, "next_sub_question_id":2},
+                    {"id":3, "text":"주 3 ~ 4회", "input":false, "next_sub_question_id":2},
+                    {"id":4, "text":"매일", "input":false, "next_sub_question_id":2},
+                    {"id":5, "text":"기타(입력)", "placeholder": "얼마나 청소하셨나요?", "input":true, "next_sub_question_id":3}
+                ]
+            },
+            {
+                "sub_question_id": 2,
+                "type":"choice",
+                "text":"언제?",
+                "is_optional":true,
+                "options":[
+                    {"id":1, "text":"오전", "input":false},
+                    {"id":2, "text":"오후", "input":false},
+                    {"id":3, "text":"기타(입력)", "placeholder": "언제 청소하셨나요?", "input":true}
                 ]
             }],
-            "help" : {
-                "text" : ["매일 교실과 복도의 바닥 청소를 하도록 지도해야 합니다. 바닥 뿐만 아니라 주 1회 이상 벽면, 책상, 사물함, 학습기구 등 보이지 않는 곳까지 정기적으로 청소할 수 있도록 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_10.png?alt=media&token=4f3cfd5f-cebe-48a2-886b-b92fe5d6b493"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 11,
-            "question" : "현재 교실 내 창문을 열어\n환기하는 주기에 대해 확인합니다.",
+            "question" : "현재 창문을 통한 교실환기는 얼마나 하고 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
-                "options": [
+                "options":[
                     {"id":1, "text":"미실시", "input":false},
-                    {"id":2, "text":"실시", "input":true}
+                    {"id":2, "text":"하루 1 ~ 2회", "input":false},
+                    {"id":3, "text":"하루 3 ~ 4회", "input":false},
+                    {"id":4, "text":"하루5회 이상", "input":false},
+                    {"id":5, "text":"기타(입력)","placeholder": "얼마나 환기하셨나요?", "input":true}
                 ]
             }],
-            "help" : {
-                "text" : ["교실 내 환기가 잘 이루어질 수 있도록 학생들을 지도합니다. 외부 공기의 미세먼지 농도가 좋은 경우 창문을 수시로 개방하여 환기합니다. 양쪽 창문을 모두 열어 맞바람이 칠 수 있도록 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_11.png?alt=media&token=d6940683-e52b-4565-83ee-77ee53405d56"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 12,
-            "question" : "냉난방기의 필터 관리 여부와\n청결 상태 및 교체주기를 확인합니다.",
+            "question" : "냉난방기의 필터 관리여부와 청결상태 및 교체주기를 확인할 수 있나요?",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text":"관리 여부",
+                    "text":"1. 관리여부",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"하고 있음", "input":false},
-                        {"id":2, "text":"안함", "input":false}
+                        {"id":1, "text":"하고 있음", "input":false, "next_sub_question_id":2},
+                        {"id":2, "text":"따로하고 있지 않음", "input":false, "next_sub_question_id":-1},
+                        {"id":3, "text":"모르겠음", "input":false, "next_sub_question_id":-1}
                     ]
                 },
                 {
                     "sub_question_id":2,
-                    "text":"관리 상태",
+                    "text":"2. 관리상태",
                     "type": "choice",
+                    "is_optional":true,
                     "options" : [
                         {"id":1, "text":"양호", "input":false},
-                        {"id":2, "text":"불량", "input":false}
+                        {"id":2, "text":"점검 필요", "input":false},
+                        {"id":3, "text":"모르겠음", "input":false}
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["필터가 청결하지 않다고 답했다면, 세척 가능한 필터의 경우 정기적으로 매달 1회 이상 세척하여 사용해야 합니다. 교환이 필요한 필터의 경우 필터 교체 주기를 확인하여 유지 관리를 철저히 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_12.png?alt=media&token=47562e04-9208-481d-a270-660f4e28e736"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 13,
-            "question" : "현재 교실 내\n공기청정기의 유무에 대해 확인합니다.",
+            "question" : "현재 교실내 공기청정기 유무 및 가동여부를 확인해봅시다.",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text":"유무",
+                    "text":"1. 공기청정기 유무",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"있음", "input":false},
-                        {"id":2, "text":"없음", "input":false}
+                        {"id":1, "text":"있음", "input":false, "next_sub_question_id":2},
+                        {"id":2, "text":"없음", "input":false, "next_sub_question_id":-1},
+                        {"id":3, "text":"기타(입력)", "placeholder": "ex) 있지만 고장남 등...", "input":true, "next_sub_question_id":3}
                     ]
                 },
                 {
                     "sub_question_id":2,
-                    "text":"가동 여부",
+                    "text":"2. 가동 여부",
                     "type": "choice",
+                    "is_optional":true,
                     "options" : [
-                        {"id":1, "text":"가동", "input":true},
-                        {"id":2, "text":"미가동", "input":true}
+                        {"id":1, "text":"가동", "input":false},
+                        {"id":2, "text":"미가동", "input":false},
+                        {"id":3, "text":"기타(입력)", "placeholder": "ex) 특정시간 또는 부분 가동 등...", "input":true}
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["교실 면적을 파악하여 해당하는 적정 풍량을 가진 공기청정기를 사용합니다. 효율을 위해 교실 중앙에 설치하는 것이 가장 좋으나, 여력이 되지 않는 경우 출입구 측에 설치하는 방법도 권장합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_13.png?alt=media&token=0e14fb65-727b-4625-8115-8ca6b74ed831"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 14,
-            "question" : "공기청정기 필터 관리여부와\n청결 상태 및 교체주기(3~6개월)를 확인합니다.",
+            "question" : "공기청정기의 필터 관리여부와 청결상태 및 교체주기(3~6개월)를 확인할 수 있나요?",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text":"유무",
-                    "type": "choice",
+                    "text":"1. 관리여부",
                     "options" : [
-                        {"id":1, "text":"있음", "input":false},
-                        {"id":2, "text":"없음", "input":false}
+                        {"id":1, "text":"하고 있음", "input":false,"next_sub_question_id":2},
+                        {"id":2, "text":"따로 하고 있지 않음", "input":false,"next_sub_question_id":-1},
+                        {"id":3, "text":"모르겠음", "input":false,"next_sub_question_id":-1}
                     ]
                 },
                 {
                     "sub_question_id":2,
-                    "text":"가동 여부",
+                    "text":"2. 관리상태",
                     "type": "choice",
+                    "is_optional":true,
                     "options" : [
                         {"id":1, "text":"양호", "input":false},
-                        {"id":2, "text":"불량", "input":false}
+                        {"id":2, "text":"점검필요", "input":false},
+                        {"id":3, "text":"모르겠음", "input":false}
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["공기청정기 효과를 위해 필터 교체 주기를 확인하여 유지관리를 철저히 합니다. 1개월마다 프리 필터 청소와 미디움 필터를 점검하고, 일반 교실은 3개월, 하루 4시간 미만 사용하는 특수교실은 3~6개월의 미디움 필터 교체 주기를 가집니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_14.png?alt=media&token=a120e844-120a-4061-a1cd-72b3d95a94d2"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 15,
-            "question" : "현재 교실 내 기계 환기설비의 유무 및 \n가동 여부에 대해 확인합니다.",
+            "question" : "현재 교실 내 기계환기설비의 유무 및 가동여부를 확인할 수 있나요?",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text":"유무",
+                    "text":"1. 환기설비 유무",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"있음", "input":false},
-                        {"id":2, "text":"없음", "input":false}
+                        {"id":1, "text":"있음", "input":false,"next_sub_question_id":2},
+                        {"id":2, "text":"없음", "input":false,"next_sub_question_id":-1},
+                        {"id":3, "text":"모르겠음", "input":false,"next_sub_question_id":-1}
                     ]
                 },
                 {
                     "sub_question_id":2,
-                    "text":"가동 여부",
+                    "text":"2. 가동여부",
                     "type": "choice",
+                    "is_optional":true,
                     "options" : [
-                        {"id":1, "text":"가동", "input":true},
-                        {"id":2, "text":"미가동", "input":true}
+                        {"id":1, "text":"가동", "input":false},
+                        {"id":2, "text":"미가동", "input":false},
+                        {"id":3, "text":"기타(입력)", "placeholder": "내용을 적어주세요.", "input":true}
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["공기청정기 효과를 위해 필터 교체 주기를 확인하여 유지관리를 철저히 합니다. 1개월마다 프리 필터 청소와 미디움 필터를 점검하고, 일반 교실은 3개월, 하루 4시간 미만 사용하는 특수교실은 3~6개월의 미디움 필터 교체 주기를 가집니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_15.png?alt=media&token=3c0cf808-5e8a-43d2-a3f0-5284690370cd"
         },
         {
             "category_id" : 3,
             "category_name": "건강 상태",
             "category_color": "#FF6F1B",
             "id" : 16,
-            "question" : "현재 교실 내 환기설비의\n관리 상태를 확인합니다.",
+            "question" : "현재 교실 내 환기설비의 관리 상태를 확인합니다.",
             "sub_questions" : [
                 {
                     "sub_question_id":1,
-                    "text":"관리 여부",
+                    "text":"1. 관리여부",
                     "type": "choice",
                     "options" : [
-                        {"id":1, "text":"하고 있음", "input":false},
-                        {"id":2, "text":"안함", "input":false}
+                        {"id":1, "text":"하고 있음", "input":false,"next_sub_question_id":2},
+                        {"id":2, "text":"하지 않음", "input":false,"next_sub_question_id":-1},
+                        {"id":3, "text":"모르겠음", "input":false,"next_sub_question_id":-1}
                     ]
                 },
                 {
                     "sub_question_id":2,
-                    "text":"관리 상태",
+                    "text":"2. 관리상태",
                     "type": "choice",
+                    "is_optional":true,
                     "options" : [
                         {"id":1, "text":"양호", "input":false},
-                        {"id":2, "text":"불량", "input":false}
+                        {"id":2, "text":"점검필요", "input":false},
+                        {"id":3, "text":"모르겠음", "input":false}
                     ]
                 }
             ],
-            "help" : {
-                "text" : ["교실에 있는 제품 설명서, 제조사 홈페이지 등을 확인하여 환기설비 관리 방법과 필터 교체 방법을 확인하고 주기적으로 점검합니다.\n- 공기 유입구에서 공기가 들어오는지\n- 유입된 공기가 환풍구로 나가는지\n- 공기 유입구가 가려져 있지 않은지\n- 내부에 곰팡이가 있지 않은지"],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_16.png?alt=media&token=4ed4c2f7-86b6-43cd-ac16-1c2e77e6332c"
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#CC2432",
             "id" : 17,
-            "question" : "현재 자신의 건강상태에 대해\n확인합니다.",
+            "question" : "현재 학생의 건강상태를 확인해 봅니다.",
             "sub_questions": [{
-                "type":"choice",
+                "text":"학생상태 체크",
                 "sub_question_id": 1,
+                "type":"choice",
                 "options": [
-                    {"id":1, "text":"이상 없음", "input":false},
-                    {"id":2, "text":"증상 있음", "input":true}
+                    {"id":1, "text":"증상 있음", "input":false, "next_sub_question_id":2},
+                    {"id":2, "text":"증상 없음", "input":false,"next_sub_question_id":-1},
+                    {"id":3, "text":"파악 어려움", "input":false,"next_sub_question_id":-1}
+                ]
+            },
+            {
+                "text":"이상인원 파악",
+                "sub_question_id": 2,
+                "type":"choice",
+                "is_optional":true,
+                "options": [
+                    {"id":1, "text":"1~3 명", "input":false},
+                    {"id":2, "text":"4~6 명", "input":false},
+                    {"id":3, "text":"7~10 명", "input":false},
+                    {"id":3, "text":"11 명 이상", "input":false}
                 ]
             }],
-            "help" : {
-                "text" : ["본인의 건강 상태를 수시로 체크해야 합니다. 미세먼지 농도가 ‘나쁨’ ‘매우 나쁨’이 날, 몸이 좋지 않은 경우 병원 진료를 받도록 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_18.png?alt=media&token=4e4ada61-fa9f-492b-b995-89d3bf940bc2"
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#CC2432",
             "id" : 18,
-            "question" : "현재 학생의 건강상태에 대해\n확인합니다.",
+            "question" : "현재 자신의 건강상태를 체크해 봅시다.",
             "sub_questions": [{
-                "sub_question_id": 1,
                 "type":"choice",
+                "sub_question_id": 1,
                 "options": [
-                    {"id":1, "text":"이상 없음", "input":false},
-                    {"id":2, "text":"증상 있음", "input":true}
+                    {"id":1, "text":"있음", "input":false, "next_sub_question_id":2},
+                    {"id":2, "text":"없음", "input":false, "next_sub_question_id":-1},
+                    {"id":2, "text":"모르겠음", "input":false, "next_sub_question_id":-1}
+                ]
+            },
+            {
+                "sub_question_id": 2,
+                "text":"이전부터 아팠던 곳을 적어주세요.",
+                "type": "text",
+                "is_optional":true,
+                "options": [
+                    {"id":1, "placeholder": "ex) 두통, 목마름, 기침, 가려움 등...","input":true}
                 ]
             }],
-            "help" : {
-                "text" : ["미세먼지 관련 질병*을 가지고 있는 학생을 파악해야 합니다. 학생의 건강 상태에 이상이 있다고 생각되면 그 즉시 학부모에게 알리고 병원에 방문해 진료를 받도록 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_17.png?alt=media&token=52574fbd-4244-436a-a2a6-463779420456"
         },
         {
             "category_id" : 4,
             "category_name": "위생 상태",
             "category_color": "#CC2432",
             "id" : 19,
-            "question" : "현재 아픈 것 외에, 이전부터\n가지고 있던 기저질환을 확인합니다.",
+            "question" : "현재 아픈것 외에 이전부터 가지고 있던 기저질환이 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
                 "options": [
-                    {"id":1, "text":"없음", "input":false},
-                    {"id":2, "text":"있음", "input":true}
+                    {"id":1, "text":"있음", "input":false, "next_sub_question_id":2},
+                    {"id":2, "text":"없음", "input":false, "next_sub_question_id":-1},
+                    {"id":3, "text":"모르겠음", "input":false, "next_sub_question_id":-1}
+                ]
+            },
+            {
+                "sub_question_id": 2,
+                "text":"이전부터 아팠던 곳을 적어주세요.",
+                "type": "text",
+                "is_optional":true,
+                "options": [
+                    {"id":1, "placeholder": "예시) 천식, 질환 등","input":true}
                 ]
             }],
-            "help" : {
-                "text" : ["기저질환이 있는 경우 미세먼지 예보를 잘 확인하고 보건용 마스크를 사용하는 등 악화되지 않도록 각별한 관리가 필요합니다."],
-                "image_url" : "https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/teach4.png?alt=media&token=2104f449-1c8f-4b3a-a7f7-83829379ea69"
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_19.png?alt=media&token=1b54ed2e-ae0e-4ab6-a7b3-4b10cf45bfc6"
         },
         {
             "category_id" : 5,
             "category_name": "학교 현황",
             "category_color": "#FE83FF",
             "id" : 20,
-            "question" : "학교의 설립연도를 확인합니다.",
+            "question" : "우리학교는 언제 설립 되었나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"text",
@@ -538,112 +546,108 @@
                     }
                 ]
             }],
-            "help" : {
-                "text" : ["일반적으로 건물이 오래됨에 따라 기밀 성능이 떨어지므로, 노후한 학교 건물은 외기 미세먼지 침입에 더 취약할 수 있습니다. 하지만 본 사업단 연구 결과, 건물연한보다 유지관리의 영향이 더욱 큰 것으로 나타났습니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_20.png?alt=media&token=5cd11046-606d-41bf-a8f3-61508460ff1e"
         },
         {
             "category_id" : 5,
             "category_name": "학교 현황",
             "category_color": "#FE83FF",
             "id" : 21,
-            "question" : "교실의 칠판 재질을 확인합니다.",
+            "question" : "우리 교실의 칠판은 어떤 형태 인가요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
                 "options": [
-                    {"id":1, "text":"분필 칠판(가루형)", "input" : false},
-                    {"id":2, "text":"화이트보드", "input" : false},
-                    {"id":3, "text":"기타", "input" : true}
+                    {"id":1, "text":"일반 칠판(분필 사용)", "input" : false},
+                    {"id":2, "text":"유리 또는 보드형 칠판(마커 사용)", "input" : false},
+                    {"id":3, "text":"기타 (입력)", "placeholder": "내용을 적어주세요.", "input" : true}
                 ]
             }],
-            "help" : {
-                "text" : ["분필을 사용하는 칠판의 경우, 분필 가루로 인해 미세먼지가 발생할 수 있습니다. 청소 중에 공기 중으로 비산될 가능성이 있으므로 반드시 칠판은 물걸레를 사용하여 청소하도록 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_21.png?alt=media&token=70261078-2657-4ce7-83a5-3b55b10b2dec"
         },
         {
             "category_id" : 5,
             "category_name": "학교 현황",
             "category_color": "#FE83FF",
             "id" : 22,
-            "question" : "교실과 복도의 바닥 재질을 확인합니다.",
+            "question" : "교실과 복도의 바닥 재질을 확인해 봅니다.",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
+                "text":"1. 교실",
                 "options":[
                     {"id":1, "text":"나무", "input" : false},
                     {"id":2, "text":"콘크리트", "input" : false},
-                    {"id":3, "text":"기타", "input" : true}
+                    {"id":3, "text":"기타(입력)", "placeholder": "내용을 적어주세요.", "input" : true}
+                ]
+            },
+            {
+                "sub_question_id": 2,
+                "type":"choice",
+                "text":"2. 복도",
+                "options":[
+                    {"id":1, "text":"나무", "input" : false},
+                    {"id":2, "text":"콘크리트", "input" : false},
+                    {"id":3, "text":"기타(입력)", "placeholder": "내용을 적어주세요.", "input" : true}
                 ]
             }],
-            "help" : {
-                "text" : ["나무 재질의 바닥에서 가장 많은 미세먼지가 발생한다는 연구결과가 존재합니다. 하지만 재질과는 상관없이 학생들이 이동이 많은 곳으로 공기 중 먼지가 부유할 가능성이 높기 때문에 매일 청소하는 등의 관리가 필요합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_22.png?alt=media&token=e60e0aa8-e312-460f-83a6-b4b2209909e1"
         },
         {
             "category_id" : 5,
             "category_name": "학교 현황",
             "category_color": "#FE83FF",
             "id" : 23,
-            "question" : "현재 교실 내 창호의 상태를 확인합니다.\n-열고 닫는 작동이 잘 되는지\n-실리콘이 훼손되어 있지 않은지\n-우천시 물이 새지 않는지\n-창틀에 먼지나 이물질이 있지 않은지",
+            "question" : "현재 교실 내 창문 상태를 확인해 봅니다.",
+            "sub_text" : "(아래 참고사항을 확인 후 이상이 있는 개수 확인)\n\n<참고사항>\n1. 창문 작동 여부\n2. 실리콘 훼손 여부\n3. 물샘 여부\n4. 먼지 또는 이물질 여부",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
                 "options": [
-                    {"id":1, "text":"분필 칠판(가루형)", "input" : false},
-                    {"id":2, "text":"화이트보드", "input" : false},
-                    {"id":3, "text":"기타", "input" : true}
+                    {"id":1, "text":"이상없음", "input" : false},
+                    {"id":2, "text":"1개", "input" : false},
+                    {"id":3, "text":"2개", "input" : false},
+                    {"id":4, "text":"3개", "input" : false},
+                    {"id":5, "text":"4개", "input" : false}
                 ]
             }],
-            "help" : {
-                "text" : ["창호는 건물 에너지 사용 효율에 중대한 영향을 미칩니다. 건물의 개구부와 틈새를 통해 실내외 압력차가 생기고 외기가 유입될 수 있습니다. 불량으로 확인된 항목을 점검하고 수리가 필요하다고 판단될 경우 보수 공사를 진행합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_23.png?alt=media&token=7a4f3bc5-1487-4b49-b776-37d9670e00d8"
         },
         {
             "category_id" : 5,
             "category_name": "학교 현황",
             "category_color": "#FE83FF",
             "id" : 24,
-            "question" : "현재 학교 부지 주변 조건을 확인합니다.",
+            "question" : "현재 학교 근처 현황을 확인해 봅시다.",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
                 "options": [
-                    {"id":1, "text":"양호", "input" : false},
-                    {"id":2, "text":"도로 밀집", "input" : false},
-                    {"id":3, "text":"산업시설 밀집", "input" : false},
-                    {"id":4, "text":"공사중", "input" : false},
-                    {"id":5, "text":"모름", "input" : false}
+                    {"id":1, "text":"주변 현황 양호", "input" : false},
+                    {"id":2, "text":"왕복 5차선 이상 도로 있음", "input" : false},
+                    {"id":3, "text":"학교 인근 사업시설 (공장 등) 있음", "input" : false},
+                    {"id":4, "text":"학교 인근 공사현장 있음", "input" : false},
+                    {"id":5, "text":"모르겠음", "input" : false}
                 ]
             }],
-            "help" : {
-                "text" : ["도로나 산업시설이 밀집이라고 답하셨다면, 주변 풍경을 고려하여 창문이나 출입문 등의 개구부를 오염물질의 유입을 줄일 수 있는 곳에 설치하거나 개폐해야 합니다. 주변의 오염이 심하다고 판단되면 자연환기를 자제합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_24.png?alt=media&token=2ff3a78f-625e-4e9b-bef0-00a7df6abb9d"
         },
         {
             "category_id" : 5,
             "category_name": "학교 현황",
             "category_color": "#FE83FF",
             "id" : 25,
-            "question" : "최근에 교실을 리모델링하거나\n새 가구가 들어온 적이 있나요?",
+            "question" : "최근에 교실을 리모델링 하거나 새 가구가 들어온 적이 있나요?",
             "sub_questions": [{
                 "sub_question_id": 1,
                 "type":"choice",
                 "options": [
-                    {"id":1, "text":"있음", "input" : true},
+                    {"id":1, "text":"있음", "input" : false},
                     {"id":2, "text":"없음", "input" : false},
                     {"id":3, "text":"모름", "input" : false}
                 ]
             }],
-            "help" : {
-                "text" : ["있다고 응답하셨다면, 해당 자재나 용품이 환경마크 인증 제품인지 또는 시험 성적표를 확인합니다. 또한, 충분한 환기를 통해 공기를 정화시킬 수 있도록 합니다."],
-                "image_url" : ""
-            }
+            "help":"https://firebasestorage.googleapis.com/v0/b/finedustlab.appspot.com/o/img_teacher_help_25.png?alt=media&token=a8c6623a-35f3-4d4e-ae86-0f0e08c0f71a"
         }
     ]
 }
