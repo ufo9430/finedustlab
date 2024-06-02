@@ -16,6 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.*;
@@ -184,6 +185,7 @@ public class SurveyService {
 
                 for (Object subQuestion : subQuestions) {
                     Cell cell = row.createCell(count);
+                    cell.setCellValue("");
                     Map<String, Object> questionMap = objectMapper.convertValue(subQuestion, Map.class);
                     Integer subQuestionId = objectMapper.convertValue(questionMap.get("sub_question_id"), Integer.class);
                     for (Object answerObj : subAnswers) {
@@ -197,15 +199,19 @@ public class SurveyService {
                     count++;
                 }
             }
-            // 스타일 작성
-            style.setAlignment(HorizontalAlignment.CENTER);
-            style.setBorderBottom(BorderStyle.MEDIUM);
-            style.setBorderLeft(BorderStyle.MEDIUM);
-            style.setBorderRight(BorderStyle.MEDIUM);
-            style.setBorderTop(BorderStyle.MEDIUM);
-
-            worksheet.addMergedRegion(new CellRangeAddress(0,5,0,0));
-            worksheet.addMergedRegion(new CellRangeAddress(6,count,0,0));
         }
+        // 스타일 작성
+
+
+
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setBorderBottom(BorderStyle.MEDIUM);
+        style.setBorderLeft(BorderStyle.MEDIUM);
+        style.setBorderRight(BorderStyle.MEDIUM);
+        style.setBorderTop(BorderStyle.MEDIUM);
+
+
+        worksheet.addMergedRegion(new CellRangeAddress(0,0,0,5));
+        worksheet.addMergedRegion(new CellRangeAddress(0,0,6,count-1));
     }
 }
