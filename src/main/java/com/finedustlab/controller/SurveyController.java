@@ -38,7 +38,7 @@ public class SurveyController {
     @Operation(description = "이용자 타입에 따라 설문조사 데이터를 xls 파일로 추출합니다.")
     @GetMapping("/survey/download")
     @ResponseBody
-    public void getSurveyAnswerByXls(HttpServletResponse response, @RequestParam String userType){
-        surveyService.exportDataToXls(response,userType);
+    public void getSurveyAnswerByXls(HttpServletResponse response, @RequestParam String schoolCode){
+        surveyService.exportDataToXls(response,schoolCode);
     }
 }

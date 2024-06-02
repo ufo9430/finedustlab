@@ -76,7 +76,7 @@ public class HolidayService {
             String strDate = formatter.format(date);
             try{
                 Map<String, Object> holidayData = apiRepository.getHolidayData(strDate);
-                if(!holidayData.isEmpty()) {
+                if(holidayData != null) {
                     dataArray.add(holidayData);
                 }
             }catch (Exception e){

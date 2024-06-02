@@ -20,7 +20,7 @@ public class SurveyRepository {
     private static final String SURVEY_DATA = "survey_data";
     Firestore firestore = FirestoreClient.getFirestore();
 
-    public String save(StudentProfile profile, SurveyAnswer answer) throws ExecutionException, InterruptedException{
+    public String save(StudentProfile profile, SurveyAnswer answer){
         HashMap<String, Object> fields = new HashMap<>();
         String date_day = answer.getDate().split("T")[0];
         String document_id =

@@ -32,4 +32,10 @@ public class UserService {
         else result.put("result","complete");
         return result;
     }
+
+    public String getTeacherName(String schoolCode, String grade, String classNum){
+        String result = "없음";
+
+        return result;
+    }
 }
