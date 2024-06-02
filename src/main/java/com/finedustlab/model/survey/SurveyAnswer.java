@@ -18,6 +18,6 @@ public class SurveyAnswer {
     private int question_id;
     @Schema(type ="list", description = "설문조사 답변")
     private List<SurveySubQuestion> answers;
-    @Schema(description = "설문 일자", defaultValue = "20240322")
+    @Schema(description = "설문 일자", defaultValue = "20240322T09:00:00")
     private String date;
 }

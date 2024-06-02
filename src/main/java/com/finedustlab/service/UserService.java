@@ -33,9 +33,9 @@ public class UserService {
         return result;
     }
 
-    public String getTeacherName(String schoolCode, String grade, String classNum){
-        String result = "없음";
-
-        return result;
+    public String getTeacherName(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException{
+        String teacherName = userRepository.findUsernameBySchoolInfo(schoolCode, grade, classNum);
+        if(teacherName.equals("-")) return "없음";
+        else return teacherName;
     }
 }

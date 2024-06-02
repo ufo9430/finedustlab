@@ -13,9 +13,9 @@ public class SurveySubQuestion {
     @Schema(description = "설문조사 타입", allowableValues =
             {"multi_choice","ox","choice","number_picker","checkbox","text"})
     private String type;
-    @Schema(description = "설문조사 답변", defaultValue ="답변")
+    @Schema(description = "설문조사 답변", defaultValue ="-")
     private String sub_question_answer;
-    @Schema(description = "설문조사 보조답변", defaultValue ="보조답변")
+    @Schema(description = "설문조사 보조답변", defaultValue ="-")
     private String sub_question_input;
 
 }

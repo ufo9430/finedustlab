@@ -56,7 +56,6 @@ public class UserRepository {
     }
 
     public String findUsernameBySchoolInfo(String schoolCode, String grade, String classNum) throws ExecutionException, InterruptedException{
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         ApiFuture<QuerySnapshot> future = firestore.collection(USER_PROFILE).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         for (QueryDocumentSnapshot document : documents) {
@@ -64,10 +63,7 @@ public class UserRepository {
             if(String.valueOf(profile.getGrade()).equals(grade)
                     && String.valueOf(profile.getSchool_code()).equals(schoolCode)
                     && String.valueOf(profile.getClass_num()).equals(classNum)){
-                String uid = document.getId();
-                ApiFuture<UserRecord> userAsync = firebaseAuth.getUserAsync(uid);
-                String email = userAsync.get().getEmail();
-                return email;
+                return document.get("name").toString();
             }
         }
         return "-";
