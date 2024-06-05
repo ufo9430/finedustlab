@@ -6,6 +6,7 @@ import com.finedustlab.model.survey.SurveyInputWrapper;
 import com.finedustlab.model.survey.SurveySubQuestion;
 import com.finedustlab.model.user.StudentProfile;
 import com.finedustlab.model.survey.SurveyAnswer;
+import com.finedustlab.model.user.UserProfile;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
@@ -62,10 +63,11 @@ public class SurveyService {
 
             for (String type : types.keySet()) {
                 SXSSFSheet worksheet = workbook.createSheet(type);
+//                worksheet.trackAllColumnsForAutoSizing();
+
                 HashMap<String, Object> surveyData = objectMapper.convertValue(surveyRepository.findDataByID(types.get(type)), HashMap.class);
                 Map<String, Map<String, Object>> answerData = surveyRepository.findAnswerDataByUserType(types.get(type));
                 List<Map<String, Object>> surveyDataList = objectMapper.convertValue(surveyData.get("data"), List.class);
-
                 makeSheet(worksheet, surveyDataList, answerData, style);
             }
 
@@ -83,6 +85,8 @@ public class SurveyService {
     @SuppressWarnings("unchecked")
     public void exportDataBySchoolInfo(HttpServletResponse response, String schoolCode, String grade, String class_num) {
         try{
+
+
             String fileName = "설문결과-전체";
             SXSSFWorkbook workbook = new SXSSFWorkbook();
             CellStyle style = workbook.createCellStyle();
@@ -100,6 +104,7 @@ public class SurveyService {
                 List<Map<String, Object>> surveyDataList = objectMapper.convertValue(surveyData.get("data"), List.class);
 
                 SXSSFSheet worksheet = workbook.createSheet(types.get(type));
+//                worksheet.trackAllColumnsForAutoSizing();
                 makeSheet(worksheet, surveyDataList, answerData, style);
             }
 
@@ -119,34 +124,61 @@ public class SurveyService {
         int rownum = 0;
         int count = 0;
 
+        //스타일 생성
+        style.setAlignment(HorizontalAlignment.CENTER);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
 
-        Row row = worksheet.createRow(rownum++);
-        row.createCell(0).setCellValue("기본정보");
-        row.createCell(8).setCellValue("설문응답");
+        rownum = 1;
+        Row row;
+        Cell cell;
 
         // 설문조사 아이디 작성
         row = worksheet.createRow(rownum++);
-        row.createCell(0).setCellValue("담당선생님");
-        row.createCell(1).setCellValue("이름");
-        row.createCell(2).setCellValue("학교");
-        row.createCell(3).setCellValue("학년");
-        row.createCell(4).setCellValue("반");
-        row.createCell(5).setCellValue("번호");
-        row.createCell(6).setCellValue("설문응답 날짜");
-        row.createCell(7).setCellValue("설문응답 시간");
+        cell = row.createCell(0);
+        cell.setCellValue("담당선생님");
+        cell.setCellStyle(style);
+        cell = row.createCell(1);
+        cell.setCellValue("이름");
+        cell.setCellStyle(style);
+        cell = row.createCell(2);
+        cell.setCellValue("학교");
+        cell.setCellStyle(style);
+        cell = row.createCell(3);
+        cell.setCellValue("학년");
+        cell.setCellStyle(style);
+        cell = row.createCell(4);
+        cell.setCellValue("반");
+        cell.setCellStyle(style);
+        cell = row.createCell(5);
+        cell.setCellValue("번호");
+        cell.setCellStyle(style);
+        cell = row.createCell(6);
+        cell.setCellValue("설문응답\n날짜");
+        cell.setCellStyle(style);
+        cell = row.createCell(7);
+        cell.setCellValue("설문응답\n시간");
+        cell.setCellStyle(style);
+
         for (Map<String, Object> data : surveyDataList) {
             List<Object> subQuestions = objectMapper.convertValue(data.get("sub_questions"), List.class);
             String questionId = objectMapper.convertValue(data.get("id"), String.class);
             if(subQuestions.size() == 1){
-                Cell cell = row.createCell((count)+8);
+                cell = row.createCell((count)+8);
                 cell.setCellValue("문항"+questionId);
+                cell.setCellStyle(style);
+
                 count++;
             }else{
                 for (Object subQuestion : subQuestions) {
-                    Cell cell = row.createCell((count)+8);
+                    cell = row.createCell((count)+8);
                     Map<String, Object> questionMap = objectMapper.convertValue(subQuestion, Map.class);
                     Integer subQuestionId = objectMapper.convertValue(questionMap.get("sub_question_id"), Integer.class);
                     cell.setCellValue("문항"+questionId+"-"+subQuestionId);
+                    cell.setCellStyle(style);
                     count++;
                 }
             }
@@ -159,14 +191,29 @@ public class SurveyService {
             String[] answerParams = s.split("-");
             Map<String, Object> userAnswerMap = answerData.get(s);
             row = worksheet.createRow(rownum++);
-            row.createCell(0).setCellValue(answerParams[3]);
-            row.createCell(1).setCellValue(answerParams[5]);
-            row.createCell(2).setCellValue(answerParams[0]);
-            row.createCell(3).setCellValue(answerParams[1]);
-            row.createCell(4).setCellValue(answerParams[2]);
-            row.createCell(5).setCellValue(answerParams[4]);
-            row.createCell(6).setCellValue(answerParams[6]);
-            row.createCell(7).setCellValue(objectMapper.convertValue(
+            cell = row.createCell(0);
+            cell.setCellValue(answerParams[3]);
+            cell.setCellStyle(style);
+            cell = row.createCell(1);
+            cell.setCellValue(answerParams[5]);
+            cell.setCellStyle(style);
+            cell = row.createCell(2);
+            cell.setCellValue(userAnswerMap.get("school_name").toString());
+            cell.setCellStyle(style);
+            cell = row.createCell(3);
+            cell.setCellValue(answerParams[1]);
+            cell.setCellStyle(style);
+            cell = row.createCell(4);
+            cell.setCellValue(answerParams[2]);
+            cell.setCellStyle(style);
+            cell = row.createCell(5);
+            cell.setCellValue(answerParams[4]);
+            cell.setCellStyle(style);
+            cell = row.createCell(6);
+            cell.setCellValue(answerParams[6]);
+            cell.setCellStyle(style);
+            cell = row.createCell(7);
+            cell.setCellValue(objectMapper.convertValue(
                     userAnswerMap.get("time"),String.class
             ));
 
@@ -178,14 +225,18 @@ public class SurveyService {
                         userAnswerMap.get(String.valueOf(questionId)),
                         Map.class);
                 if(subAnswers_obj == null){
+                    cell = row.createCell(count);
+                    cell.setCellValue("");
+                    cell.setCellStyle(style);
                     count++;
                     continue;
                 }
                 List<SurveySubQuestion> subAnswers = objectMapper.convertValue(subAnswers_obj.get("answer"), List.class);
 
                 for (Object subQuestion : subQuestions) {
-                    Cell cell = row.createCell(count);
+                    cell = row.createCell(count);
                     cell.setCellValue("");
+                    cell.setCellStyle(style);
                     Map<String, Object> questionMap = objectMapper.convertValue(subQuestion, Map.class);
                     Integer subQuestionId = objectMapper.convertValue(questionMap.get("sub_question_id"), Integer.class);
                     for (Object answerObj : subAnswers) {
@@ -193,7 +244,7 @@ public class SurveyService {
                         if(answer.getSub_question_id() == subQuestionId) {
                             String answerStr = answer.getSub_question_answer();
                             if(answer.getSub_question_input() != "") answerStr = answerStr + ", " + answer.getSub_question_input();
-                            cell.setCellValue(answerStr);
+                            cell.setCellValue(answerStr == null ? "" : answerStr);
                         }
                     }
                     count++;
@@ -202,15 +253,21 @@ public class SurveyService {
         }
         // 스타일 작성
 
-
-
-        style.setAlignment(HorizontalAlignment.CENTER);
-        style.setBorderBottom(BorderStyle.MEDIUM);
-        style.setBorderLeft(BorderStyle.MEDIUM);
-        style.setBorderRight(BorderStyle.MEDIUM);
-        style.setBorderTop(BorderStyle.MEDIUM);
-
-
+        row = worksheet.createRow(0);
+        for(int i=0;i<6;i++){
+            cell = row.createCell(i);
+            cell.setCellValue("기본정보");
+            cell.setCellStyle(style);
+        }
+        for(int i=7;i<count;i++) {
+            cell = row.createCell(i);
+            cell.setCellValue("설문응답");
+            cell.setCellStyle(style);
+        }
+//        for(int i=0;i<count;i++){
+//            worksheet.autoSizeColumn(i);
+//            worksheet.setColumnWidth(i, (worksheet.getColumnWidth(i) + 50));
+//        }
         worksheet.addMergedRegion(new CellRangeAddress(0,0,0,5));
         worksheet.addMergedRegion(new CellRangeAddress(0,0,6,count-1));
     }

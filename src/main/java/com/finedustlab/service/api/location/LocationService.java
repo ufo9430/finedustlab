@@ -53,6 +53,30 @@ public class LocationService {
         }
     }
 
+    public String getSchoolNameBySchoolCode(String schoolCode){
+        String url = "https://open.neis.go.kr/hub/schoolInfo" +
+                "?KEY=" + APIKEY_SCHOOL+
+                "&Type=json" +
+                "&pIndex=1" +
+                "&pSize=5" +
+                "&SD_SCHUL_CODE=" + schoolCode;
+
+
+        JSONObject data = getData(url);
+        if(data.isEmpty()) return "-";
+        JSONArray schoolInfo = (JSONArray) data.get("schoolInfo");
+        if(schoolInfo == null) return "-";
+        JSONObject rows = (JSONObject) schoolInfo.get(1);
+        JSONArray row = (JSONArray) rows.get("row");
+        JSONObject item = (JSONObject) row.get(0);
+
+        if(item.get("SCHUL_NM")!= null) {
+            return (String) item.get("SCHUL_NM");
+        }else{
+            return "-";
+        }
+    }
+
     @SuppressWarnings("unchecked")
     private JSONObject getData(String inputUrl){
         JSONObject result = new JSONObject();

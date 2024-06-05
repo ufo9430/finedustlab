@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finedustlab.model.survey.SurveyAnswer;
 import com.finedustlab.model.user.StudentProfile;
 import com.finedustlab.model.user.UserProfile;
+import com.finedustlab.service.api.location.LocationService;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Field;
@@ -19,6 +21,8 @@ import java.util.concurrent.ExecutionException;
 public class SurveyRepository {
     public static final String SURVEY_ANSWER = "survey_answer";
     private static final String SURVEY_DATA = "survey_data";
+
+    @Autowired private LocationService locationService;
     Firestore firestore = FirestoreClient.getFirestore();
 
     ObjectMapper objectMapper = new ObjectMapper();
@@ -26,7 +30,8 @@ public class SurveyRepository {
     public String save(StudentProfile profile, SurveyAnswer answer, String teacherName){
         HashMap<String, Object> fields = new HashMap<>();
         String date_day = answer.getDate().split("T")[0];
-        String date_time = answer.getDate().split("T")[1];
+        String date_time = answer.getDate().split("T")[1].replace("Z","");
+        String school_name = locationService.getSchoolNameBySchoolCode(String.valueOf(profile.getSchool_code()));
         String document_id =
                 profile.getSchool_code()+"-"+
                         profile.getGrade()+"-"+
@@ -39,6 +44,7 @@ public class SurveyRepository {
         fields.put("profile",profile);
         fields.put("date",date_day);
         fields.put("time",date_time);
+        fields.put("school_name",school_name);
         fields.put(String.valueOf(answer.getQuestion_id()), setAnswerData(answer));
         firestore.collection(SURVEY_ANSWER).document(document_id)
                 .set(fields,SetOptions.merge());
