@@ -19,22 +19,23 @@ import java.util.List;
 class FinedustlabApplicationTests {
 	@Autowired SurveyController surveyController;
 
+	@Test
 	void makeTestSurvey() {
 		try{
 			StudentProfile teacherProfile = new StudentProfile();
-			teacherProfile.setName("인현민");
-			teacherProfile.setGrade(2);
-			teacherProfile.setSchool_code(7091407);
-			teacherProfile.setUser_type("elementary");
-			teacherProfile.setClass_num(12);
+			teacherProfile.setName("김선생");
+			teacherProfile.setGrade(1);
+			teacherProfile.setSchool_code(7010117);
+			teacherProfile.setUser_type("teacher");
+			teacherProfile.setClass_num(2);
 			teacherProfile.setStudent_num(0);
-			for(int i=0;i<15;i++){
+			for(int i=0;i<25;i++){
 				SurveyAnswer surveyAnswer = new SurveyAnswer();
 				List<SurveySubQuestion> answers = new ArrayList<SurveySubQuestion>();
 				for(int j=0;j<3;j++){
 					SurveySubQuestion question = new SurveySubQuestion();
 					question.setSub_question_id(j+1);
-					question.setSub_question_answer("답변");
+					question.setSub_question_answer((i+1)+"-"+(j+1)+"번 답변");
 					question.setSub_question_input("");
 					question.setType("choice");
 					answers.add(question);

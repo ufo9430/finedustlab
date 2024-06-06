@@ -29,8 +29,14 @@ public class SurveyRepository {
 
     public String save(StudentProfile profile, SurveyAnswer answer, String teacherName){
         HashMap<String, Object> fields = new HashMap<>();
-        String date_day = answer.getDate().split("T")[0];
-        String date_time = answer.getDate().split("T")[1].replace("Z","");
+        String[] dateSplit = answer.getDate().split("T");
+        String date_day = dateSplit[0];
+        String date_time;
+        if(dateSplit.length == 1){
+            date_time = "-";
+        }else{
+            date_time = dateSplit[1].replace("Z","");
+        }
         String school_name = locationService.getSchoolNameBySchoolCode(String.valueOf(profile.getSchool_code()));
         String document_id =
                 profile.getSchool_code()+"-"+
