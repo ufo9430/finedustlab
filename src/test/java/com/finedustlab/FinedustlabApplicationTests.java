@@ -23,12 +23,12 @@ class FinedustlabApplicationTests {
 	void makeTestSurvey() {
 		try{
 			StudentProfile teacherProfile = new StudentProfile();
-			teacherProfile.setName("김선생");
-			teacherProfile.setGrade(1);
-			teacherProfile.setSchool_code(7010117);
-			teacherProfile.setUser_type("teacher");
-			teacherProfile.setClass_num(2);
-			teacherProfile.setStudent_num(0);
+			teacherProfile.setName("김학생");
+			teacherProfile.setGrade(3);
+			teacherProfile.setSchool_code(8000283);
+			teacherProfile.setUser_type("high");
+			teacherProfile.setClass_num(7);
+			teacherProfile.setStudent_num(13);
 			for(int i=0;i<25;i++){
 				SurveyAnswer surveyAnswer = new SurveyAnswer();
 				List<SurveySubQuestion> answers = new ArrayList<SurveySubQuestion>();
@@ -41,7 +41,7 @@ class FinedustlabApplicationTests {
 					answers.add(question);
 				}
 				surveyAnswer.setAnswers(answers);
-				surveyAnswer.setDate("2024-06-05T10:00:00Z");
+				surveyAnswer.setDate("2024-06-15T10:30:34Z");
 				surveyAnswer.setQuestion_id(i+1);
 				SurveyInputWrapper wrapper = new SurveyInputWrapper();
 				wrapper.setSurvey_data(surveyAnswer);

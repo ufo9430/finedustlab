@@ -188,7 +188,7 @@ public class SurveyService {
             // 아이디 = 학교코드 학년 반 담당선생님 번호 이름 게시일
             // 셀 = 담당선생님 이름 학교 학년 반 번호
             System.out.println("s = " + s);
-            String[] answerParams = s.split("-");
+            String[] answerParams = s.split("__");
             Map<String, Object> userAnswerMap = answerData.get(s);
             row = worksheet.createRow(rownum++);
             cell = row.createCell(0);

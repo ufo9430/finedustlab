@@ -39,12 +39,12 @@ public class SurveyRepository {
         }
         String school_name = locationService.getSchoolNameBySchoolCode(String.valueOf(profile.getSchool_code()));
         String document_id =
-                profile.getSchool_code()+"-"+
-                        profile.getGrade()+"-"+
-                        profile.getClass_num()+"-"+
-                        teacherName + "-" +
-                        profile.getStudent_num()+"-"+
-                        profile.getName()+"-"+
+                profile.getSchool_code()+"__"+
+                        profile.getGrade()+"__"+
+                        profile.getClass_num()+"__"+
+                        teacherName + "__" +
+                        profile.getStudent_num()+"__"+
+                        profile.getName()+"__"+
                         date_day;
 
         fields.put("profile",profile);
