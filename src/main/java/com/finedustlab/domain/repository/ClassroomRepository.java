@@ -43,9 +43,9 @@ public class ClassroomRepository {
            String status;
            if(finedust_factor <= 30 && finedust_factor>=0){
                status = "good";
-           }else if(finedust_factor < 80){
+           }else if(finedust_factor <= 80){
                status = "fine";
-           }else if(finedust_factor < 150){
+           }else if(finedust_factor <= 150){
                status = "bad";
            }else{
                status = "very bad";
