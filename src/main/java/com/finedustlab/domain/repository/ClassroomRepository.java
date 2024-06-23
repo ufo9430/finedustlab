@@ -43,18 +43,22 @@ public class ClassroomRepository {
            String status;
            if(finedust_factor <= 30 && finedust_factor>=0){
                status = "good";
-           }else if(finedust_factor <= 150){
+           }else if(finedust_factor < 80){
                status = "fine";
-           }else{
+           }else if(finedust_factor < 150){
                status = "bad";
+           }else{
+               status = "very bad";
            }
            classroom.put("fine_status",status);
            if(ultrafine_factor <= 15 && ultrafine_factor>=0){
                status = "good";
-           }else if(ultrafine_factor <= 75){
+           }else if(ultrafine_factor <= 35){
                status = "fine";
-           }else{
+           }else if(ultrafine_factor <= 75){
                status = "bad";
+           }else{
+               status = "very bad";
            }
            classroom.put("ultra_status",status);
            classroom.put("result","complete");
