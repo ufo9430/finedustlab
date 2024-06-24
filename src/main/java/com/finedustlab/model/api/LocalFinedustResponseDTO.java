@@ -14,9 +14,9 @@ public class LocalFinedustResponseDTO {
     private String finedust_factor;
     @Schema(description = "초미세먼지 지수", defaultValue = "13")
     private String ultrafine_factor;
-    @Schema(description = "미세먼지 상태", defaultValue = "good", allowableValues = {"good","fine","bad"})
+    @Schema(description = "미세먼지 상태", defaultValue = "good", allowableValues = {"good","fine","bad","very bad"})
     private String fine_status;
-    @Schema(description = "초미세먼지 상태", defaultValue = "good", allowableValues = {"good","fine","bad"})
+    @Schema(description = "초미세먼지 상태", defaultValue = "good", allowableValues = {"good","fine","bad","very bad"})
     private String ultra_status;
     @Schema(description = "호출 결과", allowableValues = {"complete","error"})
     private String result;
